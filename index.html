@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OLL — дизайнерские светильники. Каталог с ценами | oppleoll.ru</title>
+<meta name="description" content="Дизайнерские светильники OLL: серии Edge, Vessel, Aura, Bubble, CRYX, Flow, Astra, Lamino, FOLIO. Актуальные цены и заявка на поставку.">
+<link rel="preconnect" href="/">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="head">
+  <a class="logo" href="#top" aria-label="OLL — дизайнерский свет Opple Lighting">
+    <svg class="logo-glyph" viewBox="0 0 182 132" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect x="141" y="36" width="16" height="60"/><rect x="166" y="36" width="16" height="60"/></svg>
+    <span class="logo-sub">by Opple Lighting</span>
+  </a>
+  <nav class="nav">
+    <a href="#catalog">Витрина</a>
+    <a href="#about">О бренде</a>
+    <a href="#contact">Заявка</a>
+  </nav>
+  <a class="head-phone" href="#" data-c="phoneHref"><span data-c="phoneDisplay"></span></a>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-media"><img src="img/hero.jpg" alt="Экспозиция OLL: светильник в интерьере" fetchpriority="high"></div>
+  <div class="hero-body">
+    <p class="eyebrow">Design lighting · Opple Lighting</p>
+    <h1>Свет как<br>архитектура<br><em>пространства</em></h1>
+    <p class="hero-lead">64 модели в девяти сериях. Цены на сайте, поставка под заказ.</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#catalog">Смотреть витрину</a>
+      <a class="btn btn-ghost" href="#contact">Оставить заявку</a>
+    </div>
+  </div>
+  <div class="hero-fade"></div>
+</section>
+
+<main>
+<section class="catalog" id="catalog">
+  <div class="cat-head">
+    <h2>Витрина</h2>
+    <p class="cat-note">Все цены — за одну единицу. Не является публичной офертой.</p>
+  </div>
+
+  <div class="toolbar" id="toolbar">
+    <div class="chips" id="seriesChips" role="group" aria-label="Серия"></div>
+    <div class="tools">
+      <label class="field-search">
+        <span class="sr-only">Поиск по артикулу</span>
+        <input type="search" id="q" placeholder="Артикул: MZX8686, MZD150…" autocomplete="off">
+      </label>
+      <select id="type" aria-label="Тип светильника"><option value="">Все типы</option></select>
+      <select id="sort" aria-label="Сортировка">
+        <option value="series">По сериям</option>
+        <option value="price-asc">Сначала дешевле</option>
+        <option value="price-desc">Сначала дороже</option>
+      </select>
+      <label class="range">
+        <span>до <b id="rangeLabel"></b></span>
+        <input type="range" id="maxPrice" min="0" max="0" step="10000">
+      </label>
+    </div>
+    <div class="cat-meta"><span id="count"></span><button type="button" class="link-reset" id="reset">Сбросить фильтры</button></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>Под эти фильтры нет ни одной модели. <button type="button" class="link-reset" id="reset2">Сбросить</button></p>
+</section>
+
+<section class="about" id="about">
+  <div class="about-media"><img src="img/about.jpg" alt="Экспозиция OLL на выставке light+building" loading="lazy"></div>
+  <div class="about-body">
+    <p class="eyebrow">OLL</p>
+    <h2>Уважение к свету<br>в основе бренда</h2>
+    <p>OLL — дизайнерское направление Opple Lighting. Свет здесь не инструмент освещения, а язык, конструкция и переживание: тонкие линии, ручное стекло, тёплый спектр и управление светом в пространстве.</p>
+    <dl class="facts">
+      <div><dt>Серий</dt><dd>9</dd></div>
+      <div><dt>Моделей</dt><dd>64</dd></div>
+      <div><dt>Диапазон цен</dt><dd>41 000 — 1 100 000 ₽</dd></div>
+    </dl>
+    <p class="muted" id="delivery"></p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-body">
+    <p class="eyebrow">Заявка</p>
+    <h2>Оставьте заявку<br>на светильники</h2>
+    <p class="muted">Подберём наличие, посчитаем поставку и пришлём счёт. Отвечаем в рабочее время.</p>
+
+    <form id="leadForm" novalidate>
+      <input type="hidden" name="product" id="f-product">
+      <label class="hp" aria-hidden="true">Не заполняйте<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      <div class="row">
+        <label>Имя<input name="name" required maxlength="80" autocomplete="name" placeholder="Как к вам обращаться"></label>
+        <label>Телефон<input name="phone" required inputmode="tel" autocomplete="tel" placeholder="+7 …"></label>
+      </div>
+      <div class="row">
+        <label>Email<input name="email" type="email" autocomplete="email" placeholder="для счёта и ответа"></label>
+        <label>Количество<input name="qty" inputmode="numeric" maxlength="8" placeholder="напр. 4"></label>
+      </div>
+      <label class="full">Комментарий<textarea name="message" rows="3" maxlength="800" id="f-message" placeholder="Что и куда — или «нужен прайс целиком»"></textarea></label>
+
+      <label class="consent">
+        <input type="checkbox" name="consent" required>
+        <span>Согласен на обработку персональных данных и получение ответа по указанным контактам. <a href="privacy.html" target="_blank" rel="noopener">Политика</a></span>
+      </label>
+
+      <div class="submit-row">
+        <button class="btn btn-solid" type="submit" id="submitBtn">Отправить заявку</button>
+        <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
+      </div>
+      <div class="chosen" id="chosen" hidden></div>
+    </form>
+  </div>
+  <aside class="contact-side">
+    <div class="side-card">
+      <p class="eyebrow">Контакты</p>
+      <a class="side-phone" href="#" data-c="phoneHref"><span data-c="phoneDisplay"></span></a>
+      <p class="side-hours" data-c="hours"></p>
+      <a class="side-mail" href="#" data-c-mail>почта</a>
+      <div class="side-links">
+        <a href="#" data-c-tg target="_blank" rel="noopener">Telegram</a>
+        <a href="#" data-c-wa target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </aside>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-l">
+    <svg class="logo-glyph foot-glyph" viewBox="0 0 182 132" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect x="141" y="36" width="16" height="60"/><rect x="166" y="36" width="16" height="60"/></svg>
+    <p id="legal"></p>
+  </div>
+  <div class="foot-r">
+    <p>Актуальность цен: <span id="updated"></span>.</p>
+    <p><a href="privacy.html">Политика обработки персональных данных</a></p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-back" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Модель светильника">
+    <button class="modal-x" data-close aria-label="Закрыть">×</button>
+    <div class="modal-media">
+      <div class="modal-stage"><img id="m-main" alt=""></div>
+      <div class="modal-thumbs" id="m-thumbs"></div>
+    </div>
+    <div class="modal-info">
+      <p class="eyebrow" id="m-series"></p>
+      <h3 id="m-model"></h3>
+      <p class="m-type" id="m-type"></p>
+      <p class="m-price"><span class="m-price-val" id="m-price"></span><span class="m-price-note">за единицу</span></p>
+      <div class="m-actions">
+        <button class="btn btn-solid" id="m-lead">Оставить заявку</button>
+        <a class="btn btn-ghost" href="#" data-c="phoneHref"><span data-c="phoneDisplay"></span></a>
+      </div>
+      <p class="m-sku" id="m-sku"></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

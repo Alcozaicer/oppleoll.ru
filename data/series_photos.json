@@ -1,0 +1,1011 @@
+{
+ "Edge": [
+  {
+   "file": "posters/poster_Edge.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 1350,
+   "h": 1800,
+   "lum": 163.8
+  },
+  {
+   "file": "series/ex_04_Edge.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": null,
+   "src": "expo",
+   "w": 1200,
+   "h": 1800,
+   "lum": 64.3
+  },
+  {
+   "file": "series/ex_01_Edge.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": null,
+   "src": "expo",
+   "w": 1800,
+   "h": 1200,
+   "lum": 66.2
+  },
+  {
+   "file": "series/int_05_3.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 5,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1500,
+   "h": 1100,
+   "lum": 67.1
+  },
+  {
+   "file": "series/int_05_2.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 5,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1500,
+   "h": 1102,
+   "lum": 68.3
+  },
+  {
+   "file": "series/int_05_1.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 5,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1279,
+   "h": 720,
+   "lum": 72.3
+  },
+  {
+   "file": "series/int_04_1.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 4,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1326,
+   "h": 847,
+   "lum": 76.8
+  },
+  {
+   "file": "series/cat_03_1.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 3,
+   "src": "OLL catalogue.pdf",
+   "w": 1008,
+   "h": 846,
+   "lum": 79.9
+  },
+  {
+   "file": "series/brd_11_7.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 11,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 749,
+   "h": 748,
+   "lum": 97.4
+  },
+  {
+   "file": "series/brd_06_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 6,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 957,
+   "lum": 108.6
+  },
+  {
+   "file": "series/int_05_6.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 5,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1500,
+   "h": 957,
+   "lum": 115.0
+  },
+  {
+   "file": "series/brd_08_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 8,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 846,
+   "lum": 117.5
+  },
+  {
+   "file": "series/brd_07_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 7,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 844,
+   "lum": 118.7
+  },
+  {
+   "file": "series/ex_00_Edge.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": null,
+   "src": "expo",
+   "w": 1200,
+   "h": 1800,
+   "lum": 120.8
+  },
+  {
+   "file": "series/brd_09_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 9,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 844,
+   "lum": 126.3
+  },
+  {
+   "file": "series/cat_03_3.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 3,
+   "src": "OLL catalogue.pdf",
+   "w": 1225,
+   "h": 782,
+   "lum": 128.0
+  },
+  {
+   "file": "series/brd_10_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 10,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 844,
+   "lum": 128.1
+  },
+  {
+   "file": "series/int_04_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 4,
+   "src": "OLL INTRO EN.pdf",
+   "w": 912,
+   "h": 582,
+   "lum": 133.1
+  },
+  {
+   "file": "series/cat_03_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 3,
+   "src": "OLL catalogue.pdf",
+   "w": 897,
+   "h": 847,
+   "lum": 140.7
+  },
+  {
+   "file": "series/cat_04_2.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 4,
+   "src": "OLL catalogue.pdf",
+   "w": 1500,
+   "h": 1356,
+   "lum": 151.2
+  },
+  {
+   "file": "series/cat_17_0.jpg",
+   "series": [
+    "Edge",
+    "Vessel",
+    "CRYX"
+   ],
+   "page": 17,
+   "src": "OLL catalogue.pdf",
+   "w": 800,
+   "h": 1500,
+   "lum": 184.2
+  },
+  {
+   "file": "series/cat_17_2.jpg",
+   "series": [
+    "Edge",
+    "Vessel",
+    "CRYX"
+   ],
+   "page": 17,
+   "src": "OLL catalogue.pdf",
+   "w": 1297,
+   "h": 1220,
+   "lum": 200.9
+  },
+  {
+   "file": "series/int_05_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 5,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1500,
+   "h": 1406,
+   "lum": 216.4
+  },
+  {
+   "file": "series/cat_04_0.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 4,
+   "src": "OLL catalogue.pdf",
+   "w": 1500,
+   "h": 1406,
+   "lum": 217.3
+  }
+ ],
+ "Aura": [
+  {
+   "file": "series/cat_06_1.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 6,
+   "src": "OLL catalogue.pdf",
+   "w": 937,
+   "h": 588,
+   "lum": 80.9
+  },
+  {
+   "file": "series/brd_12_0.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 12,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 955,
+   "lum": 114.8
+  },
+  {
+   "file": "series/cat_06_0.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 6,
+   "src": "OLL catalogue.pdf",
+   "w": 998,
+   "h": 603,
+   "lum": 123.7
+  },
+  {
+   "file": "series/brd_15_0.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 15,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 843,
+   "lum": 144.5
+  },
+  {
+   "file": "series/brd_13_0.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 13,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 844,
+   "lum": 149.1
+  },
+  {
+   "file": "series/cat_06_2.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 6,
+   "src": "OLL catalogue.pdf",
+   "w": 1366,
+   "h": 872,
+   "lum": 150.0
+  },
+  {
+   "file": "series/int_07_2.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 7,
+   "src": "OLL INTRO EN.pdf",
+   "w": 911,
+   "h": 582,
+   "lum": 150.5
+  },
+  {
+   "file": "series/cat_04_2.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 4,
+   "src": "OLL catalogue.pdf",
+   "w": 1500,
+   "h": 1356,
+   "lum": 151.2
+  },
+  {
+   "file": "series/int_08_0.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 8,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1500,
+   "h": 958,
+   "lum": 158.6
+  },
+  {
+   "file": "series/brd_17_6.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 17,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 794,
+   "h": 669,
+   "lum": 158.7
+  },
+  {
+   "file": "series/brd_14_0.jpg",
+   "series": [
+    "Aura"
+   ],
+   "page": 14,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 844,
+   "lum": 203.0
+  }
+ ],
+ "Astra": [
+  {
+   "file": "posters/poster_Astra.jpg",
+   "series": [
+    "Astra"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 1280,
+   "h": 1706,
+   "lum": 55.9
+  },
+  {
+   "file": "posters/poster_Astra.jpg",
+   "series": [
+    "Astra"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 1350,
+   "h": 1800,
+   "lum": 125.2
+  },
+  {
+   "file": "series/int_11_4.jpg",
+   "series": [
+    "Astra"
+   ],
+   "page": 11,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1279,
+   "h": 720,
+   "lum": 65.7
+  },
+  {
+   "file": "series/int_05_3.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 5,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1500,
+   "h": 1100,
+   "lum": 67.1
+  },
+  {
+   "file": "series/int_05_2.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 5,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1500,
+   "h": 1102,
+   "lum": 68.3
+  },
+  {
+   "file": "series/int_05_1.jpg",
+   "series": [
+    "Edge"
+   ],
+   "page": 5,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1279,
+   "h": 720,
+   "lum": 72.3
+  },
+  {
+   "file": "series/cat_10_1.jpg",
+   "series": [
+    "Astra"
+   ],
+   "page": 10,
+   "src": "OLL catalogue.pdf",
+   "w": 800,
+   "h": 1500,
+   "lum": 74.2
+  },
+  {
+   "file": "series/cat_10_4.jpg",
+   "series": [
+    "Astra"
+   ],
+   "page": 10,
+   "src": "OLL catalogue.pdf",
+   "w": 800,
+   "h": 1500,
+   "lum": 77.0
+  },
+  {
+   "file": "series/brd_31_0.jpg",
+   "series": [
+    "Astra"
+   ],
+   "page": 31,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 1147,
+   "lum": 81.3
+  },
+  {
+   "file": "series/cat_11_1.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 11,
+   "src": "OLL catalogue.pdf",
+   "w": 558,
+   "h": 991,
+   "lum": 87.0
+  },
+  {
+   "file": "series/int_12_1.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 12,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1051,
+   "h": 1500,
+   "lum": 94.3
+  },
+  {
+   "file": "series/brd_29_0.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 29,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 703,
+   "lum": 107.8
+  },
+  {
+   "file": "series/cat_11_0.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 11,
+   "src": "OLL catalogue.pdf",
+   "w": 895,
+   "h": 1500,
+   "lum": 131.9
+  },
+  {
+   "file": "series/int_12_0.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 12,
+   "src": "OLL INTRO EN.pdf",
+   "w": 836,
+   "h": 1115,
+   "lum": 133.1
+  },
+  {
+   "file": "series/brd_29_1.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 29,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 908,
+   "h": 850,
+   "lum": 254.5
+  }
+ ],
+ "Flow": [
+  {
+   "file": "posters/poster_Flow.jpg",
+   "series": [
+    "Flow"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 1350,
+   "h": 1800,
+   "lum": 55.0
+  },
+  {
+   "file": "posters/poster_Flow.jpg",
+   "series": [
+    "Flow"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 1280,
+   "h": 1706,
+   "lum": 125.8
+  },
+  {
+   "file": "series/brd_30_1.jpg",
+   "series": [
+    "Flow"
+   ],
+   "page": 30,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 747,
+   "h": 1122,
+   "lum": 55.5
+  },
+  {
+   "file": "series/ex_06_Flow.jpg",
+   "series": [
+    "Flow"
+   ],
+   "page": null,
+   "src": "expo",
+   "w": 1200,
+   "h": 1800,
+   "lum": 44.9
+  },
+  {
+   "file": "series/brd_30_0.jpg",
+   "series": [
+    "Flow"
+   ],
+   "page": 30,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 845,
+   "lum": 76.9
+  },
+  {
+   "file": "series/cat_11_1.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 11,
+   "src": "OLL catalogue.pdf",
+   "w": 558,
+   "h": 991,
+   "lum": 87.0
+  },
+  {
+   "file": "series/int_12_1.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 12,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1051,
+   "h": 1500,
+   "lum": 94.3
+  },
+  {
+   "file": "series/ex_02_Flow.jpg",
+   "series": [
+    "Flow"
+   ],
+   "page": null,
+   "src": "expo",
+   "w": 1200,
+   "h": 1800,
+   "lum": 22.4
+  },
+  {
+   "file": "series/brd_29_0.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 29,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 703,
+   "lum": 107.8
+  },
+  {
+   "file": "series/cat_11_0.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 11,
+   "src": "OLL catalogue.pdf",
+   "w": 895,
+   "h": 1500,
+   "lum": 131.9
+  },
+  {
+   "file": "series/int_12_0.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 12,
+   "src": "OLL INTRO EN.pdf",
+   "w": 836,
+   "h": 1115,
+   "lum": 133.1
+  },
+  {
+   "file": "series/ex_05_Flow.jpg",
+   "series": [
+    "Flow"
+   ],
+   "page": null,
+   "src": "expo",
+   "w": 1200,
+   "h": 1800,
+   "lum": 152.2
+  },
+  {
+   "file": "series/brd_29_1.jpg",
+   "series": [
+    "Flow",
+    "Astra"
+   ],
+   "page": 29,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 908,
+   "h": 850,
+   "lum": 254.5
+  }
+ ],
+ "Vessel": [
+  {
+   "file": "series/brd_18_0.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 18,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 844,
+   "lum": 78.6
+  },
+  {
+   "file": "series/int_17_2.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 17,
+   "src": "OLL INTRO EN.pdf",
+   "w": 962,
+   "h": 721,
+   "lum": 101.1
+  },
+  {
+   "file": "series/cat_16_3.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 16,
+   "src": "OLL catalogue.pdf",
+   "w": 901,
+   "h": 912,
+   "lum": 107.7
+  },
+  {
+   "file": "series/brd_20_6.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 20,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 754,
+   "h": 750,
+   "lum": 113.6
+  },
+  {
+   "file": "series/int_17_0.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 17,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1393,
+   "h": 888,
+   "lum": 139.6
+  },
+  {
+   "file": "series/cat_16_0.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 16,
+   "src": "OLL catalogue.pdf",
+   "w": 1500,
+   "h": 1029,
+   "lum": 140.0
+  },
+  {
+   "file": "series/brd_19_0.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 19,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 843,
+   "lum": 141.8
+  },
+  {
+   "file": "series/int_17_4.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 17,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1240,
+   "h": 447,
+   "lum": 156.2
+  },
+  {
+   "file": "series/int_18_0.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 18,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1500,
+   "h": 957,
+   "lum": 172.4
+  },
+  {
+   "file": "series/cat_17_0.jpg",
+   "series": [
+    "Edge",
+    "Vessel",
+    "CRYX"
+   ],
+   "page": 17,
+   "src": "OLL catalogue.pdf",
+   "w": 800,
+   "h": 1500,
+   "lum": 184.2
+  },
+  {
+   "file": "series/cat_17_2.jpg",
+   "series": [
+    "Edge",
+    "Vessel",
+    "CRYX"
+   ],
+   "page": 17,
+   "src": "OLL catalogue.pdf",
+   "w": 1297,
+   "h": 1220,
+   "lum": 200.9
+  },
+  {
+   "file": "series/cat_16_2.jpg",
+   "series": [
+    "Vessel"
+   ],
+   "page": 16,
+   "src": "OLL catalogue.pdf",
+   "w": 925,
+   "h": 623,
+   "lum": 216.2
+  }
+ ],
+ "CRYX": [
+  {
+   "file": "series/cat_17_0.jpg",
+   "series": [
+    "Edge",
+    "Vessel",
+    "CRYX"
+   ],
+   "page": 17,
+   "src": "OLL catalogue.pdf",
+   "w": 800,
+   "h": 1500,
+   "lum": 184.2
+  },
+  {
+   "file": "series/cat_17_2.jpg",
+   "series": [
+    "Edge",
+    "Vessel",
+    "CRYX"
+   ],
+   "page": 17,
+   "src": "OLL catalogue.pdf",
+   "w": 1297,
+   "h": 1220,
+   "lum": 200.9
+  }
+ ],
+ "Bubble": [
+  {
+   "file": "posters/poster_Bubble.jpg",
+   "series": [
+    "Bubble"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 1350,
+   "h": 1800,
+   "lum": 61.6
+  },
+  {
+   "file": "series/cat_20_0.jpg",
+   "series": [
+    "Bubble"
+   ],
+   "page": 20,
+   "src": "OLL catalogue.pdf",
+   "w": 1500,
+   "h": 1000,
+   "lum": 89.7
+  },
+  {
+   "file": "series/brd_34_0.jpg",
+   "series": [
+    "Bubble"
+   ],
+   "page": 34,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 658,
+   "h": 989,
+   "lum": 91.0
+  },
+  {
+   "file": "series/int_22_0.jpg",
+   "series": [
+    "Bubble"
+   ],
+   "page": 22,
+   "src": "OLL INTRO EN.pdf",
+   "w": 1337,
+   "h": 892,
+   "lum": 99.9
+  },
+  {
+   "file": "series/brd_34_1.jpg",
+   "series": [
+    "Bubble"
+   ],
+   "page": 34,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 659,
+   "h": 989,
+   "lum": 128.5
+  },
+  {
+   "file": "series/brd_37_0.jpg",
+   "series": [
+    "Bubble"
+   ],
+   "page": 37,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 1200,
+   "lum": 132.2
+  },
+  {
+   "file": "series/brd_34_2.jpg",
+   "series": [
+    "Bubble"
+   ],
+   "page": 34,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1483,
+   "h": 987,
+   "lum": 153.9
+  },
+  {
+   "file": "series/brd_33_0.jpg",
+   "series": [
+    "Bubble"
+   ],
+   "page": 33,
+   "src": "OLL Brand & Products -V2.pdf",
+   "w": 1500,
+   "h": 844,
+   "lum": 156.2
+  }
+ ],
+ "FOLIO": [
+  {
+   "file": "posters/poster_FOLIO.jpg",
+   "series": [
+    "FOLIO"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 1350,
+   "h": 1800,
+   "lum": 88.3
+  },
+  {
+   "file": "posters/poster_FOLIO.jpg",
+   "series": [
+    "FOLIO"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 1350,
+   "h": 1800,
+   "lum": 148.7
+  },
+  {
+   "file": "series/ex_03_FOLIO.jpg",
+   "series": [
+    "FOLIO"
+   ],
+   "page": null,
+   "src": "expo",
+   "w": 1200,
+   "h": 1800,
+   "lum": 104.3
+  }
+ ],
+ "_expo": []
+}

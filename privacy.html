@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политика обработки персональных данных — oppleoll.ru</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="head solid">
+  <a class="logo" href="index.html" aria-label="OLL — на главную"><svg class="logo-glyph" viewBox="0 0 182 132" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect x="141" y="36" width="16" height="60"/><rect x="166" y="36" width="16" height="60"/></svg><span class="logo-sub">by Opple Lighting</span></a>
+  <nav class="nav"><a href="index.html#catalog">Витрина</a><a href="index.html#contact">Заявка</a></nav>
+</header>
+
+<main class="about" style="grid-template-columns:1fr;max-width:820px;padding-top:140px">
+  <div class="about-body">
+    <p class="eyebrow">oppleoll.ru</p>
+    <h2>Политика обработки<br>персональных данных</h2>
+    <p>Администратор — <b id="p-entity"></b> (ИНН <span id="p-inn"></span>, <span id="p-addr"></span>).
+    Настоящая политика описывает обработку данных, которые посетитель добровольно оставляет в форме заявки.</p>
+
+    <h3>Какие данные обрабатываются</h3>
+    <p>Имя, телефон, email, количество, комментарий к заявке, выбранный товар, а также технически — IP-адрес,
+    время отправки и страница, с которой пришла заявка. Данные передаются только для ответа на заявку и
+    оформления поставки.</p>
+
+    <h3>Зачем</h3>
+    <p>Ответить на обращение, согласовать наличие и стоимость, выставить счёт и доставить товар.
+    Основание — согласие посетителя, которое он подтверждает флажком в форме.</p>
+
+    <h3>Куда попадают</h3>
+    <p>Заявка отправляется на адрес электронной почты и в мессенджер администратора, а также сохраняется
+    в журнале на сервере hosting-провайдера. Мы не передаём данные третьим лицам, кроме случаев,
+    когда это необходимо для доставки или требуется по закону.</p>
+
+    <h3>Сроки и отзыв согласия</h3>
+    <p>Данные хранятся не дольше, чем требуется для ответа на заявку и закрытия поставки, после чего удаляются.
+    Отозвать согласие или потребовать удаления можно письмом на адрес, указанный на сайте, — в разделе «Контакты».</p>
+
+    <h3>Защита</h3>
+    <p>Сайт работает по HTTPS, форма закрывает доступ к данным только по назначению, поля проходят проверку
+    на стороне сервера, отправка ограничена по частоте для защиты от автоматической рассылки.</p>
+
+    <p class="muted" style="margin-top:36px">Редакция от <span id="p-date"></span>.
+    <a href="index.html" style="border-bottom:1px solid var(--line)">Вернуться на витрину</a></p>
+  </div>
+</main>
+
+<script>
+fetch('data/site.config.json').then(r => r.json()).then(c => {
+  p_entity.textContent = c.legal.entity; p_inn.textContent = c.legal.inn; p_addr.textContent = c.legal.address;
+  p_date.textContent = new Date().toLocaleDateString('ru-RU');
+});
+</script>
+</body>
+</html>

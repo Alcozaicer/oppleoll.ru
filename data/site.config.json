@@ -1,0 +1,27 @@
+{
+  "brand": "OLL",
+  "domain": "oppleoll.ru",
+  "legal": {
+    "entity": "ООО «СМАРТ ОСВЕЩЕНИЕ»",
+    "inn": "9726055863",
+    "ogrn": "1237700695011",
+    "address": "Москва, Киевское шоссе, д. 3"
+  },
+  "contacts": {
+    "phoneDisplay": "+7 (999) 874-11-59",
+    "phoneHref": "+79998741159",
+    "email": "i.gromov@opple-rus.ru",
+    "telegram": "",
+    "whatsapp": "+79998741159",
+    "hours": "Пн–Пт 9:00–19:00"
+  },
+  "lead": {
+    "endpoint": "https://api.oppleoll.ru/submit.php",
+    "mailCc": ["bestjailbreaker@gmail.com"],
+    "note": "Заявки приходят на почту. Отправка настроена на сервере, адрес получателя на сайте не светится."
+  },
+  "delivery": {
+    "regions": "Москва и регионы России, страны СНГ",
+    "terms": "Под заказ, сроки и стоимость уточняются по запросу"
+  }
+}
