@@ -6,7 +6,9 @@
 <title>OLL — дизайнерские светильники. Каталог с ценами | oppleoll.ru</title>
 <meta name="description" content="Дизайнерские светильники OLL: серии Edge, Vessel, Aura, Bubble, CRYX, Flow, Astra, Lamino, FOLIO. Актуальные цены и заявка на поставку.">
 <meta name="theme-color" content="#0a0a0b">
+<meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://oppleoll.ru/">
+<link rel="preload" href="fonts/manrope-cyr-300.woff2" as="font" type="font/woff2" crossorigin>
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -116,7 +118,7 @@
         <input type="range" id="maxPrice" min="0" max="0" step="10000">
       </label>
     </div>
-    <div class="cat-meta"><span id="count"></span><button type="button" class="link-reset" id="reset">Сбросить фильтры</button></div>
+    <div class="cat-meta"><span id="count" aria-live="polite"></span><button type="button" class="link-reset" id="reset">Сбросить фильтры</button></div>
   </div>
 
   <div class="grid" id="grid"></div>

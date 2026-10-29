@@ -14,7 +14,7 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none !important}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;color-scheme:dark}
 body{
   margin:0;background:var(--bg);color:var(--ink);
   font:300 17px/1.65 Manrope,system-ui,sans-serif;
@@ -230,5 +230,11 @@ textarea{resize:vertical}
   .field-search{flex:1}
   .hero{min-height:80vh}
   .facts{flex-wrap:wrap;gap:22px}
+  /* зоны нажатия не меньше 44px (WCAG 2.5.5) — на палец чипы и кнопки были мелковаты */
+  .chip,.tools select,.field-search input{min-height:44px}
+  .link-reset,.head-phone{display:inline-flex;align-items:center;min-height:44px}
+  .modal-x{top:4px;right:6px;padding:9px;font-size:28px}
+  input[type=range]::-webkit-slider-thumb{width:22px;height:22px}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

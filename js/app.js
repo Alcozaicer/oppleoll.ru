@@ -27,19 +27,37 @@
     $('#updated').textContent = new Date().toLocaleDateString('ru-RU');
   }
 
+  /* ---------- ссылки на витрину: ?s=Bubble,Edge и ?p=<артикул> ---------- */
+  function applyUrl() {
+    const q = new URLSearchParams(location.search);
+    const s = q.get('s');
+    if (s) s.split(',').map(x => x.trim()).filter(x => SERIES_ORDER.includes(x)).forEach(x => state.series.add(x));
+    return q.get('p');
+  }
+
+  function syncUrl() {
+    const q = new URLSearchParams(location.search);
+    state.series.size ? q.set('s', [...state.series].join(',')) : q.delete('s');
+    const open = $('#modal').hidden ? '' : $('#modal').dataset.id || '';
+    open ? q.set('p', open) : q.delete('p');
+    const s = q.toString();
+    history.replaceState(null, '', location.pathname + (s ? '?' + s : '') + location.hash);
+  }
+
   /* ---------- filters UI ---------- */
   function buildFilters() {
     const counts = {};
     products.forEach(p => counts[p.series] = (counts[p.series] || 0) + 1);
     const wrap = $('#seriesChips');
     wrap.innerHTML = SERIES_ORDER.filter(s => counts[s]).map(s =>
-      `<button type="button" class="chip" data-series="${s}" aria-pressed="false">${s}<span class="n">${counts[s]}</span></button>`
+      `<button type="button" class="chip" data-series="${s}" aria-pressed="${state.series.has(s)}">${s}<span class="n">${counts[s]}</span></button>`
     ).join('');
     wrap.addEventListener('click', e => {
       const b = e.target.closest('[data-series]'); if (!b) return;
       const s = b.dataset.series;
       state.series.has(s) ? state.series.delete(s) : state.series.add(s);
       b.setAttribute('aria-pressed', state.series.has(s));
+      syncUrl();
       render();
     });
 
@@ -72,6 +90,7 @@
     $$('.chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
     $('#type').value = ''; $('#q').value = ''; $('#sort').value = 'series';
     $('#rangeLabel').textContent = priceLabel(state.max);
+    syncUrl();
     render();
   }
 
@@ -130,6 +149,7 @@
     $('#modal').hidden = false;
     document.body.style.overflow = 'hidden';
     $('#modal').dataset.id = p.id;
+    syncUrl();
     $('#m-thumbs').onclick = e => {
       const b = e.target.closest('[data-i]'); if (!b) return;
       $$('button', $('#m-thumbs')).forEach(x => x.setAttribute('aria-current', 'false'));
@@ -138,7 +158,7 @@
     };
   }
 
-  function closeModal() { $('#modal').hidden = true; document.body.style.overflow = ''; }
+  function closeModal() { $('#modal').hidden = true; document.body.style.overflow = ''; syncUrl(); }
 
   /* ---------- lead form ---------- */
   function chooseProduct(p) {
@@ -194,7 +214,13 @@
       fetch('data/series_photos.json').then(r => r.json()).catch(() => ({}))
     ]);
     cfg = c; products = p; photos = s;
+    const deepId = applyUrl();
     applyConfig(); buildFilters(); render();
+    if (deepId || state.series.size) {
+      $('#catalog').scrollIntoView({ behavior: 'instant', block: 'start' });
+      const target = deepId && products.find(x => x.id === deepId);
+      if (target) openModal(target);
+    }
 
     $('#grid').addEventListener('click', e => {
       const card = e.target.closest('.card'); if (!card) return;
