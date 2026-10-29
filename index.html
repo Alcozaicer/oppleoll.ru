@@ -41,8 +41,6 @@
       "name": "OLL by Opple Lighting",
       "legalName": "ООО «СМАРТ ОСВЕЩЕНИЕ»",
       "url": "https://oppleoll.ru/",
-      "email": "i.gromov@opple-rus.ru",
-      "telephone": "+79998741159",
       "logo": "https://oppleoll.ru/img/oll-mark.svg",
       "address": {
         "@type": "PostalAddress",
@@ -69,18 +67,19 @@
 <header class="head">
   <a class="logo" href="#top" aria-label="OLL — дизайнерский свет Opple Lighting">
     <svg class="logo-glyph" viewBox="0 0 182 132" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect x="141" y="36" width="16" height="60"/><rect x="166" y="36" width="16" height="60"/></svg>
-    <span class="logo-sub">by Opple Lighting</span>
+    <span class="logo-text"><span class="logo-word">OLL</span><span class="logo-sub">by Opple Lighting</span></span>
   </a>
   <nav class="nav">
     <a href="#catalog">Витрина</a>
     <a href="#about">О бренде</a>
     <a href="#contact">Заявка</a>
   </nav>
-  <a class="head-phone" href="#" data-c="phoneHref"><span data-c="phoneDisplay"></span></a>
+  <a class="head-phone" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked"></span></a>
 </header>
 
 <section class="hero" id="top">
   <div class="hero-media"><img src="img/hero.jpg" alt="Экспозиция OLL: светильник в интерьере" fetchpriority="high"></div>
+  <div class="hero-fade" aria-hidden="true"></div>
   <div class="hero-body">
     <p class="eyebrow">Design lighting · Opple Lighting</p>
     <h1>Свет как<br>архитектура<br><em>пространства</em></h1>
@@ -90,7 +89,6 @@
       <a class="btn btn-ghost" href="#contact">Оставить заявку</a>
     </div>
   </div>
-  <div class="hero-fade"></div>
 </section>
 
 <main>
@@ -149,38 +147,50 @@
     <form id="leadForm" novalidate>
       <input type="hidden" name="product" id="f-product">
       <label class="hp" aria-hidden="true">Не заполняйте<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      <div class="chosen" id="chosen" hidden></div>
+
+      <fieldset class="intent">
+        <legend>Что подбираем</legend>
+        <div class="intent-opts">
+          <label class="intent-opt"><input type="radio" name="intent" value="Модель из витрины" checked><span>Модель из витрины</span></label>
+          <label class="intent-opt"><input type="radio" name="intent" value="Вся линейка OLL"><span>Вся линейка OLL</span></label>
+          <label class="intent-opt"><input type="radio" name="intent" value="Подбор под проект"><span>Подбор под проект</span></label>
+        </div>
+      </fieldset>
+
       <div class="row">
-        <label>Имя<input name="name" required maxlength="80" autocomplete="name" placeholder="Как к вам обращаться"></label>
-        <label>Телефон<input name="phone" required inputmode="tel" autocomplete="tel" placeholder="+7 …"></label>
+        <label>Как к вам обращаться<input class="field" name="name" required maxlength="80" autocomplete="name" placeholder="Имя, компания — если уместно"></label>
+        <label>Телефон для ответа<input class="field" name="phone" required inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
       </div>
       <div class="row">
-        <label>Email<input name="email" type="email" autocomplete="email" placeholder="для счёта и ответа"></label>
-        <label>Количество<input name="qty" inputmode="numeric" maxlength="8" placeholder="напр. 4"></label>
+        <label>Почта для счёта<input class="field" name="email" type="email" autocomplete="email" placeholder="по желанию"></label>
+        <label>Сколько штук
+          <span class="qty">
+            <button type="button" class="qty-btn" data-step="-1" aria-label="Уменьшить">−</button>
+            <input name="qty" id="f-qty" inputmode="numeric" maxlength="6" value="1" aria-label="Количество">
+            <button type="button" class="qty-btn" data-step="1" aria-label="Увеличить">+</button>
+          </span>
+        </label>
       </div>
-      <label class="full">Комментарий<textarea name="message" rows="3" maxlength="800" id="f-message" placeholder="Что и куда — или «нужен прайс целиком»"></textarea></label>
+      <label class="full">Что важно добавить<textarea class="field" name="message" rows="2" maxlength="700" id="f-message" placeholder="Серия, объект, город, сроки — что уже известно"></textarea></label>
 
       <label class="consent">
         <input type="checkbox" name="consent" required>
-        <span>Согласен на обработку персональных данных и получение ответа по указанным контактам. <a href="privacy.html" target="_blank" rel="noopener">Политика</a></span>
+        <span>Согласен на обработку персональных данных и ответ по указанным контактам. <a href="privacy.html" target="_blank" rel="noopener">Политика</a></span>
       </label>
 
       <div class="submit-row">
         <button class="btn btn-solid" type="submit" id="submitBtn">Отправить заявку</button>
         <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
       </div>
-      <div class="chosen" id="chosen" hidden></div>
     </form>
   </div>
   <aside class="contact-side">
     <div class="side-card">
-      <p class="eyebrow">Контакты</p>
-      <a class="side-phone" href="#" data-c="phoneHref"><span data-c="phoneDisplay"></span></a>
-      <p class="side-hours" data-c="hours"></p>
-      <a class="side-mail" href="#" data-c-mail>почта</a>
-      <div class="side-links">
-        <a href="#" data-c-tg target="_blank" rel="noopener">Telegram</a>
-        <a href="#" data-c-wa target="_blank" rel="noopener">WhatsApp</a>
-      </div>
+      <p class="eyebrow">Прямая связь</p>
+      <a class="side-phone" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked"></span></a>
+      <p class="side-hours"><span data-c-hours></span> · номер и почта открываются по клику, чтобы их не собирали парсеры</p>
+      <a class="side-mail" href="#" data-reveal="mail" aria-label="Показать почту"><span data-c="emailMasked"></span></a>
     </div>
   </aside>
 </section>
@@ -189,6 +199,7 @@
 <footer class="foot">
   <div class="foot-l">
     <svg class="logo-glyph foot-glyph" viewBox="0 0 182 132" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect x="141" y="36" width="16" height="60"/><rect x="166" y="36" width="16" height="60"/></svg>
+    <p class="foot-word">OLL <span class="muted">· by Opple Lighting</span></p>
     <p id="legal"></p>
   </div>
   <div class="foot-r">
@@ -212,7 +223,7 @@
       <p class="m-price"><span class="m-price-val" id="m-price"></span><span class="m-price-note">за единицу</span></p>
       <div class="m-actions">
         <button class="btn btn-solid" id="m-lead">Оставить заявку</button>
-        <a class="btn btn-ghost" href="#" data-c="phoneHref"><span data-c="phoneDisplay"></span></a>
+        <a class="btn btn-ghost" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked"></span></a>
       </div>
       <p class="m-sku" id="m-sku"></p>
     </div>

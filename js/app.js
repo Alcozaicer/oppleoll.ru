@@ -11,20 +11,39 @@
   const priceLabel = v => fmt(v >= priceCap ? priceTop : v);
 
   /* ---------- config ---------- */
+  const rev = s => [...String(s)].reverse().join('');
+  const fmtPhone = d => `+${d[0]} (${d.slice(1, 4)}) ${d.slice(4, 7)}-${d.slice(7, 9)}-${d.slice(9, 11)}`;
+
   function applyConfig() {
     const c = cfg.contacts;
-    $$('[data-c="phoneHref"]').forEach(a => a.href = 'tel:' + c.phoneHref);
-    $$('[data-c="phoneDisplay"]').forEach(s => s.textContent = c.phoneDisplay);
-    const mail = $('[data-c-mail]');
-    if (mail) { mail.href = 'mailto:' + c.email; mail.textContent = c.email; }
-    const tg = $('[data-c-tg]');
-    if (tg) { tg.href = 'https://t.me/' + String(c.telegram).replace('@', ''); tg.hidden = !c.telegram; }
-    const wa = $('[data-c-wa]'); if (wa) wa.href = 'https://wa.me/' + String(c.whatsapp).replace(/\D/g, '');
-    $$('.side-hours').forEach(e => e.textContent = c.hours);
+    $$('[data-c="phoneMasked"]').forEach(s => s.textContent = c.phoneMasked);
+    $$('[data-c="emailMasked"]').forEach(s => s.textContent = c.emailMasked);
+    $$('[data-c-hours]').forEach(s => s.textContent = c.hours);
     $('#legal').textContent = [cfg.legal.entity, `ИНН ${cfg.legal.inn}`, cfg.legal.ogrn && `ОГРН ${cfg.legal.ogrn}`,
       cfg.legal.address].filter(Boolean).join(' · ');
     $('#delivery').textContent = `Поставка: ${cfg.delivery.regions}. ${cfg.delivery.terms}`;
     $('#updated').textContent = new Date().toLocaleDateString('ru-RU');
+  }
+
+  /* Номер и почта лежат в конфиге перевёрнутыми и становятся ссылкой только после клика.
+     Открытым текстом их по-прежнему видно тому, кто исполняет JS, — но сборщики телефонов
+     регуляркой по HTML и JSON теперь берут только маску. */
+  function bindReveal() {
+    $$('[data-reveal]').forEach(a => {
+      a.title = 'Нажмите, чтобы показать';
+      a.addEventListener('click', e => {
+        if (a.dataset.open) return;
+        e.preventDefault();
+        const c = cfg.contacts, isPhone = a.dataset.reveal === 'phone';
+        const value = isPhone ? rev(c.phoneCode) : rev(c.emailCode);
+        a.href = (isPhone ? 'tel:' : 'mailto:') + value;
+        a.textContent = isPhone ? fmtPhone(value.replace(/\D/g, '')) : value;
+        a.dataset.open = '1';
+        a.title = isPhone ? 'Позвонить' : 'Написать письмо';
+        a.classList.add('is-open');
+        a.setAttribute('aria-label', isPhone ? 'Позвонить ' + value : 'Написать на ' + value);
+      });
+    });
   }
 
   /* ---------- ссылки на витрину: ?s=Bubble,Edge и ?p=<артикул> ---------- */
@@ -163,10 +182,20 @@
   /* ---------- lead form ---------- */
   function chooseProduct(p) {
     $('#f-product').value = `${p.series} ${p.sku} · ${fmt(p.price)}`;
+    $$('[name=intent]').forEach(r => r.checked = r.value === 'Модель из витрины');
     $('#chosen').hidden = false;
     $('#chosen').innerHTML = `<span>Заявка на: <b>${p.series} ${p.sku}</b> — ${fmt(p.price)}</span>
       <button type="button" id="dropChosen" aria-label="Убрать товар">×</button>`;
     $('#dropChosen').onclick = () => { $('#f-product').value = ''; $('#chosen').hidden = true; };
+  }
+
+  function bindQty() {
+    const inp = $('#f-qty');
+    const clamp = v => Math.max(1, Math.min(9999, v));
+    $$('.qty-btn').forEach(b => b.addEventListener('click', () => {
+      inp.value = clamp((parseInt(inp.value, 10) || 0) + +b.dataset.step);
+    }));
+    inp.addEventListener('blur', () => { inp.value = clamp(parseInt(inp.value, 10) || 1); });
   }
 
   function status(msg, cls) {
@@ -176,20 +205,32 @@
   async function submit(e) {
     e.preventDefault();
     const f = e.target;
-    const data = Object.fromEntries(new FormData(f).entries());
-    if (!data.name?.trim()) return status('Напишите имя.', 'err');
-    if (!/[\d\s()+-]{10,}/.test(data.phone || '')) return status('Проверьте телефон — нужно не меньше 10 цифр.', 'err');
-    if (data.email && !/^[^@\s]+@[^@\s]+\.[a-zа-я]{2,}$/i.test(data.email)) return status('Проверьте email.', 'err');
-    if (!data.consent) return status('Без согласия на обработку данных заявку отправить нельзя.', 'err');
+    const d = Object.fromEntries(new FormData(f).entries());
+    if (!d.name?.trim()) return status('Заполните, как к вам обращаться.', 'err');
+    if (!/[\d\s()+-]{10,}/.test(d.phone || '')) return status('Проверьте телефон — нужно не меньше 10 цифр.', 'err');
+    if (d.email && !/^[^@\s]+@[^@\s]+\.[a-zа-я]{2,}$/i.test(d.email)) return status('Проверьте почту.', 'err');
+    if (!d.consent) return status('Без согласия на обработку данных заявку отправить нельзя.', 'err');
 
     const btn = $('#submitBtn');
     btn.disabled = true; status('Отправляем…');
+    // на предпросмотре (tools/dev_server.py) шлём на локальную заглушку: боевой endpoint
+    // в конфиге абсолютный, и локальные проверки улетали бы настоящими заявками на почту
+    const endpoint = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? '/submit.php' : cfg.lead.endpoint;
     try {
-      const res = await fetch(cfg.lead.endpoint, {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'fetch' },
         body: JSON.stringify({
-          ...data,
+          name: d.name.trim(),
+          phone: d.phone.trim(),
+          email: (d.email || '').trim(),
+          qty: (d.qty || '').trim(),
+          product: (d.product || '').trim(),
+          // обработчик знает только фиксированный набор полей, поэтому выбор из
+          // «Что подбираем» едет первой строкой комментария, а не новым полем
+          message: [(d.intent || '').trim(), (d.message || '').trim()].filter(Boolean).join(' — '),
+          website: d.website || '',
+          consent: true,
           filledMs: formStart ? Date.now() - formStart : 0,
           page: location.href,
           ts: new Date().toISOString()
@@ -200,7 +241,7 @@
       f.reset(); $('#chosen').hidden = true; $('#f-product').value = '';
       status('Заявка отправлена. Свяжемся в рабочее время.', 'ok');
     } catch (err) {
-      status('Не удалось отправить: ' + err.message + '. Напишите на почту или в Telegram.', 'err');
+      status('Не удалось отправить: ' + err.message + '. Попробуйте ещё раз.', 'err');
     } finally {
       btn.disabled = false;
     }
@@ -215,7 +256,7 @@
     ]);
     cfg = c; products = p; photos = s;
     const deepId = applyUrl();
-    applyConfig(); buildFilters(); render();
+    applyConfig(); bindReveal(); bindQty(); buildFilters(); render();
     if (deepId || state.series.size) {
       $('#catalog').scrollIntoView({ behavior: 'instant', block: 'start' });
       const target = deepId && products.find(x => x.id === deepId);
