@@ -16,7 +16,8 @@
      давал 3.4:1 на карточке — ниже порога AA для текста, поэтому поднят до 4.9:1. */
   --ink-3:#82807a;
   --warm:#f0c98a; --glow:rgba(240,201,138,.16);
-  /* фирменный красный OLL — единственное место, где он появляется: два штриха в знаке */
+  /* фирменный красный — только в дуге `oll-hue`, которая пробегает по кольцу при клике:
+     сам знак монохромный, красного в вёрстке больше нет */
   --brand:#e2261d;
   --max:1360px;
   --head-h:76px;
@@ -38,7 +39,8 @@ h1,h2,h3{font-weight:300;letter-spacing:-.02em;line-height:1.05;margin:0}
 h1{font-size:clamp(38px,6.4vw,84px)}
 h2{font-size:clamp(28px,3.6vw,46px)}
 h3{font-size:26px}
-em{font-style:normal;color:var(--warm)}
+/*Accent выделен только в h1: глобальный `em` подкрашивал бы любой курсив в privacy и 404 */
+h1 em{font-style:normal;color:var(--warm)}
 button,input,select,textarea{font:inherit;color:inherit}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3);margin:0 0 18px}
@@ -53,10 +55,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 .head.solid{background:rgba(10,10,11,.92);border-bottom:1px solid var(--line)}
 .logo{display:flex;align-items:center;gap:11px}
-.logo-glyph{width:36px;height:25px;flex:none;color:var(--ink);transition:color .3s}
-/* без явного fill у rect браузер берёт чёрный — на тёмном фоне штрихи исчезали,
-   и знак читался как одна «O» */
-.logo-glyph .bar{fill:var(--brand)}
+.logo-glyph{width:34px;height:25px;flex:none;color:var(--ink);transition:color .3s}
+/* штрихи берут тот же currentColor, что и кольцо: знак OLL — монохромный белый,
+   поэтому он не «разваливается» на два цвета при наведении и в тёмной теме */
+.logo-glyph .bar{fill:currentColor}
 .logo:hover .logo-glyph{color:var(--warm)}
 /* Фишка знака по клику: кольцо делает оборот, и по нему бежит дуга, проходящая
    спектр — тёплый → красный → фиолетовый → холодный. Это не украшение: OLL делает
@@ -155,6 +157,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
 .card-img img{max-height:74%;width:auto;transition:transform .6s var(--ease),opacity .4s}
 .card:hover .card-img img{transform:scale(1.05)}
 .card-img.photo-tile img{max-height:100%;width:100%;height:100%;object-fit:cover;filter:brightness(.72) saturate(.9)}
+/* 27 моделей — матовое стекло и белый металл на белом же фоне из прайса. Вырезать
+   фон нельзя: порог съедает шнур подвеса и тело шара, и в карточке светильник висит
+   развалившимся на две детали. Такие кадры живут светлой тарелкой — это честнее,
+   чем тёмный фон, на котором предмет перестаёт читаться */
+.card-img.light-tile img{max-height:80%;width:auto;border-radius:14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.5);filter:brightness(.985) sepia(.03)}
 .card-img.photo-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.1),rgba(10,10,11,.55))}
 .card:hover .card-img.photo-tile img{filter:brightness(.85) saturate(.95)}
 .card-body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:5px}
@@ -201,17 +209,6 @@ form label.full{margin-bottom:18px}
 .field:focus{border-color:var(--warm);background:#131315}
 .field:invalid:not(:placeholder-shown){border-color:#8b4a44}
 textarea.field{resize:vertical;min-height:64px;line-height:1.55}
-
-.intent{margin-bottom:24px}
-.intent legend{display:block;font-size:13px;color:var(--ink-2);margin-bottom:10px}
-.intent-opts{display:flex;gap:8px;flex-wrap:wrap}
-.intent-opt{flex-direction:row;align-items:center;gap:9px;cursor:pointer;
-  border:1px solid var(--line);border-radius:99px;padding:10px 17px;font-size:13px;color:var(--ink-2);
-  background:var(--bg2);transition:.25s}
-.intent-opt:hover{border-color:var(--ink-3);color:var(--ink)}
-.intent-opt input{position:absolute;width:1px;height:1px;opacity:0;margin:0}
-.intent-opt:has(input:checked){border-color:var(--warm);color:var(--warm);background:rgba(240,201,138,.08)}
-.intent-opt:has(input:focus-visible){outline:2px solid var(--warm);outline-offset:2px}
 
 .qty{display:flex;align-items:stretch;border:1px solid var(--ctl);border-radius:10px;background:var(--bg2);
   overflow:hidden;transition:border-color .25s}
@@ -266,14 +263,23 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   background:none;border:0;color:var(--ink-3);font-size:30px;line-height:1;cursor:pointer;border-radius:50%}
 .modal-x:hover{color:var(--ink)}
 .modal-media{background:#000;display:flex;flex-direction:column}
-.modal-stage{aspect-ratio:4/3;display:grid;place-items:center;padding:26px;
-  background:radial-gradient(58% 52% at 50% 46%,var(--glow),transparent 74%)}
+/* Сцена подстраивается под кадр, а не наоборот. Прежний фиксированный 4/3 с contain
+   превращал портретный постер 1350×1800 в узкую полосу с чёрными полями. Теперь
+   товарный кадр остаётся contained в квадрате, а интерьер заполняет рамку с пропорцией
+   --ar. Потолок по высоте держит модалку в экране: при 58vh рамка выходила шире
+   портретного кадра и cover срезал бы треть сюжета, здесь срез укладывается в ~15 %. */
+.modal-stage{--ar:1;aspect-ratio:var(--ar);max-height:min(72vh,640px);display:grid;place-items:center;padding:26px;
+  overflow:hidden;background:radial-gradient(58% 52% at 50% 46%,var(--glow),transparent 74%)}
 .modal-stage img{max-width:100%;max-height:100%;object-fit:contain}
+.modal-stage.is-fill{padding:0}
+.modal-stage.is-fill img{width:100%;height:100%;object-fit:cover}
 .modal-thumbs{display:flex;gap:8px;padding:0 18px 18px;overflow-x:auto}
 .modal-thumbs button{flex:none;width:78px;height:60px;border:1px solid var(--line);background:#0c0c0d;
   border-radius:8px;overflow:hidden;cursor:pointer;padding:0;opacity:.6;transition:.25s}
 .modal-thumbs button[aria-current="true"]{opacity:1;border-color:var(--warm)}
 .modal-thumbs img{width:100%;height:100%;object-fit:cover}
+/* превью товара квадратное: в рамке 78×60 cover срезал бы шнур подвеса */
+.modal-thumbs button:not([data-fill]) img{object-fit:contain}
 .modal-info{padding:34px 30px;display:flex;flex-direction:column;gap:10px}
 .modal-info h3{font-size:30px}
 .m-type{font-size:13px;color:var(--ink-3);margin:0}
@@ -364,7 +370,6 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   .row{grid-template-columns:1fr}
   .hero{min-height:80vh;min-height:80svh}
   .facts{flex-wrap:wrap;gap:22px}
-  .intent-opt{display:inline-flex}
 }
 
 /* размер цели привязан к пальцу, а не к ширине окна: планшет 768 px тоже тыкают
@@ -376,9 +381,11 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
      которые нельзя считать текстовыми ссылками в абзаце */
   .nav a{min-height:44px;display:inline-flex;align-items:center}
   .side-mail,.head-phone{min-height:44px;display:inline-flex;align-items:center}
-  .intent-opt{min-height:44px}
   .consent input{width:22px;height:22px}
   input[type=range]::-webkit-slider-thumb{width:22px;height:22px;margin-top:-10px}
   input[type=range]::-moz-range-thumb{width:22px;height:22px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Меньше движения = ещё и мгновенные переходы: `scroll-behavior:smooth` не анимация
+   в смысле transition/animation, поэтому общее правило его не глушит */
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}}
