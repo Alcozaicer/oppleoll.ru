@@ -6,8 +6,13 @@
 
   const SERIES_ORDER = ['Edge', 'Vessel', 'Aura', 'Bubble', 'CRYX', 'Flow', 'Astra', 'Lamino', 'FOLIO'];
   const state = { series: new Set(), type: '', q: '', sort: 'series', max: Infinity };
-  let products = [], photos = {}, cfg = null, formStart = 0;
+  let products = [], photos = {}, cfg = null;
+  // время жизни страницы, а не первого удара по клавиатуре: автозаполнение браузера
+  // подставляет имя и телефон молча, и заявка улетала бы с filledMs ≈ 0
+  const pageStart = Date.now();
   let priceTop = 0, priceCap = 0;
+  const cardEls = new Map();
+  let qt = 0;                                        // недотыганный поиск: сбрасываем при «Сбросить фильтры»
   const priceLabel = v => fmt(v >= priceCap ? priceTop : v);
 
   /* ---------- config ---------- */
@@ -22,7 +27,6 @@
     $('#legal').textContent = [cfg.legal.entity, `ИНН ${cfg.legal.inn}`, cfg.legal.ogrn && `ОГРН ${cfg.legal.ogrn}`,
       cfg.legal.address].filter(Boolean).join(' · ');
     $('#delivery').textContent = `Поставка: ${cfg.delivery.regions}. ${cfg.delivery.terms}`;
-    $('#updated').textContent = new Date().toLocaleDateString('ru-RU');
   }
 
   /* Номер и почта лежат в конфиге перевёрнутыми и становятся ссылкой только после клика.
@@ -63,6 +67,46 @@
     history.replaceState(null, '', location.pathname + (s ? '?' + s : '') + location.hash);
   }
 
+  /* ---------- фокус: листовые состояния перехватывают Tab ---------- */
+  const focusables = root => $$('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])', root)
+    .filter(el => !el.disabled && el.type !== 'hidden' && el.offsetParent !== null);
+
+  function trapTab(e, root) {
+    const list = focusables(root);
+    if (!list.length) return;
+    const first = list[0], last = list[list.length - 1], at = document.activeElement;
+    if (!root.contains(at)) { e.preventDefault(); first.focus(); return; }
+    if (e.shiftKey && (at === first || at === root)) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && at === last) { e.preventDefault(); first.focus(); }
+  }
+
+  /* ---------- панель фильтров: на узком экране это нижний лист ---------- */
+  const SHEET = '(max-width:860px)';
+  const sheetIsOpen = () => $('#toolbar').classList.contains('is-open');
+  let sheetReturn = null;
+
+  function openSheet() {
+    if (!matchMedia(SHEET).matches || sheetIsOpen()) return;
+    sheetReturn = document.activeElement;
+    $('#toolbar').classList.add('is-open');
+    $('#sheetBack').hidden = false;
+    $('#openFilters').setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    $('#toolbar').focus({ preventScroll: true });
+  }
+
+  function closeSheet() {
+    if (!sheetIsOpen()) return;
+    $('#toolbar').classList.remove('is-open');
+    $('#sheetBack').hidden = true;
+    $('#openFilters').setAttribute('aria-expanded', 'false');
+    if ($('#modal').hidden) document.body.style.overflow = '';
+    // на iOS тап по кнопке фокус не переносит, поэтому возвращаемся на триггер, а не в никуда
+    const back = sheetReturn && sheetReturn !== document.body && sheetReturn.isConnected ? sheetReturn : $('#openFilters');
+    back.focus({ preventScroll: true });
+    sheetReturn = null;
+  }
+
   /* ---------- filters UI ---------- */
   function buildFilters() {
     const counts = {};
@@ -96,12 +140,22 @@
     });
     $('#type').addEventListener('change', e => { state.type = e.target.value; render(); });
     $('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
-    $('#q').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+    // поиск на телефоне печатается по одному символу; перерисовывать сетку на каждый — лишняя работа
+    $('#q').addEventListener('input', e => {
+      clearTimeout(qt);
+      const v = e.target.value.trim().toLowerCase();
+      qt = setTimeout(() => { state.q = v; render(); }, 120);
+    });
     $('#reset').addEventListener('click', reset);
     $('#reset2').addEventListener('click', reset);
+    $('#openFilters').addEventListener('click', () => sheetIsOpen() ? closeSheet() : openSheet());
+    $('#closeFilters').addEventListener('click', closeSheet);
+    $('#sheetBack').addEventListener('click', closeSheet);
+    $('#done').addEventListener('click', closeSheet);
   }
 
   function reset() {
+    clearTimeout(qt);
     const r = $('#maxPrice');
     r.value = priceCap;
     state.max = priceCap;
@@ -127,11 +181,17 @@
     return list;
   }
 
-  function render() {
-    const list = visible();
-    $('#grid').innerHTML = list.map(p => `
-      <button type="button" class="card" data-id="${p.id}" aria-label="${p.series} ${p.sku}, ${fmt(p.price)}">
-        <span class="card-img ${p.image_kind === 'photo' ? 'photo-tile' : ''}">
+  /* Карточки строим один раз: пересобирать innerHTML на каждый символ означает
+     выбросить и заново декодировать все 64 картинки, и сетка подмигивает. */
+  function buildCards() {
+    const frag = document.createDocumentFragment();
+    for (const p of products) {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'card';
+      el.dataset.id = p.id;
+      el.setAttribute('aria-label', `${p.series} ${p.sku}, ${fmt(p.price)}`);
+      el.innerHTML = `<span class="card-img${p.image_kind === 'photo' ? ' photo-tile' : ''}">
           <img src="img/products/${p.id}.png" alt="Светильник ${p.series} ${p.sku}" loading="lazy">
         </span>
         <span class="card-body">
@@ -141,8 +201,31 @@
           <span class="card-price">${fmt(p.price)}<small>за шт.</small></span>
         </span>
         <span class="card-cta">Смотреть</span>
-      </button>`).join('');
-    $('#count').textContent = `${list.length} из ${products.length} моделей`;
+      </button>`;
+      frag.appendChild(el);
+      cardEls.set(p.id, el);
+    }
+    $('#grid').appendChild(frag);
+  }
+
+  const activeCount = () => state.series.size + (state.type ? 1 : 0) +
+    (state.q ? 1 : 0) + (state.max < priceCap ? 1 : 0);
+
+  function render() {
+    const list = visible();
+    const shown = new Set(list.map(p => p.id));
+    cardEls.forEach((el, id) => { el.hidden = !shown.has(id); });
+    const frag = document.createDocumentFragment();
+    for (const p of list) frag.appendChild(cardEls.get(p.id));
+    $('#grid').appendChild(frag);
+
+    const n = activeCount();
+    $('#count').textContent = list.length ? `${list.length} из ${products.length} моделей` : 'Ни одной модели под эти фильтры нет';
+    $('#barCount').textContent = `${list.length} из ${products.length}`;
+    $('#fbCount').hidden = !n;
+    $('#fbCount').textContent = n;
+    // «Показать 0» звучало как обещание, которого лист не выполнит
+    $('#done').textContent = list.length ? `Показать ${list.length}` : 'Готово';
     $('#empty').hidden = list.length > 0;
   }
 
@@ -153,22 +236,28 @@
             ...shots.map(s => ({ src: s, contain: false }))];
   }
 
+  let modalReturn = null;
+
   function openModal(p) {
     const shots = galleryFor(p);
+    closeSheet();
     $('#m-series').textContent = `Серия ${p.series}`;
     $('#m-model').textContent = p.sku;
     $('#m-type').textContent = [p.type, p.color].filter(Boolean).join(' · ');
     $('#m-price').textContent = fmt(p.price);
     $('#m-sku').textContent = 'Артикул ' + p.id;
+    $('#m-main').alt = `Светильник ${p.series} ${p.sku}`;
     $('#m-thumbs').innerHTML = shots.map((s, i) =>
-      `<button type="button" data-i="${i}" aria-current="${i === 0}"><img src="${s.src}" alt="" loading="lazy"></button>`).join('');
+      `<button type="button" data-i="${i}" aria-current="${i === 0}" aria-label="Фото ${i + 1} из ${shots.length}"><img src="${s.src}" alt="" loading="lazy"></button>`).join('');
     const main = $('#m-main');
     main.src = shots[0].src;
     main.dataset.mode = 'contain';
+    modalReturn = document.activeElement;
     $('#modal').hidden = false;
     document.body.style.overflow = 'hidden';
     $('#modal').dataset.id = p.id;
     syncUrl();
+    $('.modal-card', $('#modal')).focus({ preventScroll: true });
     $('#m-thumbs').onclick = e => {
       const b = e.target.closest('[data-i]'); if (!b) return;
       $$('button', $('#m-thumbs')).forEach(x => x.setAttribute('aria-current', 'false'));
@@ -177,7 +266,15 @@
     };
   }
 
-  function closeModal() { $('#modal').hidden = true; document.body.style.overflow = ''; syncUrl(); }
+  function closeModal() {
+    $('#modal').hidden = true;
+    if (!sheetIsOpen()) document.body.style.overflow = '';
+    syncUrl();
+    const back = modalReturn && modalReturn !== document.body && modalReturn.isConnected
+      ? modalReturn : $('.card:not([hidden])');
+    if (back) back.focus({ preventScroll: true });
+    modalReturn = null;
+  }
 
   /* ---------- lead form ---------- */
   function chooseProduct(p) {
@@ -202,14 +299,25 @@
     const el = $('#formStatus'); el.textContent = msg; el.className = 'form-status ' + (cls || '');
   }
 
+  /* Ошибку показываем не только строкой под кнопкой, но и на самом поле:
+     на телефоне статус иногда остаётся за пределами экрана. */
+  function bad(el, msg) {
+    status(msg, 'err');
+    $$('.is-bad', $('#leadForm')).forEach(x => x.classList.remove('is-bad'));
+    if (el) { el.classList.add('is-bad'); el.focus({ preventScroll: false }); }
+  }
+
   async function submit(e) {
     e.preventDefault();
     const f = e.target;
     const d = Object.fromEntries(new FormData(f).entries());
-    if (!d.name?.trim()) return status('Заполните, как к вам обращаться.', 'err');
-    if (!/[\d\s()+-]{10,}/.test(d.phone || '')) return status('Проверьте телефон — нужно не меньше 10 цифр.', 'err');
-    if (d.email && !/^[^@\s]+@[^@\s]+\.[a-zа-я]{2,}$/i.test(d.email)) return status('Проверьте почту.', 'err');
-    if (!d.consent) return status('Без согласия на обработку данных заявку отправить нельзя.', 'err');
+    // у формы name/length/action — свои свойства, поля берём через elements
+    const el = k => f.elements[k];
+    if (!d.name?.trim()) return bad(el('name'), 'Заполните, как к вам обращаться.');
+    if (!/[\d\s()+-]{10,}/.test(d.phone || '')) return bad(el('phone'), 'Проверьте телефон — нужно не меньше 10 цифр.');
+    if (d.email && !/^[^@\s]+@[^@\s]+\.[a-zа-я]{2,}$/i.test(d.email)) return bad(el('email'), 'Проверьте почту.');
+    if (!d.consent) return bad(el('consent'), 'Без согласия на обработку данных заявку отправить нельзя.');
+    $$('.is-bad', f).forEach(x => x.classList.remove('is-bad'));
 
     const btn = $('#submitBtn');
     btn.disabled = true; status('Отправляем…');
@@ -231,7 +339,7 @@
           message: [(d.intent || '').trim(), (d.message || '').trim()].filter(Boolean).join(' — '),
           website: d.website || '',
           consent: true,
-          filledMs: formStart ? Date.now() - formStart : 0,
+          filledMs: Date.now() - pageStart,
           page: location.href,
           ts: new Date().toISOString()
         })
@@ -247,6 +355,24 @@
     }
   }
 
+  /* ---------- знак ---------- */
+  /* Клик по логотипу прогоняет дугу по кольцу. При reduce-motion ничего не вешаем:
+     анимацию глушит общее правило, `animationend` не приходит, и класс остался бы
+     висеть с видимой дугой поверх знака. */
+  function bindMark() {
+    if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const glyph = $('.logo-glyph');
+    if (!glyph) return;
+    const link = glyph.closest('a');
+    if (!link) return;
+    link.addEventListener('click', () => {
+      glyph.classList.remove('is-spin');
+      glyph.getBoundingClientRect();
+      glyph.classList.add('is-spin');
+    });
+    glyph.addEventListener('animationend', () => glyph.classList.remove('is-spin'));
+  }
+
   /* ---------- boot ---------- */
   async function boot() {
     const [c, p, s] = await Promise.all([
@@ -256,7 +382,14 @@
     ]);
     cfg = c; products = p; photos = s;
     const deepId = applyUrl();
-    applyConfig(); bindReveal(); bindQty(); buildFilters(); render();
+    applyConfig(); bindReveal(); bindQty(); bindMark(); buildFilters(); buildCards(); render();
+
+    // цифры «о бренде» считаем из каталога, а не держим в разметке руками
+    const prices = products.map(x => x.price);
+    $('#factSeries').textContent = new Set(products.map(x => x.series)).size;
+    $('#factModels').textContent = products.length;
+    $('#factRange').textContent = `${fmt(Math.min(...prices))} — ${fmt(Math.max(...prices))}`;
+
     if (deepId || state.series.size) {
       $('#catalog').scrollIntoView({ behavior: 'instant', block: 'start' });
       const target = deepId && products.find(x => x.id === deepId);
@@ -270,7 +403,18 @@
     $('#modal').addEventListener('click', e => {
       if (e.target.hasAttribute('data-close')) closeModal();
     });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#modal').hidden) closeModal(); });
+    $('#modal').addEventListener('keydown', e => {
+      if (e.key === 'Tab' && !$('#modal').hidden) trapTab(e, $('.modal-card', $('#modal')));
+    });
+    $('#toolbar').addEventListener('keydown', e => {
+      if (e.key === 'Tab' && sheetIsOpen()) trapTab(e, $('#toolbar'));
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if (!$('#modal').hidden) closeModal();
+      else closeSheet();
+    });
+    matchMedia(SHEET).addEventListener('change', e => { if (!e.matches) closeSheet(); });
     $('#m-lead').addEventListener('click', () => {
       const p2 = products.find(x => x.id === $('#modal').dataset.id);
       if (p2) chooseProduct(p2);
@@ -279,7 +423,6 @@
       setTimeout(() => $('#leadForm [name=name]').focus(), 600);
     });
     $('#leadForm').addEventListener('submit', submit);
-    $('#leadForm').addEventListener('input', () => { if (!formStart) formStart = Date.now(); });
     addEventListener('scroll', () => $('.head').classList.toggle('solid', scrollY > 40), { passive: true });
   }
 
