@@ -67,8 +67,16 @@
     history.replaceState(null, '', location.pathname + (s ? '?' + s : '') + location.hash);
   }
 
-  /* ---------- фокус: листовые состояния перехватывают Tab ---------- */
-  const focusables = root => $$('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])', root)
+  /* ---------- прокрутка ---------- */
+  /* Меньше движения — значит и прокрутка мгновенная: CSS-правило `transition:none`
+     глушит анимации, но `behavior:'smooth'` из JS ему не подчиняется. */
+  const calm = () => matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const scrollToEl = (el, after) => {
+    el.scrollIntoView({ behavior: calm() ? 'auto' : 'smooth', block: 'start' });
+    if (after) setTimeout(after, calm() ? 0 : 600);
+  };
+
+  /* ---------- фокус: листовые состояния перехватывают Tab ---------- */  const focusables = root => $$('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])', root)
     .filter(el => !el.disabled && el.type !== 'hidden' && el.offsetParent !== null);
 
   function trapTab(e, root) {
@@ -190,14 +198,15 @@
       el.type = 'button';
       el.className = 'card';
       el.dataset.id = p.id;
-      el.setAttribute('aria-label', `${p.series} ${p.sku}, ${fmt(p.price)}`);
-      el.innerHTML = `<span class="card-img${p.image_kind === 'photo' ? ' photo-tile' : ''}">
-          <img src="img/products/${p.id}.png" alt="Светильник ${p.series} ${p.sku}" loading="lazy">
+      el.setAttribute('aria-label', `${p.series} ${p.sku}${p.color ? ', ' + p.color : ''}, ${fmt(p.price)}`);
+      const tile = p.image_kind === 'photo' ? ' photo-tile' : p.image_kind === 'light' ? ' light-tile' : '';
+      el.innerHTML = `<span class="card-img${tile}">
+          <img src="img/products/${p.id}.webp" alt="Светильник ${p.series} ${p.sku}${p.color ? ', ' + p.color : ''}" loading="lazy">
         </span>
         <span class="card-body">
           <span class="card-series">${p.series}</span>
           <span class="card-model">${p.sku}</span>
-          <span class="card-type">${p.type}</span>
+          <span class="card-type">${[p.type, p.color].filter(Boolean).join(' · ')}</span>
           <span class="card-price">${fmt(p.price)}<small>за шт.</small></span>
         </span>
         <span class="card-cta">Смотреть</span>
@@ -230,10 +239,15 @@
   }
 
   /* ---------- modal ---------- */
+  /* Кадр задаёт пропорцию сцены: товарный квадрат показывается целиком, интерьер
+     заполняет рамку. Диапазон 0.8–1.9 — по реальной выборке: хвосты 0.53 и 2.77
+     иначе либо вырезали бы треть сюжета, либо растягивали карточку на весь экран. */
+  const stageAr = x => Math.min(1.9, Math.max(.8, x.w && x.h ? x.w / x.h : 4 / 3));
+
   function galleryFor(p) {
-    const shots = (photos[p.series] || []).slice(0, 4).map(x => 'img/' + x.file);
-    return [{ src: 'img/products/' + p.id + '.png', label: p.sku, contain: true },
-            ...shots.map(s => ({ src: s, contain: false }))];
+    return [{ src: 'img/products/' + p.id + '.webp', ar: 1 },
+            ...(photos[p.series] || []).slice(0, 4)
+              .map(x => ({ src: 'img/' + x.file, ar: stageAr(x) }))];
   }
 
   let modalReturn = null;
@@ -248,21 +262,25 @@
     $('#m-sku').textContent = 'Артикул ' + p.id;
     $('#m-main').alt = `Светильник ${p.series} ${p.sku}`;
     $('#m-thumbs').innerHTML = shots.map((s, i) =>
-      `<button type="button" data-i="${i}" aria-current="${i === 0}" aria-label="Фото ${i + 1} из ${shots.length}"><img src="${s.src}" alt="" loading="lazy"></button>`).join('');
-    const main = $('#m-main');
-    main.src = shots[0].src;
-    main.dataset.mode = 'contain';
+      `<button type="button" data-i="${i}" aria-current="${i === 0}"${i ? ' data-fill' : ''} aria-label="Фото ${i + 1} из ${shots.length}"><img src="${s.src}" alt="" loading="lazy"></button>`).join('');
+    const main = $('#m-main'), stage = $('.modal-stage', $('#modal'));
+    const show = i => {
+      main.src = shots[i].src;
+      stage.style.setProperty('--ar', shots[i].ar);
+      stage.classList.toggle('is-fill', i > 0);
+    };
     modalReturn = document.activeElement;
     $('#modal').hidden = false;
     document.body.style.overflow = 'hidden';
     $('#modal').dataset.id = p.id;
     syncUrl();
     $('.modal-card', $('#modal')).focus({ preventScroll: true });
+    show(0);
     $('#m-thumbs').onclick = e => {
       const b = e.target.closest('[data-i]'); if (!b) return;
       $$('button', $('#m-thumbs')).forEach(x => x.setAttribute('aria-current', 'false'));
       b.setAttribute('aria-current', 'true');
-      main.src = shots[+b.dataset.i].src;
+      show(+b.dataset.i);
     };
   }
 
@@ -279,20 +297,20 @@
   /* ---------- lead form ---------- */
   function chooseProduct(p) {
     $('#f-product').value = `${p.series} ${p.sku} · ${fmt(p.price)}`;
-    $$('[name=intent]').forEach(r => r.checked = r.value === 'Модель из витрины');
     $('#chosen').hidden = false;
     $('#chosen').innerHTML = `<span>Заявка на: <b>${p.series} ${p.sku}</b> — ${fmt(p.price)}</span>
       <button type="button" id="dropChosen" aria-label="Убрать товар">×</button>`;
     $('#dropChosen').onclick = () => { $('#f-product').value = ''; $('#chosen').hidden = true; };
   }
 
+  const clampQty = v => Math.max(1, Math.min(9999, parseInt(v, 10) || 1));
+
   function bindQty() {
     const inp = $('#f-qty');
-    const clamp = v => Math.max(1, Math.min(9999, v));
     $$('.qty-btn').forEach(b => b.addEventListener('click', () => {
-      inp.value = clamp((parseInt(inp.value, 10) || 0) + +b.dataset.step);
+      inp.value = clampQty((parseInt(inp.value, 10) || 0) + +b.dataset.step);
     }));
-    inp.addEventListener('blur', () => { inp.value = clamp(parseInt(inp.value, 10) || 1); });
+    inp.addEventListener('blur', () => { inp.value = clampQty(inp.value); });
   }
 
   function status(msg, cls) {
@@ -332,11 +350,9 @@
           name: d.name.trim(),
           phone: d.phone.trim(),
           email: (d.email || '').trim(),
-          qty: (d.qty || '').trim(),
+          qty: String(clampQty(d.qty)),
           product: (d.product || '').trim(),
-          // обработчик знает только фиксированный набор полей, поэтому выбор из
-          // «Что подбираем» едет первой строкой комментария, а не новым полем
-          message: [(d.intent || '').trim(), (d.message || '').trim()].filter(Boolean).join(' — '),
+          message: (d.message || '').trim(),
           website: d.website || '',
           consent: true,
           filledMs: Date.now() - pageStart,
@@ -374,21 +390,36 @@
   }
 
   /* ---------- boot ---------- */
+  /* Русская форма слова: 1 «модель», 3 «модели», 5 «моделей». */
+  const pl = (n, f) => f[n % 10 === 1 && n % 100 !== 11 ? 0
+    : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 1 : 2];
+
   async function boot() {
     const [c, p, s] = await Promise.all([
-      fetch('data/site.config.json').then(r => r.json()),
+      fetch('data/site.config.json').then(r => r.json()).catch(() => null),
       fetch('data/products.json').then(r => r.json()),
       fetch('data/series_photos.json').then(r => r.json()).catch(() => ({}))
     ]);
     cfg = c; products = p; photos = s;
     const deepId = applyUrl();
-    applyConfig(); bindReveal(); bindQty(); bindMark(); buildFilters(); buildCards(); render();
+    bindQty(); bindMark(); buildFilters(); buildCards(); render();
+    /* Выкладка каталога важнее конфига: при частичной загрузке data/ на GitHub Pages
+       витрина должна остаться читаемой, а не сложиться вместе с контактами. */
+    if (cfg) { applyConfig(); bindReveal(); }
+    else {
+      $$('[data-reveal]').forEach(a => { a.hidden = true; });
+      $('#submitBtn').disabled = true;
+      status('Не удалось загрузить контакты и адрес приёмщика. Обновите страницу.', 'err');
+    }
 
-    // цифры «о бренде» считаем из каталога, а не держим в разметке руками
+    // цифры «о бренде» и строка под h1 считаем из каталога, а не держим в разметке руками
     const prices = products.map(x => x.price);
-    $('#factSeries').textContent = new Set(products.map(x => x.series)).size;
-    $('#factModels').textContent = products.length;
+    const nSer = new Set(products.map(x => x.series)).size, nMod = products.length;
+    $('#factSeries').textContent = nSer;
+    $('#factModels').textContent = nMod;
     $('#factRange').textContent = `${fmt(Math.min(...prices))} — ${fmt(Math.max(...prices))}`;
+    $('#heroLead').textContent = `${nMod} ${pl(nMod, ['модель', 'модели', 'моделей'])} · ` +
+      `${nSer} ${pl(nSer, ['серия', 'серии', 'серий'])}. Цены на сайте, поставка под заказ.`;
 
     if (deepId || state.series.size) {
       $('#catalog').scrollIntoView({ behavior: 'instant', block: 'start' });
@@ -419,8 +450,7 @@
       const p2 = products.find(x => x.id === $('#modal').dataset.id);
       if (p2) chooseProduct(p2);
       closeModal();
-      $('#contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => $('#leadForm [name=name]').focus(), 600);
+      scrollToEl($('#contact'), () => $('#leadForm [name=name]').focus());
     });
     $('#leadForm').addEventListener('submit', submit);
     addEventListener('scroll', () => $('.head').classList.toggle('solid', scrollY > 40), { passive: true });
