@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="OLL">
 <meta property="og:url" content="https://oppleoll.ru/">
 <meta property="og:title" content="OLL — дизайнерские светильники. Каталог с ценами">
-<meta property="og:description" content="64 модели в девяти сериях. Цены на сайте, поставка под заказ.">
+<meta property="og:description" content="Каталог дизайнерских светильников OLL: цены на сайте, поставка под заказ, заявка прямо из карточки.">
 <meta property="og:image" content="https://oppleoll.ru/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Подвесной светильник OLL в интерьере">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="OLL — дизайнерские светильники. Каталог с ценами">
-<meta name="twitter:description" content="64 модели в девяти сериях. Цены на сайте, поставка под заказ.">
+<meta name="twitter:description" content="Каталог дизайнерских светильников OLL: цены на сайте, поставка под заказ, заявка прямо из карточки.">
 <meta name="twitter:image" content="https://oppleoll.ru/img/og.jpg">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -31,6 +31,8 @@
 <link rel="preconnect" href="https://api.oppleoll.ru">
 <link rel="stylesheet" href="css/style.css">
 
+<!-- Organization.logo указывает на apple-touch-icon.png: Google принимает логотип
+     организации только растровым (PNG/JPEG от 112×112), на SVG карточка выдачи не реагирует -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,7 +43,7 @@
       "name": "OLL by Opple Lighting",
       "legalName": "ООО «СМАРТ ОСВЕЩЕНИЕ»",
       "url": "https://oppleoll.ru/",
-      "logo": "https://oppleoll.ru/img/oll-mark.svg",
+      "logo": "https://oppleoll.ru/apple-touch-icon.png",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "RU",
@@ -54,7 +56,7 @@
       "@id": "https://oppleoll.ru/#site",
       "url": "https://oppleoll.ru/",
       "name": "OLL — дизайнерские светильники",
-      "description": "Витрина дизайнерских светильников OLL: 64 модели в девяти сериях, цены и заявка на поставку.",
+      "description": "Витрина дизайнерских светильников OLL: актуальные цены из прайса и заявка на поставку.",
       "inLanguage": "ru-RU",
       "publisher": { "@id": "https://oppleoll.ru/#seller" }
     }
@@ -67,7 +69,7 @@
 <header class="head">
   <!-- штрихи вплотную к кольцу: знак читается как OLL, отдельная надпись не нужна -->
   <a class="logo" href="#top" aria-label="OLL — дизайнерский свет Opple Lighting">
-    <svg class="logo-glyph" viewBox="0 0 190 133" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><circle class="ring-hue" cx="66.5" cy="66.5" r="58.75" fill="none" stroke-width="15.5"/><rect class="bar" x="147" y="2" width="16" height="129"/><rect class="bar" x="169" y="2" width="16" height="129"/></svg>
+    <svg class="logo-glyph" viewBox="0 0 183 133" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><circle class="ring-hue" cx="66.5" cy="66.5" r="58.75" fill="none" stroke-width="15.5"/><rect class="bar" x="141" y="35.5" width="16" height="62"/><rect class="bar" x="166" y="35.5" width="16" height="62"/></svg>
     <span class="logo-text"><span class="logo-sub">by Opple Lighting</span></span>
   </a>
   <nav class="nav">
@@ -79,12 +81,12 @@
 </header>
 
 <section class="hero" id="top">
-  <div class="hero-media"><img src="img/hero.jpg" alt="Экспозиция OLL: светильник в интерьере" fetchpriority="high"></div>
+  <div class="hero-media"><img src="img/hero.jpg" alt="Экспозиция OLL: светильник в интерьере" width="2000" height="1334" fetchpriority="high"></div>
   <div class="hero-fade" aria-hidden="true"></div>
   <div class="hero-body">
     <p class="eyebrow">Design lighting · Opple Lighting</p>
     <h1>Свет как<br>архитектура<br><em>пространства</em></h1>
-    <p class="hero-lead">64 модели в девяти сериях. Цены на сайте, поставка под заказ.</p>
+    <p class="hero-lead" id="heroLead">Модели из действующего прайса. Цены на сайте, поставка под заказ.</p>
     <div class="hero-actions">
       <a class="btn btn-solid" href="#catalog">Смотреть витрину</a>
       <a class="btn btn-ghost" href="#contact">Оставить заявку</a>
@@ -143,7 +145,7 @@
 </section>
 
 <section class="about" id="about">
-  <div class="about-media"><img src="img/about.jpg" alt="Экспозиция OLL на выставке light+building" loading="lazy"></div>
+  <div class="about-media"><img src="img/about.jpg" alt="Экспозиция OLL на выставке light+building" width="1333" height="2000" loading="lazy"></div>
   <div class="about-body">
     <p class="eyebrow">OLL</p>
     <h2>Уважение к свету<br>в основе бренда</h2>
@@ -168,15 +170,6 @@
       <label class="hp" aria-hidden="true">Не заполняйте<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       <div class="chosen" id="chosen" hidden></div>
 
-      <fieldset class="intent">
-        <legend>Что подбираем</legend>
-        <div class="intent-opts">
-          <label class="intent-opt"><input type="radio" name="intent" value="Модель из витрины" checked><span>Модель из витрины</span></label>
-          <label class="intent-opt"><input type="radio" name="intent" value="Вся линейка OLL"><span>Вся линейка OLL</span></label>
-          <label class="intent-opt"><input type="radio" name="intent" value="Подбор под проект"><span>Подбор под проект</span></label>
-        </div>
-      </fieldset>
-
       <div class="row">
         <label>Как к вам обращаться<input class="field" name="name" required maxlength="80" autocomplete="name" placeholder="Имя, компания — если уместно"></label>
         <label>Телефон для ответа<input class="field" name="phone" required inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"></label>
@@ -191,7 +184,7 @@
           </span>
         </label>
       </div>
-      <label class="full">Что важно добавить<textarea class="field" name="message" rows="2" maxlength="700" id="f-message" placeholder="Серия, объект, город, сроки — что уже известно"></textarea></label>
+      <label class="full">Что важно добавить<textarea class="field" name="message" rows="2" maxlength="700" id="f-message" placeholder="Серия, объект, город, сроки. Модели ещё нет? Напишите, что освещаем — подберём."></textarea></label>
 
       <label class="consent">
         <input type="checkbox" name="consent" required>
@@ -217,7 +210,7 @@
 
 <footer class="foot">
   <div class="foot-l">
-    <svg class="logo-glyph foot-glyph" viewBox="0 0 190 133" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect class="bar" x="147" y="2" width="16" height="129"/><rect class="bar" x="169" y="2" width="16" height="129"/></svg>
+    <svg class="logo-glyph foot-glyph" viewBox="0 0 183 133" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect class="bar" x="141" y="35.5" width="16" height="62"/><rect class="bar" x="166" y="35.5" width="16" height="62"/></svg>
     <p class="foot-word">OLL<span class="muted"> · by Opple Lighting</span></p>
     <p id="legal"></p>
   </div>
