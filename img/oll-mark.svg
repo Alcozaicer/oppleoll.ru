@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 182 132" role="img" aria-label="OLL">
-  <g fill="currentColor">
-    <circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/>
-    <rect x="141" y="36" width="16" height="60"/>
-    <rect x="166" y="36" width="16" height="60"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 133" role="img" aria-label="OLL">
+  <!-- standalone-файл: currentColor в нём разрешается в чёрный, поэтому цвета заданы явно -->
+  <g fill="#e2261d">
+    <circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="#0a0a0b" stroke-width="15.5"/>
+    <rect x="147" y="2" width="16" height="129"/>
+    <rect x="169" y="2" width="16" height="129"/>
   </g>
 </svg>
