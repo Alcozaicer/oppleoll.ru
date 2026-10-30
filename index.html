@@ -65,9 +65,10 @@
 <body>
 
 <header class="head">
+  <!-- штрихи вплотную к кольцу: знак читается как OLL, отдельная надпись не нужна -->
   <a class="logo" href="#top" aria-label="OLL — дизайнерский свет Opple Lighting">
-    <svg class="logo-glyph" viewBox="0 0 182 132" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect x="141" y="36" width="16" height="60"/><rect x="166" y="36" width="16" height="60"/></svg>
-    <span class="logo-text"><span class="logo-word">OLL</span><span class="logo-sub">by Opple Lighting</span></span>
+    <svg class="logo-glyph" viewBox="0 0 190 133" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><circle class="ring-hue" cx="66.5" cy="66.5" r="58.75" fill="none" stroke-width="15.5"/><rect class="bar" x="147" y="2" width="16" height="129"/><rect class="bar" x="169" y="2" width="16" height="129"/></svg>
+    <span class="logo-text"><span class="logo-sub">by Opple Lighting</span></span>
   </a>
   <nav class="nav">
     <a href="#catalog">Витрина</a>
@@ -98,7 +99,18 @@
     <p class="cat-note">Все цены — за одну единицу. Не является публичной офертой.</p>
   </div>
 
-  <div class="toolbar" id="toolbar">
+  <div class="filterbar">
+    <button type="button" class="fb-open" id="openFilters" aria-expanded="false" aria-controls="toolbar">
+      Фильтры<span class="fb-n" id="fbCount" hidden></span>
+    </button>
+    <span class="fb-count" id="barCount" aria-hidden="true"></span>
+  </div>
+
+  <div class="toolbar" id="toolbar" role="group" aria-label="Фильтры и сортировка" tabindex="-1">
+    <div class="tb-head">
+      <p class="tb-title">Фильтры</p>
+      <button type="button" class="tb-x" id="closeFilters" aria-label="Закрыть фильтры">×</button>
+    </div>
     <div class="chips" id="seriesChips" role="group" aria-label="Серия"></div>
     <div class="tools">
       <label class="field-search">
@@ -116,8 +128,15 @@
         <input type="range" id="maxPrice" min="0" max="0" step="10000">
       </label>
     </div>
-    <div class="cat-meta"><span id="count" aria-live="polite"></span><button type="button" class="link-reset" id="reset">Сбросить фильтры</button></div>
+    <div class="cat-meta">
+      <span id="count" aria-live="polite"></span>
+      <span class="cm-actions">
+        <button type="button" class="link-reset" id="reset">Сбросить</button>
+        <button type="button" class="btn btn-solid tb-done" id="done">Показать</button>
+      </span>
+    </div>
   </div>
+  <div class="sheet-back" id="sheetBack" hidden></div>
 
   <div class="grid" id="grid"></div>
   <p class="empty" id="empty" hidden>Под эти фильтры нет ни одной модели. <button type="button" class="link-reset" id="reset2">Сбросить</button></p>
@@ -130,9 +149,9 @@
     <h2>Уважение к свету<br>в основе бренда</h2>
     <p>OLL — дизайнерское направление Opple Lighting. Свет здесь не инструмент освещения, а язык, конструкция и переживание: тонкие линии, ручное стекло, тёплый спектр и управление светом в пространстве.</p>
     <dl class="facts">
-      <div><dt>Серий</dt><dd>9</dd></div>
-      <div><dt>Моделей</dt><dd>64</dd></div>
-      <div><dt>Диапазон цен</dt><dd>41 000 — 1 100 000 ₽</dd></div>
+      <div><dt>Серий</dt><dd id="factSeries">9</dd></div>
+      <div><dt>Моделей</dt><dd id="factModels">64</dd></div>
+      <div><dt>Диапазон цен</dt><dd id="factRange">—</dd></div>
     </dl>
     <p class="muted" id="delivery"></p>
   </div>
@@ -198,20 +217,20 @@
 
 <footer class="foot">
   <div class="foot-l">
-    <svg class="logo-glyph foot-glyph" viewBox="0 0 182 132" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect x="141" y="36" width="16" height="60"/><rect x="166" y="36" width="16" height="60"/></svg>
-    <p class="foot-word">OLL <span class="muted">· by Opple Lighting</span></p>
+    <svg class="logo-glyph foot-glyph" viewBox="0 0 190 133" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect class="bar" x="147" y="2" width="16" height="129"/><rect class="bar" x="169" y="2" width="16" height="129"/></svg>
+    <p class="foot-word">OLL<span class="muted"> · by Opple Lighting</span></p>
     <p id="legal"></p>
   </div>
   <div class="foot-r">
-    <p>Актуальность цен: <span id="updated"></span>.</p>
+    <p>Цены из действующего прайса OLL, итог подтверждаем в счёте.</p>
     <p><a href="privacy.html">Политика обработки персональных данных</a></p>
   </div>
 </footer>
 
 <div class="modal" id="modal" hidden>
   <div class="modal-back" data-close></div>
-  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Модель светильника">
-    <button class="modal-x" data-close aria-label="Закрыть">×</button>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="m-model" tabindex="-1">
+    <button class="modal-x" data-close aria-label="Закрыть карточку">×</button>
     <div class="modal-media">
       <div class="modal-stage"><img id="m-main" alt=""></div>
       <div class="modal-thumbs" id="m-thumbs"></div>
