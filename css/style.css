@@ -7,14 +7,26 @@
 
 :root{
   --bg:#0a0a0b; --bg2:#101012; --surface:#151517; --line:#242428;
-  --ink:#eceae6; --ink-2:#a5a29c; --ink-3:#6e6b66;
+  /* --ctl — рамка интерактивных полей. --line даёт 1.3:1 и панель фильтров на тёмном
+     фоне читалась подписями без границ; порог WCAG 1.4.11 — 3:1, причём считать надо
+     от самой светлой подложки, где поле встречается (--surface в листе фильтров). */
+  --ctl:#676559;
+  --ink:#eceae6; --ink-2:#a5a29c;
+  /* --ink-3 служебный текст (подписи, артикулы, примечания) 10–13 px. Прежний #6e6b66
+     давал 3.4:1 на карточке — ниже порога AA для текста, поэтому поднят до 4.9:1. */
+  --ink-3:#82807a;
   --warm:#f0c98a; --glow:rgba(240,201,138,.16);
+  /* фирменный красный OLL — единственное место, где он появляется: два штриха в знаке */
+  --brand:#e2261d;
   --max:1360px;
+  --head-h:76px;
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 *{box-sizing:border-box}
 [hidden]{display:none !important}
 html{scroll-behavior:smooth;color-scheme:dark}
+/* шапка фиксированная: без отступа якорь «#about» прячется под неё целиком */
+section[id]{scroll-margin-top:calc(var(--head-h) + 14px)}
 body{
   margin:0;background:var(--bg);color:var(--ink);
   font:300 17px/1.65 Manrope,system-ui,sans-serif;
@@ -35,16 +47,31 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- header ---------- */
 .head{
   position:fixed;inset:0 0 auto;z-index:40;display:flex;align-items:center;gap:32px;
-  padding:18px clamp(16px,4vw,44px);
+  min-height:var(--head-h);padding:10px clamp(16px,4vw,44px);
   background:linear-gradient(180deg,rgba(10,10,11,.92),rgba(10,10,11,0));
   backdrop-filter:blur(6px);transition:background .4s var(--ease)
 }
 .head.solid{background:rgba(10,10,11,.92);border-bottom:1px solid var(--line)}
 .logo{display:flex;align-items:center;gap:11px}
-.logo-glyph{width:34px;height:25px;flex:none;color:var(--ink);transition:color .3s}
+.logo-glyph{width:36px;height:25px;flex:none;color:var(--ink);transition:color .3s}
+/* без явного fill у rect браузер берёт чёрный — на тёмном фоне штрихи исчезали,
+   и знак читался как одна «O» */
+.logo-glyph .bar{fill:var(--brand)}
 .logo:hover .logo-glyph{color:var(--warm)}
+/* Фишка знака по клику: кольцо делает оборот, и по нему бежит дуга, проходящая
+   спектр — тёплый → красный → фиолетовый → холодный. Это не украшение: OLL делает
+   светильники с настройкой цвета, то есть знак показывает ровно то, что умеет прибор.
+   Дуга живёт поверх целого кольца, поэтому сам знак никогда не «ломается». */
+.logo-glyph circle{transform-box:fill-box;transform-origin:center}
+.logo-glyph .ring-hue{opacity:0;stroke:var(--warm);stroke-dasharray:96 274;stroke-linecap:round;pointer-events:none}
+.logo-glyph.is-spin circle{animation:oll-turn .9s var(--ease)}
+/* видимость дуги живёт в кейфреймах, а не в правиле `.is-spin`: если анимация не
+   доиграла (фоновая вкладка, `animationend` не пришёл), дуга остаётся невидимой */
+.logo-glyph.is-spin .ring-hue{animation:oll-turn .9s var(--ease),oll-hue .9s linear,oll-fade .9s linear}
+@keyframes oll-turn{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes oll-hue{0%{stroke:var(--warm)}20%{stroke:var(--brand)}45%{stroke:#a76ad6}70%{stroke:#4fc3f7}100%{stroke:var(--warm)}}
+@keyframes oll-fade{0%{opacity:0}8%{opacity:1}86%{opacity:1}100%{opacity:0}}
 .logo-text{display:flex;flex-direction:column;gap:1px;line-height:1.15}
-.logo-word{font-size:19px;font-weight:700;letter-spacing:.1em;line-height:1}
 .logo-sub{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
 .nav{display:flex;gap:26px;margin-left:auto;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
 .nav a{position:relative;padding:6px 0;transition:color .3s}
@@ -55,7 +82,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .head-phone:hover{border-color:var(--warm);background:rgba(240,201,138,.07)}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;padding:0 clamp(16px,4vw,44px) clamp(48px,8vh,96px)}
+.hero{position:relative;min-height:92vh;min-height:92svh;display:flex;align-items:flex-end;padding:0 clamp(16px,4vw,44px) clamp(48px,8vh,96px)}
 .hero-media{position:absolute;inset:0;overflow:hidden}
 .hero-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.72);transform:scale(1.04)}
 .hero-fade{position:absolute;inset:0;z-index:1;pointer-events:none;background:
@@ -80,28 +107,40 @@ textarea:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--warm);ou
 .catalog{max-width:var(--max);margin:0 auto;padding:clamp(64px,10vh,120px) clamp(16px,4vw,44px) 40px}
 .cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:34px}
 .cat-note{font-size:13px;color:var(--ink-3);max-width:46ch;margin:0}
-.toolbar{position:sticky;top:64px;z-index:30;background:rgba(10,10,11,.93);backdrop-filter:blur(10px);
+/* на узких экранах панель уезжает в нижний лист, в потоке остаётся тонкая строка-триггер */
+.filterbar{display:none}
+.tb-head{display:none}
+.btn.tb-done{display:none}
+.sheet-back{display:none}
+.toolbar{position:sticky;top:var(--head-h);z-index:30;background:rgba(10,10,11,.93);backdrop-filter:blur(10px);
   border-block:1px solid var(--line);padding:14px 0;margin-bottom:28px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.chip{border:1px solid var(--line);background:transparent;border-radius:99px;padding:7px 15px;
+.chip{border:1px solid var(--ctl);background:transparent;border-radius:99px;padding:7px 15px;
   font-size:12px;letter-spacing:.08em;color:var(--ink-2);cursor:pointer;transition:.25s}
 .chip:hover{border-color:var(--ink-3);color:var(--ink)}
 .chip[aria-pressed="true"]{background:var(--ink);color:#0b0b0c;border-color:var(--ink);font-weight:500}
 .chip .n{opacity:.5;margin-left:6px;font-size:11px}
 .tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.tools select,.field-search input{background:var(--bg2);border:1px solid var(--line);border-radius:10px;
+.tools select,.field-search input{background:var(--bg2);border:1px solid var(--ctl);border-radius:10px;
   padding:10px 13px;font-size:14px;color:var(--ink);outline:none;transition:border-color .25s}
 .tools select:focus,.tools select:hover,.field-search input:focus,.field-search input:hover{border-color:var(--ink-3)}
 .field-search input{width:230px}
 .field-search input::placeholder{color:var(--ink-3)}
 .range{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);margin-left:auto}
 .range b{color:var(--ink);font-weight:500}
-input[type=range]{-webkit-appearance:none;appearance:none;width:170px;height:1px;background:var(--line)}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;
-  background:var(--warm);cursor:pointer;box-shadow:0 0 0 4px rgba(240,201,138,.15)}
-input[type=range]::-moz-range-thumb{width:14px;height:14px;border:0;border-radius:50%;background:var(--warm);cursor:pointer}
+/* Ползунок был высотой 1px — по нему нельзя было попасть пальцем. Трек тонкий,
+   но сам input занимает 24px, и попадать надо именно по нему. */
+input[type=range]{-webkit-appearance:none;appearance:none;width:170px;height:24px;background:transparent;
+  margin:0;padding:0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:2px;border-radius:2px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-8px;
+  border-radius:50%;background:var(--warm);box-shadow:0 0 0 4px rgba(240,201,138,.15)}
+input[type=range]::-moz-range-track{height:2px;border-radius:2px;background:var(--line)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radius:50%;
+  background:var(--warm);box-shadow:0 0 0 4px rgba(240,201,138,.15)}
 .cat-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.cm-actions{display:flex;align-items:center;gap:20px}
 .link-reset{background:none;border:0;color:var(--ink-3);cursor:pointer;font-size:12px;letter-spacing:.08em;
   text-transform:uppercase;border-bottom:1px solid transparent;padding:0}
 .link-reset:hover{color:var(--warm);border-color:var(--warm)}
@@ -126,7 +165,9 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border:0;border-radiu
 .card-price small{font-size:11px;color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase;margin-left:7px}
 .card-cta{position:absolute;top:14px;right:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--warm);opacity:0;transform:translateY(-4px);transition:.3s var(--ease)}
-.card:hover .card-cta{opacity:1;transform:none}
+.card:hover .card-cta,.card:focus-visible .card-cta{opacity:1;transform:none}
+/* на тач-устройствах hover не наступает вовсе, поэтому подпись должна жить без него */
+@media (hover:none){.card-cta{opacity:1;transform:none}}
 .empty{color:var(--ink-3);text-align:center;padding:60px 0}
 
 /* ---------- about ---------- */
@@ -149,10 +190,14 @@ legend{padding:0}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 form label{display:flex;flex-direction:column;gap:8px;font-size:13px;letter-spacing:.01em;color:var(--ink-2)}
 form label.full{margin-bottom:18px}
-.field{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+.field{background:var(--bg2);border:1px solid var(--ctl);border-radius:10px;padding:12px 14px;
   font-size:16px;font-weight:300;color:var(--ink);outline:none;width:100%;
   transition:border-color .25s,background .25s}
 .field::placeholder{color:var(--ink-3);opacity:1}
+/* поле, из-за которого заявку не отправили, подсвечивает сам JS: на телефоне
+   статус под кнопкой иногда остаётся за экраном. :focus ниже — правку видно теплее */
+.field.is-bad{border-color:#b4574c;background:#171111}
+.consent input.is-bad{outline:2px solid #b4574c;outline-offset:3px}
 .field:focus{border-color:var(--warm);background:#131315}
 .field:invalid:not(:placeholder-shown){border-color:#8b4a44}
 textarea.field{resize:vertical;min-height:64px;line-height:1.55}
@@ -168,7 +213,7 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 .intent-opt:has(input:checked){border-color:var(--warm);color:var(--warm);background:rgba(240,201,138,.08)}
 .intent-opt:has(input:focus-visible){outline:2px solid var(--warm);outline-offset:2px}
 
-.qty{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:10px;background:var(--bg2);
+.qty{display:flex;align-items:stretch;border:1px solid var(--ctl);border-radius:10px;background:var(--bg2);
   overflow:hidden;transition:border-color .25s}
 .qty:focus-within{border-color:var(--warm)}
 .qty input{flex:1;min-width:0;width:56px;background:none;border:0;color:var(--ink);font-size:16px;
@@ -208,7 +253,7 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);line-height:1.7}
 .foot p{margin:6px 0 0;max-width:52ch}
 .foot a:hover{color:var(--warm)}
-.foot-glyph{width:26px;height:19px;color:var(--ink-2);margin-bottom:10px}
+.foot-glyph{width:28px;height:19px;color:var(--ink-2);margin-bottom:10px}
 .foot-word{margin:0 0 4px;font-size:15px;font-weight:700;letter-spacing:.1em;color:var(--ink)}
 .foot-word span{font-weight:300;letter-spacing:.04em}
 
@@ -217,8 +262,8 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 .modal-back{position:absolute;inset:0;background:rgba(6,6,7,.82);backdrop-filter:blur(8px)}
 .modal-card{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:0;width:min(1020px,100%);
   max-height:90vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px}
-.modal-x{position:absolute;top:10px;right:14px;z-index:2;background:none;border:0;color:var(--ink-3);
-  font-size:30px;line-height:1;cursor:pointer}
+.modal-x{position:absolute;top:10px;right:14px;z-index:2;width:44px;height:44px;display:grid;place-items:center;
+  background:none;border:0;color:var(--ink-3);font-size:30px;line-height:1;cursor:pointer;border-radius:50%}
 .modal-x:hover{color:var(--ink)}
 .modal-media{background:#000;display:flex;flex-direction:column}
 .modal-stage{aspect-ratio:4/3;display:grid;place-items:center;padding:26px;
@@ -238,35 +283,102 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 .m-sku{margin-top:auto;font-size:11px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
 
 /* ---------- responsive ---------- */
+/* на ноутбуке 1024–1280 подписи «Витрина / О бренде / Заявка» врезались в ссылку с телефоном */
+@media (min-width:861px) and (max-width:1279px){
+  .logo-sub{display:none}
+}
+
 @media (max-width:1000px){
   .about,.contact{grid-template-columns:1fr}
   .about-media img{height:46vh}
-  .modal-card{grid-template-columns:1fr}
-  .toolbar{top:58px}
+  .modal-card{grid-template-columns:1fr;max-height:92svh}
+  /* лист карточки на всю ширину, поэтому крестик привязываем к краю экрана:
+     при скролле содержимого он был absolute внутри листа и уезжал вверх */
+  .modal-x{position:fixed;top:calc(env(safe-area-inset-top) + 8px);right:20px;width:44px;height:44px;
+    display:grid;place-items:center;border-radius:50%;background:rgba(10,10,11,.72);backdrop-filter:blur(6px)}
 }
+
+/* узкий экран: панель фильтров — нижний лист, в потоке остаётся тонкая строка */
+@media (max-width:860px){
+  :root{--head-h:60px}
+  .head{height:var(--head-h);min-height:0;padding:0 clamp(14px,4vw,44px)}
+  .logo-sub{display:none}
+  .nav{gap:16px;font-size:12px;letter-spacing:.08em}
+
+  .filterbar{display:flex;align-items:center;gap:14px;position:sticky;top:var(--head-h);z-index:31;
+    margin:0 0 20px;padding:9px 0;background:rgba(10,10,11,.94);backdrop-filter:blur(10px);
+    border-block:1px solid var(--line)}
+  .fb-open{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0 18px;flex:none;
+    border:1px solid var(--ctl);border-radius:99px;background:var(--bg2);color:var(--ink);
+    font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.25s}
+  .fb-open:hover,.fb-open[aria-expanded="true"]{border-color:var(--warm);color:var(--warm)}
+  .fb-n{min-width:21px;height:21px;padding:0 6px;border-radius:99px;background:var(--warm);color:#12100c;
+    font-size:11px;font-weight:500;letter-spacing:0;text-transform:none;display:grid;place-items:center}
+  .fb-count{margin-left:auto;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+    text-align:right}
+
+  .toolbar{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:55;width:100%;max-width:none;margin:0;
+    max-height:80svh;overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-bottom:0;
+    border-radius:20px 20px 0 0;padding:0 18px;
+    visibility:hidden;transform:translateY(101%);
+    transition:transform .38s var(--ease),visibility 0s .38s}
+  .toolbar.is-open{visibility:visible;transform:none;transition:transform .38s var(--ease),visibility 0s}
+  .toolbar::before{content:"";display:block;width:38px;height:4px;margin:9px auto 0;border-radius:2px;background:var(--line)}
+  .tb-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:16px;margin-bottom:6px;
+    padding:10px 0 8px;background:var(--surface)}
+  .tb-title{margin:0;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
+  .tb-x{width:44px;height:44px;flex:none;margin-left:auto;background:none;border:0;color:var(--ink-2);
+    font-size:28px;line-height:1;cursor:pointer;border-radius:50%}
+  .tb-x:hover{color:var(--warm)}
+  .toolbar .chips{flex-wrap:nowrap;overflow-x:auto;margin-bottom:14px;padding-bottom:6px;
+    scrollbar-width:none}
+  .toolbar .chips::-webkit-scrollbar{display:none}
+  .toolbar .chip{flex:none}
+  .toolbar .tools{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .toolbar .field-search{grid-column:1/-1}
+  .toolbar .tools select{width:100%}
+  .toolbar .range{grid-column:1/-1;margin-left:0;justify-content:space-between;gap:16px}
+  .toolbar input[type=range]{flex:1;width:auto}
+  .cat-meta{position:sticky;bottom:0;gap:16px;margin:18px -18px 0;padding:14px 18px calc(16px + env(safe-area-inset-bottom));
+    background:var(--surface);border-top:1px solid var(--line);flex-wrap:wrap}
+  /* количество моделей в листе озвучивается скринридеру и дублируется на кнопке,
+     в самой строке оно только ломало бы раскладку */
+  .cat-meta #count{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .btn.tb-done{display:inline-flex;padding:12px 24px;font-size:12px}
+  .sheet-back{display:block;position:fixed;inset:0;z-index:50;background:rgba(6,6,7,.72);backdrop-filter:blur(4px)}
+  /* лист ловит фокус только программно (при открытии) — рамка вокруг всего экрана не нужна */
+  .toolbar:focus-visible{outline:none}
+}
+
 @media (max-width:640px){
   body{font-size:16px}
-  .nav{display:none}
   .head{gap:14px}
-  .head-phone{margin-left:auto;font-size:12px;padding:8px 12px}
+  .logo{gap:8px}
+  /* в шапке на пальце телефон и так есть в разделе «Заявка»; вместе с навигацией не влезает */
+  .head-phone{display:none}
   .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
   .card-body{padding:12px 13px 16px}
   .card-model{font-size:13px}
   .card-price{font-size:15px}
   .card-price small{display:block;margin:3px 0 0}
   .row{grid-template-columns:1fr}
-  .range{margin-left:0;width:100%}
-  .field-search input{width:100%}
-  .field-search{flex:1}
-  .hero{min-height:80vh}
+  .hero{min-height:80vh;min-height:80svh}
   .facts{flex-wrap:wrap;gap:22px}
-  /* зоны нажатия не меньше 44px (WCAG 2.5.5) — на палец чипы и кнопки были мелковаты */
-  .chip,.tools select,.field-search input{min-height:44px}
-  .intent-opt{min-height:44px;display:inline-flex}
+  .intent-opt{display:inline-flex}
+}
+
+/* размер цели привязан к пальцу, а не к ширине окна: планшет 768 px тоже тыкают
+   и мышью, и пальцем, а прежний порог 640 px оставлял ему 31 px чипы */
+@media (pointer:coarse){
+  .chip,.tools select,.field-search input,.link-reset{min-height:44px}
+  .link-reset{display:inline-flex;align-items:center}
+  /* навигация и «показать почту» были 32 и 26 px — единственные цели меньше 44 px,
+     которые нельзя считать текстовыми ссылками в абзаце */
+  .nav a{min-height:44px;display:inline-flex;align-items:center}
+  .side-mail,.head-phone{min-height:44px;display:inline-flex;align-items:center}
+  .intent-opt{min-height:44px}
   .consent input{width:22px;height:22px}
-  .link-reset,.head-phone{display:inline-flex;align-items:center;min-height:44px}
-  .modal-x{top:4px;right:6px;padding:9px;font-size:28px}
-  input[type=range]::-webkit-slider-thumb{width:22px;height:22px}
+  input[type=range]::-webkit-slider-thumb{width:22px;height:22px;margin-top:-10px}
   input[type=range]::-moz-range-thumb{width:22px;height:22px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
