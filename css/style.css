@@ -155,6 +155,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
    незагруженный блок. Линии теперь принадлежат самим карточкам, пустая ячейка пуста. */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:0;
   border-top:1px solid var(--line);border-left:1px solid var(--line)}
+/* серий 7, колонок 3 — в последнем ряду одна карточка, и без этого она на 24 px ниже
+   соседних: ряд тянется по самому высокому, а одинокая плитка остаётся у своей высоты.
+   Только для многоколоночной раскладки: в одну колонку равнять ряды бессмысленно */
+@media (min-width:700px){
+  .grid{grid-auto-rows:1fr}
+}
 .scard{background:var(--bg);border-right:1px solid var(--line);border-bottom:1px solid var(--line);
   display:flex;flex-direction:column;transition:background .35s var(--ease)}
 .scard:hover{background:var(--surface)}
