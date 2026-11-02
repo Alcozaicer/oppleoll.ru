@@ -245,6 +245,28 @@ li:last-child .mrow{border-bottom:0}
 .facts dt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
 .facts dd{margin:0;font-size:22px;font-weight:500}
 
+/* ---------- политика ---------- */
+/* Отдельный класс, а не inline-стили на .about: документ читается колонкой, и
+   размер меры (72ch вместо 46ch у витринных абзацев) здесь нужен другой. */
+.policy{max-width:880px;margin:0 auto;padding:calc(var(--head-h) + 60px) clamp(16px,4vw,44px) 64px}
+.policy h1{font-size:clamp(28px,4.4vw,46px);margin:0 0 14px}
+.policy-meta{margin:0;font-size:13px;color:var(--ink-3)}
+.policy-brief{margin:34px 0 8px;padding:22px 24px;background:var(--bg2);border:1px solid var(--line);border-radius:14px}
+.policy-brief .eyebrow{margin-bottom:12px}
+.policy-brief ul{margin:0;padding-left:18px}
+.policy-body{margin-top:14px}
+.policy-body h2{margin:32px 0 10px;font-size:19px;font-weight:600;letter-spacing:0;line-height:1.3}
+.policy-body p,.policy-body li,.policy-brief li{margin:0 0 12px;color:var(--ink-2);font-size:15.5px;line-height:1.72}
+.policy-brief li{margin:7px 0}
+.policy-body p:last-child{margin-bottom:0}
+.policy-body ul{margin:0 0 12px;padding-left:20px}
+.policy-body li{margin:7px 0}
+.policy-body b{color:var(--ink);font-weight:600}
+.policy-back{margin:44px 0 0;padding-top:18px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--ink-3)}
+.policy-back a{border-bottom:1px solid var(--line)}
+.policy-back a:hover{color:var(--warm);border-color:var(--warm)}
+
 /* ---------- contact ---------- */
 .contact{max-width:var(--max);margin:0 auto;padding:clamp(60px,9vh,110px) clamp(16px,4vw,44px) clamp(80px,12vh,140px);
   display:grid;grid-template-columns:1.6fr .8fr;gap:clamp(28px,6vw,72px);align-items:start}
@@ -351,6 +373,34 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 .mrow.is-pick[aria-current="true"] .mrow-thumb{outline:1px solid var(--warm);outline-offset:-1px}
 .m-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .m-sku{margin-top:auto;font-size:11px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
+
+/* ---------- авторство в подвале ---------- */
+/* Строка намеренно самая тихая в подвале: она для подписи, а не для навигации.
+   Под имя даётся вертикальный padding — на пальце кликабельная зона должна быть
+   не меньше 24 px, а у текста 11 px без неё она ~16 px. */
+.foot-credit{font-size:11px;color:var(--ink-3);letter-spacing:.02em}
+.credit-open{background:none;border:0;padding:5px 0;font:inherit;color:inherit;cursor:pointer;
+  border-bottom:1px dotted var(--ctl)}
+.credit-open:hover,.credit-open:focus-visible{color:var(--ink);border-bottom-color:var(--ink)}
+.credit-open:focus-visible{outline:2px solid var(--warm);outline-offset:2px}
+.credit{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:20px}
+.credit-back{position:absolute;inset:0;background:rgba(6,6,7,.86);backdrop-filter:blur(8px)}
+.credit-card{position:relative;display:flex;align-items:center;gap:clamp(20px,4vw,42px);
+  width:min(700px,100%);max-height:90svh;overflow:auto;padding:clamp(22px,4vw,38px);
+  background:var(--surface);border:1px solid var(--line);border-radius:16px}
+/* Углы исходника — белое поле вокруг жёлтого круга; на тёмной витрине оно смотрелось
+   чужим, поэтому маска по вписанной окружности уже запечена в author.webp
+   (tools/build_author_image.py), а border-radius страхует край. */
+.credit-card img{width:min(280px,44vw);height:auto;border-radius:50%}
+.credit-card figcaption{min-width:0}
+.credit-name{margin:0;font-size:20px;font-weight:500;letter-spacing:-.01em}
+.credit-role{margin:10px 0 0;font-size:14px;line-height:1.6;color:var(--ink-2);max-width:34ch}
+.credit-rights{margin:18px 0 0;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+@media (max-width:640px){
+  .credit-card{flex-direction:column;text-align:center;gap:18px}
+  .credit-card img{width:min(230px,58vw)}
+  .credit-role{margin-inline:auto}
+}
 
 /* ---------- responsive ---------- */
 /* на ноутбуке 1024–1280 подписи «Витрина / О бренде / Заявка» врезались в ссылку с телефоном */
