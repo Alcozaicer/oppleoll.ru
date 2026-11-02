@@ -448,6 +448,30 @@
     modalReturn = null;
   }
 
+  /* ---------- портрет автора ---------- */
+  /* Отдельное окно, а не reuse модалки товара: здесь нет серии, галереи и заявки,
+     и тащить в модалку ещё один режим означало бы ветку на каждый её шаг. */
+  let creditReturn = null;
+
+  function openCredit() {
+    creditReturn = document.activeElement;
+    const photo = $('#creditPhoto');
+    if (!photo.dataset.loaded) { photo.src = photo.dataset.src; photo.dataset.loaded = '1'; }
+    $('#credit').hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('.credit-card', $('#credit')).focus({ preventScroll: true });
+  }
+
+  function closeCredit() {
+    if ($('#credit').hidden) return;
+    $('#credit').hidden = true;
+    if ($('#modal').hidden && !sheetIsOpen()) document.body.style.overflow = '';
+    const back = creditReturn && creditReturn !== document.body && creditReturn.isConnected
+      ? creditReturn : $('#creditOpen');
+    back.focus({ preventScroll: true });
+    creditReturn = null;
+  }
+
   /* ---------- lead form ---------- */
   /* Заявка может быть на конкретную модель, а может на серию целиком — покажем
      и то, и другое одной строкой, без отдельных кнопок «подобрать». */
@@ -637,15 +661,21 @@
     $('#modal').addEventListener('click', e => {
       if (e.target.hasAttribute('data-close')) closeModal();
     });
+    $('#creditOpen').addEventListener('click', openCredit);
+    $('#credit').addEventListener('click', e => {
+      if (e.target.hasAttribute('data-credit-close')) closeCredit();
+    });
     /* Tab слушаем на document, а не на самом окне: ловушка на #modal и #toolbar
        срабатывала только когда фокус уже был внутри, и Shift+Tab из шапки уходил
        за спину модалки — пользователь оставался с неактивной кнопкой где-то под затемнённым фоном. */
     document.addEventListener('keydown', e => {
       if (e.key === 'Tab') {
-        if (!$('#modal').hidden) trapTab(e, $('.modal-card', $('#modal')));
+        if (!$('#credit').hidden) trapTab(e, $('.credit-card', $('#credit')));
+        else if (!$('#modal').hidden) trapTab(e, $('.modal-card', $('#modal')));
         else if (sheetIsOpen()) trapTab(e, $('#toolbar'));
       } else if (e.key === 'Escape') {
-        if (!$('#modal').hidden) closeModal();
+        if (!$('#credit').hidden) closeCredit();
+        else if (!$('#modal').hidden) closeModal();
         else closeSheet();
       }
     });
