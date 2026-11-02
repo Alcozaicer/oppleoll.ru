@@ -4,7 +4,7 @@
   const money = new Intl.NumberFormat('ru-RU');
   const fmt = v => money.format(v) + ' ₽';
 
-  const SERIES_ORDER = ['Edge', 'Vessel', 'Aura', 'Bubble', 'CRYX', 'Flow', 'Astra', 'Lamino', 'FOLIO'];
+  const SERIES_ORDER = ['Edge', 'Vessel', 'Aura', 'Bubble', 'Flow', 'Astra', 'FOLIO'];
   const state = { series: new Set(), type: '', q: '', sort: 'series', max: Infinity };
   let products = [], photos = {}, cfg = null, meta = { hero: {}, src: {} }, tIdx = new Map();
   // время жизни страницы, а не первого удара по клавиатуре: автозаполнение браузера
