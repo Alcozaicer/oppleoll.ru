@@ -159,7 +159,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
 .scard-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.84) saturate(.95);
   transition:transform .8s var(--ease),filter .5s}
 .scard:hover .scard-hero img{transform:scale(1.035);filter:brightness(1) saturate(1)}
-/* герой из выреза (Lamino, CRYX — своих снимков у серии нет): кадр квадратный и на
+/* герой из выреза (когда у серии нет своего снимка): кадр квадратный и на
    прозрачном фоне, cover обрезать бы его нечего, но product-режим держит его целиком
    на фирменном свечении, а не растягивает во всю рамку */
 .scard-hero.is-product{background:radial-gradient(64% 58% at 50% 46%,var(--glow),transparent 72%)}
