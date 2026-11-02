@@ -457,12 +457,19 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   /* навигация и «показать почту» были 32 и 26 px — единственные цели меньше 44 px,
      которые нельзя считать текстовыми ссылками в абзаце */
   .nav a{min-height:44px;display:inline-flex;align-items:center}
-  .side-mail,.head-phone{min-height:44px;display:inline-flex;align-items:center}
+  .side-mail{min-height:44px;display:inline-flex;align-items:center}
   /* 22 px чекбокс и 22 px ползунок — ниже порога 24 px (WCAG 2.5.8); 44 здесь не нужно,
      но попасть пальцем должно быть гарантированно можно */
   .consent input{width:24px;height:24px}
   input[type=range]::-webkit-slider-thumb{width:24px;height:24px;margin-top:-11px}
   input[type=range]::-moz-range-thumb{width:24px;height:24px}
+}
+/* Чип телефона в шапке скрыт на ≤640 px, но coarse-правило стояло позже и с той же
+   специфичностью возвращало `display:inline-flex` — на реальном телефоне шапка
+   расползалась на две строки и чип обрезался по правому краю. Поэтому 44 px чипу
+   даются только там, где он влезает. */
+@media (pointer:coarse) and (min-width:641px){
+  .head-phone{min-height:44px;display:inline-flex;align-items:center}
 }
 /* Меньше движения = ещё и мгновенные переходы: `scroll-behavior:smooth` не анимация
    в смысле transition/animation, поэтому общее правило его не глушит */
