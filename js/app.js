@@ -326,8 +326,8 @@
   /* ---------- постеры серий ---------- */
   /* Исходник постера — 3:4 с типографикой по всему полю, поэтому рамка повторяет
      пропорцию и ничего не режет. Постер витринной серии открывает её карточку;
-     Ink, Wellsky и WellskyLite в действующем прайсе не числятся — это только образ,
-     и плитка честно говорит об этом, а не притворяется кнопкой. */
+     Ink, Wellsky и WellskyLite не продаются — это только образ бренда, и плитка
+     не притворяется кнопкой. Подписей нет: про наш прайс клиенту читать незачем. */
   function renderPosters(list) {
     const grid = $('#posterGrid'), sec = $('#posters');
     if (!list || !list.length) { if (sec) sec.hidden = true; return; }
@@ -337,8 +337,7 @@
       return SERIES_ORDER.includes(p.series)
         ? `<button type="button" class="ppost" data-series="${p.series}"` +
           ` aria-label="Открыть серию ${p.series}">${img}</button>`
-        : `<figure class="ppost is-plain">${img}` +
-          `<figcaption>нет в прайсе</figcaption></figure>`;
+        : `<figure class="ppost is-plain">${img}</figure>`;
     }).join('');
   }
 
