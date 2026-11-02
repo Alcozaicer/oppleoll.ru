@@ -225,7 +225,7 @@
   "price_raw": 50586.9,
   "image": "image19.png",
   "desc_cn": "MZD75-8W-T-Lamino叠境-2700K-灰色-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030004400",
@@ -273,7 +273,7 @@
   "price_raw": 42789.0,
   "image": "image23.png",
   "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-灰透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000100",
@@ -285,7 +285,7 @@
   "price_raw": 43905.9,
   "image": "image24.png",
   "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-绿透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000200",
@@ -297,7 +297,7 @@
   "price_raw": 43905.9,
   "image": "image25.png",
   "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-蓝透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000300",
@@ -309,7 +309,7 @@
   "price_raw": 43905.9,
   "image": "image26.png",
   "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-黄透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000400",
@@ -321,7 +321,7 @@
   "price_raw": 46328.4,
   "image": "image27.png",
   "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-粉透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000500",
@@ -333,7 +333,7 @@
   "price_raw": 48827.399999999994,
   "image": "image28.png",
   "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-灰透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000600",
@@ -345,7 +345,7 @@
   "price_raw": 50882.7,
   "image": "image29.png",
   "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-绿透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000700",
@@ -357,7 +357,7 @@
   "price_raw": 50882.7,
   "image": "image30.png",
   "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-蓝透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000800",
@@ -369,7 +369,7 @@
   "price_raw": 50882.7,
   "image": "image31.png",
   "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-黄透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030000900",
@@ -381,7 +381,7 @@
   "price_raw": 53652.0,
   "image": "image32.png",
   "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-粉透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030001000",
@@ -393,7 +393,7 @@
   "price_raw": 67483.2,
   "image": "image33.png",
   "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-灰透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030001100",
@@ -405,7 +405,7 @@
   "price_raw": 69166.2,
   "image": "image34.png",
   "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-绿透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030001200",
@@ -417,7 +417,7 @@
   "price_raw": 69166.2,
   "image": "image35.png",
   "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-蓝透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030001300",
@@ -429,7 +429,7 @@
   "price_raw": 69166.2,
   "image": "image36.png",
   "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-黄透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030001400",
@@ -441,7 +441,7 @@
   "price_raw": 73644.0,
   "image": "image37.png",
   "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-粉透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030001500",
@@ -477,7 +477,7 @@
   "price_raw": 75699.3,
   "image": "image40.png",
   "desc_cn": "MZL180-8W-T-BUBBLE泡泡-2700K-全透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030001800",
@@ -489,7 +489,7 @@
   "price_raw": 45660.3,
   "image": "image41.png",
   "desc_cn": "MZD180-8W-T-BUBBLE泡泡-2700K-全透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030001900",
@@ -501,7 +501,7 @@
   "price_raw": 40958.1,
   "image": "image42.png",
   "desc_cn": "MZD140-8W-T-BUBBLE泡泡-2700K-全透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030002000",
@@ -513,7 +513,7 @@
   "price_raw": 131615.69999999998,
   "image": "image43.png",
   "desc_cn": "MZD1080-40W-T-BUBBLE泡泡-2700K-5头-全透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030002100",
@@ -525,7 +525,7 @@
   "price_raw": 130376.4,
   "image": "image44.png",
   "desc_cn": "MZD540-40W-T-BUBBLE泡泡-2700K-5头-全透-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030002200",
@@ -537,7 +537,7 @@
   "price_raw": 45170.7,
   "image": "image45.png",
   "desc_cn": "MZD150-D8LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030002300",
@@ -549,7 +549,7 @@
   "price_raw": 76938.6,
   "image": "image46.png",
   "desc_cn": "MZD300-D10LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030002400",
@@ -585,7 +585,7 @@
   "price_raw": 57420.9,
   "image": "image49.png",
   "desc_cn": "MZT200-D8LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030002700",
@@ -597,7 +597,7 @@
   "price_raw": 119498.1,
   "image": "image50.png",
   "desc_cn": "MZT400-D12LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030002800",
@@ -645,7 +645,7 @@
   "price_raw": 409009.8,
   "image": "image54.png",
   "desc_cn": "MZD1200-42W-WT-CRYX 晶-2700K-餐吊-沙镍色-现代",
-  "image_kind": "cutout"
+  "image_kind": "light"
  },
  {
   "id": "521030005600",
@@ -765,6 +765,6 @@
   "price_raw": 940200.2999999999,
   "image": "image64.jpeg",
   "desc_cn": "MZ-C075001-画Lite-75W-90120",
-  "image_kind": "cutout"
+  "image_kind": "light"
  }
 ]

@@ -504,17 +504,6 @@
  ],
  "Flow": [
   {
-   "file": "posters/poster_Flow.jpg",
-   "series": [
-    "Flow"
-   ],
-   "page": null,
-   "src": "poster",
-   "w": 1350,
-   "h": 1800,
-   "lum": 55.0
-  },
-  {
    "file": "series/brd_30_1.jpg",
    "series": [
     "Flow"
@@ -572,17 +561,6 @@
  ],
  "Bubble": [
   {
-   "file": "posters/poster_Bubble.jpg",
-   "series": [
-    "Bubble"
-   ],
-   "page": null,
-   "src": "poster",
-   "w": 1350,
-   "h": 1800,
-   "lum": 61.6
-  },
-  {
    "file": "series/brd_34_0.jpg",
    "series": [
     "Bubble"
@@ -628,17 +606,6 @@
   }
  ],
  "FOLIO": [
-  {
-   "file": "posters/poster_FOLIO.jpg",
-   "series": [
-    "FOLIO"
-   ],
-   "page": null,
-   "src": "poster",
-   "w": 1350,
-   "h": 1800,
-   "lum": 88.3
-  },
   {
    "file": "series/ex_03_FOLIO.jpg",
    "series": [
