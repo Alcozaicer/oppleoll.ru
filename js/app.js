@@ -181,7 +181,10 @@
      растяжения. В карточке серии большой кадр берётся из каталогов и пресс-съёмки
      (1200–1500 px), а модели уходят в строки по 44 px — там то же разрешение
      выглядит резким, потому что растягивать нечего. */
-  const LIST_MAX = 5;
+  /* Ритм сетки модульный: у всех героев одна пропорция, в карточке всегда три строки.
+     До 02.11.2026 герой нёс пропорцию своего кадра (1.0…1.571), а строк было до пяти —
+     карточки в одном ряду различались на 140+ px, и нижние кромки ряда не сходились. */
+  const LIST_MAX = 3, HERO_AR = 1.333;
 
   /* Миниатюры строк лежат одним спрайтом 8×8 по 96 px: 35 строк первого экрана —
      это один запрос и 37 КБ вместо 35 запросов и 400 КБ. Ячейка берётся по номеру
@@ -234,7 +237,7 @@
       el.dataset.series = s;
       el.hidden = true;
       el.innerHTML = `<div class="scard-hero${hero && hero.product ? ' is-product' : ''}"
-          style="--hero-ar:${hero ? hero.ar : 1.6}">
+          style="--hero-ar:${hero && hero.product ? hero.ar : HERO_AR}">
           ${hero ? `<img src="${hero.file}" alt="Серия ${s}" width="${hero.w}" height="${hero.h}"
             loading="lazy" fetchpriority="low">` : ''}
         </div>
@@ -293,6 +296,23 @@
     // «Показать 0» звучало как обещание, которого лист не выполнит
     $('#done').textContent = nModels ? `Показать ${nModels}` : 'Готово';
     $('#empty').hidden = nModels > 0;
+  }
+
+  /* ---------- постеры серий ---------- */
+  /* Исходник постера — 3:4 с типографикой по всему полю, поэтому рамка повторяет
+     пропорцию и ничего не режет. Постер витринной серии открывает её карточку;
+     Ink и Wellsky в прайсе не числятся — это только образ, клика на них нет. */
+  function renderPosters(list) {
+    const grid = $('#posterGrid'), sec = $('#posters');
+    if (!list || !list.length) { if (sec) sec.hidden = true; return; }
+    grid.innerHTML = list.map(p => {
+      const img = `<img src="${p.file}" alt="Постер серии ${p.series}" ` +
+        `width="${p.w}" height="${p.h}" loading="lazy">`;
+      return SERIES_ORDER.includes(p.series)
+        ? `<button type="button" class="ppost" data-series="${p.series}"` +
+          ` aria-label="Открыть серию ${p.series}">${img}</button>`
+        : `<div class="ppost is-plain">${img}</div>`;
+    }).join('');
   }
 
   /* ---------- модалка: серия целиком ---------- */
@@ -505,16 +525,17 @@
     : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 1 : 2];
 
   async function boot() {
-    const [c, p, s, m] = await Promise.all([
+    const [c, p, s, m, po] = await Promise.all([
       fetch('data/site.config.json').then(r => r.json()).catch(() => null),
       fetch('data/products.json').then(r => r.json()),
       fetch('data/series_photos.json').then(r => r.json()).catch(() => ({})),
-      fetch('data/series.json').then(r => r.json()).catch(() => null)
+      fetch('data/series.json').then(r => r.json()).catch(() => null),
+      fetch('data/posters.json').then(r => r.json()).catch(() => [])
     ]);
     cfg = c; products = p; photos = s; if (m) meta = m;
     tIdx = new Map(products.map((x, i) => [x.id, i]));
     const deepId = applyUrl();
-    bindQty(); bindMark(); buildFilters(); buildCards(); render();
+    bindQty(); bindMark(); buildFilters(); buildCards(); renderPosters(po); render();
     /* Выкладка каталога важнее конфига: при частичной загрузке data/ на GitHub Pages
        витрина должна остаться читаемой, а не сложиться вместе с контактами. */
     if (cfg) { applyConfig(); bindReveal(); }
@@ -552,6 +573,10 @@
       if (more) { openSeries(more.dataset.open); return; }
       const card = e.target.closest('.scard'); if (!card) return;
       if (e.target.closest('.scard-open') || e.target.closest('.scard-hero')) openSeries(card.dataset.series);
+    });
+    $('#posterGrid').addEventListener('click', e => {
+      const p = e.target.closest('.ppost[data-series]');
+      if (p) openSeries(p.dataset.series);
     });
     $('#modal').addEventListener('click', e => {
       if (e.target.hasAttribute('data-close')) closeModal();
