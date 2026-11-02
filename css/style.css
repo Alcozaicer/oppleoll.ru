@@ -235,14 +235,37 @@ li:last-child .mrow{border-bottom:0}
 .ppost:focus-visible{outline:2px solid var(--warm);outline-offset:-2px}
 
 /* ---------- about ---------- */
-.about{max-width:var(--max);margin:0 auto;padding:clamp(80px,14vh,160px) clamp(16px,4vw,44px);
-  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,6vw,80px);align-items:center}
+/* Секция в два слоя: шапка (фото + факты) и история. История — листалка: слева колонка
+   кадров, справа липкий текст, который меняется по мере прокрутки галереи. */
+.about{max-width:var(--max);margin:0 auto;padding:clamp(80px,14vh,160px) clamp(16px,4vw,44px)}
+.about-head{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,6vw,80px);align-items:center}
 .about-media{overflow:hidden;border-radius:2px}
 .about-media img{width:100%;height:min(72vh,620px);object-fit:cover;filter:brightness(.86)}
 .about-body p{color:var(--ink-2);max-width:46ch}
 .facts{display:flex;gap:clamp(20px,4vw,48px);margin:32px 0;padding:22px 0;border-block:1px solid var(--line)}
 .facts dt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
 .facts dd{margin:0;font-size:22px;font-weight:500}
+
+.story{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);
+  gap:clamp(28px,5vw,72px);align-items:start;margin-top:clamp(64px,11vh,132px)}
+.sframe{margin:0 0 clamp(48px,9vh,110px)}
+.sframe:last-child{margin-bottom:8vh}
+/* width:auto, а не 100%: часть кадров приехала из презентаций в 642–685 px, и
+   растянутые до колонки они мылятся. Своё разрешение — потолок. */
+.sframe img{display:block;width:auto;max-width:100%;height:auto;border-radius:2px}
+.sframe figcaption{margin-top:12px;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3)}
+.story-text{position:sticky;top:calc(var(--head-h) + 26px)}
+.spar-k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 14px}
+.spar p{color:var(--ink-2);max-width:44ch;margin:0 0 14px}
+.spar-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.spar-cta .btn{text-decoration:none}
+/* Привязка вешается скриптом: без JS все абзацы просто стоят в ряд и читаются. */
+.story--bound .spar{display:none}
+.story--bound .spar.on{display:block;animation:sparIn .45s var(--ease)}
+.story--bound .sframe{opacity:.38;transition:opacity .5s var(--ease)}
+.story--bound .sframe.on{opacity:1}
+@keyframes sparIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* ---------- политика ---------- */
 /* Отдельный класс, а не inline-стили на .about: документ читается колонкой, и
@@ -367,6 +390,15 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 .m-type{font-size:13px;color:var(--ink-3);margin:0}
 .m-price{margin:18px 0 0;font-size:38px;font-weight:500;letter-spacing:-.02em;display:flex;flex-direction:column;gap:4px}
 .m-price-note{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
+/* Режим галереи (клик по постеру): короткое описание серии вместо прайса.
+   Цена и список моделей в этом режиме скрыты — цены остаются только на витрине. */
+.modal:not(.is-info) .m-about{display:none}
+.modal.is-info .m-type{font-size:14px;color:var(--ink-2);max-width:40ch}
+.m-about{margin:16px 0 0}
+.m-about p{margin:0 0 12px;font-size:14px;line-height:1.62;color:var(--ink-2)}
+.m-to{display:inline-block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--warm);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+.m-to:hover,.m-to:focus-visible{border-bottom-color:var(--warm)}
 /* список моделей серии: у Bubble их 29, поэтому лист катается сам, а не тянет за
    собой сцену — иначе первый кадр уезжал бы вверх при выборе модели */
 .m-list{list-style:none;margin:6px 0 0;padding:0;border-top:1px solid var(--line);
@@ -413,8 +445,17 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 }
 
 @media (max-width:1000px){
-  .about,.contact{grid-template-columns:1fr}
+  .about-head,.contact{grid-template-columns:1fr}
   .about-media img{height:46vh}
+  /* Листалка на узком: текст бренда уходит над кадрами и липнет под шапку, кадры
+     проезжают под ним. Flex, а не grid: в grid-строке sticky ограничена своей
+     строкой и отлипает через высоту абзаца. */
+  .story{display:flex;flex-direction:column;gap:0;margin-top:clamp(40px,8vh,80px)}
+  .story-text{order:-1;position:sticky;top:calc(var(--head-h) + 4px);z-index:2;
+    background:var(--bg);padding:14px 0 16px;border-bottom:1px solid var(--line)}
+  .spar p{max-width:none}
+  .story--bound .sframe,.story--bound .sframe.on{opacity:1}
+  .sframe{margin-bottom:34px}
   /* minmax(0,1fr), а не 1fr: сцена с aspect-ratio даёт мин-контент шире экрана,
      и трек 1fr раздувал модалку на 108 px — содержимое уезжало в горизонтальный скролл */
   .modal-card{grid-template-columns:minmax(0,1fr);max-height:92svh}
