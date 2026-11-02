@@ -19,14 +19,31 @@
   const rev = s => [...String(s)].reverse().join('');
   const fmtPhone = d => `+${d[0]} (${d.slice(1, 4)}) ${d.slice(4, 7)}-${d.slice(7, 9)}-${d.slice(9, 11)}`;
 
+  /* Резерв на случай, если data/site.config.json не придёт (отказ сети, кэш, сырой
+     выкатываемый JSON). Заявка — единственная работа витрины, поэтому телефон, почта и
+     адрес приёмщика живут и в скрипте: без конфига форма остаётся отправляемой, а
+     контакт — открываемым. Коды перевёрнуты как в конфиге, регулярка по HTML/JS
+     по-прежнему видит только маску. */
+  const FALLBACK = {
+    contacts: {
+      phoneCode: '95114789997+', phoneMasked: '+7 (999) •••-••-••',
+      emailCode: 'ur.sur-elppo@vomorg.i', emailMasked: 'почта · показать',
+      hours: 'Пн–Пт 9:00–19:00'
+    },
+    lead: { endpoint: 'https://api.oppleoll.ru/submit.php' }
+  };
+
   function applyConfig() {
     const c = cfg.contacts;
     $$('[data-c="phoneMasked"]').forEach(s => s.textContent = c.phoneMasked);
     $$('[data-c="emailMasked"]').forEach(s => s.textContent = c.emailMasked);
     $$('[data-c-hours]').forEach(s => s.textContent = c.hours);
-    $('#legal').textContent = [cfg.legal.entity, `ИНН ${cfg.legal.inn}`, cfg.legal.ogrn && `ОГРН ${cfg.legal.ogrn}`,
-      cfg.legal.address].filter(Boolean).join(' · ');
-    $('#delivery').textContent = `Поставка: ${cfg.delivery.regions}. ${cfg.delivery.terms}`;
+    // реквизиты и поставка есть только в конфиге: без него не выдумываем и не чистим
+    const L = cfg.legal;
+    if (L) $('#legal').textContent = [L.entity, `ИНН ${L.inn}`, L.ogrn && `ОГРН ${L.ogrn}`,
+      L.address].filter(Boolean).join(' · ');
+    const D = cfg.delivery;
+    if (D) $('#delivery').textContent = `Поставка: ${D.regions}. ${D.terms}`;
   }
 
   /* Номер и почта лежат в конфиге перевёрнутыми и становятся ссылкой только после клика.
@@ -196,22 +213,30 @@
     return `--tx:${-(i % TGRID) * TCELL}px;--ty:${-(i / TGRID | 0) * TCELL}px`;
   };
 
+  /* Короткий sku из прайса неоднозначен: MZX600 — и Edge, и Aura, MZD400 — Astra,
+     Aura и Bubble. Показываем полный код модели, а sku оставляем в поиске:
+     по «MZX600» находится вся линейка, по «MZX600-D48LTTYY-001» — одна модель. */
+  const codeOf = p => p.code || p.sku;
+
   function matched() {
     return products.filter(p =>
       (!state.type || p.type === state.type) &&
       p.price <= state.max &&
-      (!state.q || (p.sku + ' ' + p.series + ' ' + p.type + ' ' + (p.color || '')).toLowerCase().includes(state.q)));
+      (!state.q || (codeOf(p) + ' ' + p.sku + ' ' + p.series + ' ' + p.type + ' ' + (p.color || '')).toLowerCase().includes(state.q)));
   }
 
   /* Группы в том порядке, который задан сортировкой: карточки упорядочиваются по
-     своей лучшей цене, а не по первой попавшейся модели. */
+     своей лучшей цене, а не по первой попавшейся модели. До 02.11.2026 ключом было
+     a[1][0].price — цена модели, оказавшейся первой в products.json, и порядок
+     расходился с подписью «от …» на четырёх карточках из семи. */
   function groups() {
     const list = matched();
     const map = new Map();
     for (const p of list) (map.get(p.series) || map.set(p.series, []).get(p.series)).push(p);
     const rows = [...map.entries()].filter(([s]) => !state.series.size || state.series.has(s));
-    const byPrice = state.sort === 'price-asc' ? (a, b) => a[1][0].price - b[1][0].price
-      : state.sort === 'price-desc' ? (a, b) => b[1][0].price - a[1][0].price
+    const low = m => Math.min(...m.map(p => p.price));
+    const byPrice = state.sort === 'price-asc' ? (a, b) => low(a[1]) - low(b[1])
+      : state.sort === 'price-desc' ? (a, b) => low(b[1]) - low(a[1])
       : (a, b) => SERIES_ORDER.indexOf(a[0]) - SERIES_ORDER.indexOf(b[0]);
     rows.sort(byPrice);
     const inside = state.sort === 'price-desc' ? (a, b) => b.price - a.price : (a, b) => a.price - b.price;
@@ -220,9 +245,9 @@
   }
 
   const rowHtml = p => `<li><button type="button" class="mrow" data-id="${p.id}"
-      aria-label="${p.series} ${p.sku}, ${fmt(p.price)} за единицу">
+      aria-label="${p.series} ${codeOf(p)}, ${fmt(p.price)} за единицу">
       <span class="mrow-thumb" style="${thumbStyle(p.id)}"></span>
-      <span class="mrow-main"><span class="mrow-sku">${p.sku}</span>
+      <span class="mrow-main"><span class="mrow-sku">${codeOf(p)}</span>
         <span class="mrow-type">${[p.type, p.color].filter(Boolean).join(' · ')}</span></span>
       <span class="mrow-price">${fmt(p.price)}</span></button></li>`;
 
@@ -301,7 +326,8 @@
   /* ---------- постеры серий ---------- */
   /* Исходник постера — 3:4 с типографикой по всему полю, поэтому рамка повторяет
      пропорцию и ничего не режет. Постер витринной серии открывает её карточку;
-     Ink и Wellsky в прайсе не числятся — это только образ, клика на них нет. */
+     Ink, Wellsky и WellskyLite в действующем прайсе не числятся — это только образ,
+     и плитка честно говорит об этом, а не притворяется кнопкой. */
   function renderPosters(list) {
     const grid = $('#posterGrid'), sec = $('#posters');
     if (!list || !list.length) { if (sec) sec.hidden = true; return; }
@@ -311,7 +337,8 @@
       return SERIES_ORDER.includes(p.series)
         ? `<button type="button" class="ppost" data-series="${p.series}"` +
           ` aria-label="Открыть серию ${p.series}">${img}</button>`
-        : `<div class="ppost is-plain">${img}</div>`;
+        : `<figure class="ppost is-plain">${img}` +
+          `<figcaption>нет в прайсе</figcaption></figure>`;
     }).join('');
   }
 
@@ -328,7 +355,7 @@
     const hero = meta.hero[s];
     const out = [];
     if (model) out.push({ src: 'img/products/' + model.id + '.webp', ar: 1,
-      cap: capFor(meta.src[model.id]), alt: `Светильник ${s} ${model.sku}` });
+      cap: capFor(meta.src[model.id]), alt: `Светильник ${s} ${codeOf(model)}` });
     else if (hero) out.push(hero.product
       ? { src: hero.file, ar: 1, cap: capFor(meta.src[hero.id]), alt: `Серия ${s}` }
       : { src: hero.file, ar: hero.ar, fill: true, alt: `Серия ${s}` });
@@ -369,7 +396,7 @@
       current = p;
       modal.dataset.id = p ? p.id : '';
       $('#m-series').textContent = `Серия ${s}`;
-      $('#m-model').textContent = p ? p.sku : s;
+      $('#m-model').textContent = p ? codeOf(p) : s;
       $('#m-type').textContent = p ? [p.type, p.color].filter(Boolean).join(' · ')
         : `${rows.length} ${pl(rows.length, ['модель', 'модели', 'моделей'])} · ` +
           [...new Set(rows.map(x => x.type))].join(', ');
@@ -389,7 +416,7 @@
     $('#m-list').innerHTML = rows.map(p =>
       `<li><button type="button" class="mrow is-pick" data-id="${p.id}" aria-current="false">
         <span class="mrow-thumb" style="${thumbStyle(p.id)}"></span>
-        <span class="mrow-main"><span class="mrow-sku">${p.sku}</span>
+        <span class="mrow-main"><span class="mrow-sku">${codeOf(p)}</span>
           <span class="mrow-type">${[p.type, p.color].filter(Boolean).join(' · ')}</span></span>
         <span class="mrow-price">${fmt(p.price)}</span></button></li>`).join('');
     // повторный тап по выбранной модели возвращает модалку в режим серии
@@ -443,8 +470,13 @@
     inp.addEventListener('blur', () => { inp.value = clampQty(inp.value); });
   }
 
+  /* Ошибка должна прервать чтение, а не дождаться следующей паузы: скринридер
+     с aria-live="polite" молчал, пока человек уже жал кнопку повторно. */
   function status(msg, cls) {
-    const el = $('#formStatus'); el.textContent = msg; el.className = 'form-status ' + (cls || '');
+    const el = $('#formStatus');
+    el.textContent = msg;
+    el.className = 'form-status ' + (cls || '');
+    el.setAttribute('role', cls === 'err' ? 'alert' : 'status');
   }
 
   /* Ошибку показываем не только строкой под кнопкой, но и на самом поле:
@@ -462,7 +494,9 @@
     // у формы name/length/action — свои свойства, поля берём через elements
     const el = k => f.elements[k];
     if (!d.name?.trim()) return bad(el('name'), 'Заполните, как к вам обращаться.');
-    if (!/[\d\s()+-]{10,}/.test(d.phone || '')) return bad(el('phone'), 'Проверьте телефон — нужно не меньше 10 цифр.');
+    // считаем цифры, а не длину строки: «+7 (___) ___-__-__» из placeholder — тоже 10+ символов
+    if ((d.phone || '').replace(/\D/g, '').length < 10)
+      return bad(el('phone'), 'Проверьте телефон — нужно не меньше 10 цифр.');
     if (d.email && !/^[^@\s]+@[^@\s]+\.[a-zа-я]{2,}$/i.test(d.email)) return bad(el('email'), 'Проверьте почту.');
     if (!d.consent) return bad(el('consent'), 'Без согласия на обработку данных заявку отправить нельзя.');
     $$('.is-bad', f).forEach(x => x.classList.remove('is-bad'));
@@ -472,8 +506,13 @@
     // на предпросмотре (tools/dev_server.py) шлём на локальную заглушку: боевой endpoint
     // в конфиге абсолютный, и локальные проверки улетали бы настоящими заявками на почту
     const endpoint = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? '/submit.php' : cfg.lead.endpoint;
+    /* Без таймаута «Отправляем…» висело сколько угодно: браузер ждёт ответа, кнопка
+       неактивна, а человек не знает — ушла заявка или нет. */
+    const ac = new AbortController();
+    const kill = setTimeout(() => ac.abort(), 15000);
     try {
       const res = await fetch(endpoint, {
+        signal: ac.signal,
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'fetch' },
         body: JSON.stringify({
@@ -491,12 +530,21 @@
         })
       });
       const out = await res.json().catch(() => ({}));
-      if (!res.ok || !out.ok) throw new Error(out.error || 'Сервер ответил ошибкой');
+      if (res.status === 429) throw new Error('такая заявка уже принята — подождите минуту.');
+      if (!res.ok || !out.ok) throw new Error(out.error ||
+        (res.status >= 500 ? 'приёмник заявок не ответил, попробуйте ещё раз' : `сервер ответил ${res.status}`));
       f.reset(); $('#chosen').hidden = true; $('#f-product').value = '';
       status('Заявка отправлена. Свяжемся в рабочее время.', 'ok');
     } catch (err) {
-      status('Не удалось отправить: ' + err.message + '. Попробуйте ещё раз.', 'err');
+      /* Данные не трогаем: форма остаётся заполненной, повтор — один тап. */
+      const why = ac.signal.aborted
+        ? 'сервер не ответил за 15 секунд, проверьте связь и отправьте ещё раз'
+        : err.name === 'TypeError'
+          ? 'нет связи с приёмником заявок — отправьте ещё раз или позвоните, телефон открывает клик по маске'
+          : err.message;
+      status('Заявка НЕ отправлена: ' + why.replace(/\.$/, '') + '.', 'err');
     } finally {
+      clearTimeout(kill);
       btn.disabled = false;
     }
   }
@@ -524,37 +572,46 @@
   const pl = (n, f) => f[n % 10 === 1 && n % 100 !== 11 ? 0
     : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 1 : 2];
 
+  /* Каталог не должен утаскивать за собой форму: если products.json не пришёл,
+     сетку не строим и предлагаем повторить, а контакты, постеры и заявка работают. */
+  function showCatalogError() {
+    $('#grid').innerHTML = '<p class="empty">Не удалось загрузить каталог. ' +
+      '<button type="button" class="link-reset" id="retryCat">Повторить</button></p>';
+    $('#retryCat').onclick = () => location.reload();
+    $('#heroLead').textContent = 'Каталог не загрузился — попробуйте обновить страницу.';
+  }
+
   async function boot() {
     const [c, p, s, m, po] = await Promise.all([
       fetch('data/site.config.json').then(r => r.json()).catch(() => null),
-      fetch('data/products.json').then(r => r.json()),
+      fetch('data/products.json').then(r => r.json()).catch(() => null),
       fetch('data/series_photos.json').then(r => r.json()).catch(() => ({})),
       fetch('data/series.json').then(r => r.json()).catch(() => null),
       fetch('data/posters.json').then(r => r.json()).catch(() => [])
     ]);
-    cfg = c; products = p; photos = s; if (m) meta = m;
+    cfg = c || FALLBACK;
+    products = Array.isArray(p) ? p : [];
+    photos = s || {}; if (m) meta = m;
     tIdx = new Map(products.map((x, i) => [x.id, i]));
     const deepId = applyUrl();
-    bindQty(); bindMark(); buildFilters(); buildCards(); renderPosters(po); render();
-    /* Выкладка каталога важнее конфига: при частичной загрузке data/ на GitHub Pages
-       витрина должна остаться читаемой, а не сложиться вместе с контактами. */
-    if (cfg) { applyConfig(); bindReveal(); }
-    else {
-      $$('[data-reveal]').forEach(a => { a.hidden = true; });
-      $('#submitBtn').disabled = true;
-      status('Не удалось загрузить контакты и адрес приёмщика. Обновите страницу.', 'err');
-    }
+    bindQty(); bindMark();
+    if (products.length) { buildFilters(); buildCards(); render(); }
+    else showCatalogError();
+    renderPosters(po);
+    applyConfig(); bindReveal();
 
     // цифры «о бренде» и строка под h1 считаем из каталога, а не держим в разметке руками
-    const prices = products.map(x => x.price);
-    const nSer = new Set(products.map(x => x.series)).size, nMod = products.length;
-    $('#factSeries').textContent = nSer;
-    $('#factModels').textContent = nMod;
-    $('#factRange').textContent = `${fmt(Math.min(...prices))} — ${fmt(Math.max(...prices))}`;
-    $('#heroLead').textContent = `${nMod} ${pl(nMod, ['модель', 'модели', 'моделей'])} · ` +
-      `${nSer} ${pl(nSer, ['серия', 'серии', 'серий'])}. Цены на сайте, поставка под заказ.`;
+    if (products.length) {
+      const prices = products.map(x => x.price);
+      const nSer = new Set(products.map(x => x.series)).size, nMod = products.length;
+      $('#factSeries').textContent = nSer;
+      $('#factModels').textContent = nMod;
+      $('#factRange').textContent = `${fmt(Math.min(...prices))} — ${fmt(Math.max(...prices))}`;
+      $('#heroLead').textContent = `${nMod} ${pl(nMod, ['модель', 'модели', 'моделей'])} · ` +
+        `${nSer} ${pl(nSer, ['серия', 'серии', 'серий'])}. Цены на сайте, поставка под заказ.`;
+    }
 
-    if (deepId || state.series.size) {
+    if (products.length && (deepId || state.series.size)) {
       $('#catalog').scrollIntoView({ behavior: 'instant', block: 'start' });
       const target = deepId && products.find(x => x.id === deepId);
       // ссылка на одну серию ведёт к серии целиком, а не к сетке из одной карточки
@@ -581,23 +638,25 @@
     $('#modal').addEventListener('click', e => {
       if (e.target.hasAttribute('data-close')) closeModal();
     });
-    $('#modal').addEventListener('keydown', e => {
-      if (e.key === 'Tab' && !$('#modal').hidden) trapTab(e, $('.modal-card', $('#modal')));
-    });
-    $('#toolbar').addEventListener('keydown', e => {
-      if (e.key === 'Tab' && sheetIsOpen()) trapTab(e, $('#toolbar'));
-    });
+    /* Tab слушаем на document, а не на самом окне: ловушка на #modal и #toolbar
+       срабатывала только когда фокус уже был внутри, и Shift+Tab из шапки уходил
+       за спину модалки — пользователь оставался с неактивной кнопкой где-то под затемнённым фоном. */
     document.addEventListener('keydown', e => {
-      if (e.key !== 'Escape') return;
-      if (!$('#modal').hidden) closeModal();
-      else closeSheet();
+      if (e.key === 'Tab') {
+        if (!$('#modal').hidden) trapTab(e, $('.modal-card', $('#modal')));
+        else if (sheetIsOpen()) trapTab(e, $('#toolbar'));
+      } else if (e.key === 'Escape') {
+        if (!$('#modal').hidden) closeModal();
+        else closeSheet();
+      }
     });
     matchMedia(SHEET).addEventListener('change', e => { if (!e.matches) closeSheet(); });
     $('#m-lead').addEventListener('click', () => {
       const id = $('#modal').dataset.id, s = $('#modal').dataset.series;
       const p = id && products.find(x => x.id === id);
       if (p) {
-        chooseProduct(`${p.series} ${p.sku}`, fmt(p.price) + ' за единицу');
+        chooseProduct(`${p.series} ${codeOf(p)}`,
+          [p.color, fmt(p.price) + ' за единицу'].filter(Boolean).join(' · '));
       } else if (s) {
         const rows = products.filter(x => x.series === s);
         const low = Math.min(...rows.map(x => x.price));
