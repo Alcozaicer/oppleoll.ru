@@ -147,35 +147,52 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
   text-transform:uppercase;border-bottom:1px solid transparent;padding:0}
 .link-reset:hover{color:var(--warm);border-color:var(--warm)}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:1px;
+/* Карточка серии: большой кадр — только лучший снимок (1200–1500 px из каталогов
+   и пресс-съёмки), модели идут строками по 44 px. На таком размере вырез из прайса
+   в 90 px выглядит резким, и витрина перестаёт быть таблицей мыльных квадратов. */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1px;
   background:var(--line);border:1px solid var(--line)}
-.card{background:var(--bg);border:0;padding:0;text-align:left;cursor:pointer;position:relative;
-  display:flex;flex-direction:column;transition:background .35s var(--ease)}
-.card:hover{background:var(--surface)}
-.card-img{aspect-ratio:1/1;display:grid;place-items:center;position:relative;overflow:hidden;
-  background:radial-gradient(64% 58% at 50% 46%,var(--glow),transparent 72%)}
-.card-img img{max-height:74%;width:auto;transition:transform .6s var(--ease),opacity .4s}
-.card:hover .card-img img{transform:scale(1.05)}
-.card-img.photo-tile img{max-height:100%;width:100%;height:100%;object-fit:cover;filter:brightness(.72) saturate(.9)}
-/* 27 моделей — матовое стекло и белый металл на белом же фоне из прайса. Вырезать
-   фон нельзя: порог съедает шнур подвеса и тело шара, и в карточке светильник висит
-   развалившимся на две детали. Такие кадры живут светлой тарелкой — это честнее,
-   чем тёмный фон, на котором предмет перестаёт читаться */
-.card-img.light-tile img{max-height:80%;width:auto;border-radius:14px;
-  box-shadow:0 12px 30px rgba(0,0,0,.5);filter:brightness(.985) sepia(.03)}
-.card-img.photo-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.1),rgba(10,10,11,.55))}
-.card:hover .card-img.photo-tile img{filter:brightness(.85) saturate(.95)}
-.card-body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:5px}
-.card-series{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
-.card-model{font-size:15px;font-weight:500;letter-spacing:.01em}
-.card-type{font-size:12px;color:var(--ink-3)}
-.card-price{margin-top:9px;font-size:17px;font-weight:500;letter-spacing:.01em}
-.card-price small{font-size:11px;color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase;margin-left:7px}
-.card-cta{position:absolute;top:14px;right:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--warm);opacity:0;transform:translateY(-4px);transition:.3s var(--ease)}
-.card:hover .card-cta,.card:focus-visible .card-cta{opacity:1;transform:none}
-/* на тач-устройствах hover не наступает вовсе, поэтому подпись должна жить без него */
-@media (hover:none){.card-cta{opacity:1;transform:none}}
+.scard{background:var(--bg);display:flex;flex-direction:column;transition:background .35s var(--ease)}
+.scard:hover{background:var(--surface)}
+.scard-hero{--hero-ar:1.6;aspect-ratio:var(--hero-ar);overflow:hidden;position:relative;
+  background:#000;cursor:pointer}
+.scard-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.84) saturate(.95);
+  transition:transform .8s var(--ease),filter .5s}
+.scard:hover .scard-hero img{transform:scale(1.035);filter:brightness(1) saturate(1)}
+/* герой из выреза (Lamino, CRYX — своих снимков у серии нет): кадр квадратный и на
+   прозрачном фоне, cover обрезать бы его нечего, но product-режим держит его целиком
+   на фирменном свечении, а не растягивает во всю рамку */
+.scard-hero.is-product{background:radial-gradient(64% 58% at 50% 46%,var(--glow),transparent 72%)}
+.scard-hero.is-product img{object-fit:contain;padding:9%}
+.scard-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.scard-top{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.scard-top h3{margin:0;font-size:23px;font-weight:500;letter-spacing:.02em}
+.scard-n{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.scard-range{margin:0;font-size:19px;font-weight:500;letter-spacing:.01em}
+.scard-range small{font-size:11px;color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase;
+  margin-left:7px;font-weight:400}
+.scard-list{list-style:none;margin:2px 0 0;padding:0;border-top:1px solid var(--line)}
+.scard-more{margin:0;font-size:12px}
+.link-more{background:none;border:0;padding:2px 0;color:var(--ink-3);font:inherit;font-size:12px;
+  letter-spacing:.06em;cursor:pointer;border-bottom:1px solid transparent;transition:.25s}
+.link-more:hover{color:var(--warm);border-color:var(--warm)}
+.scard-open{margin-top:auto;width:100%;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+/* строка модели: превью 44 px, артикул с типом, цена. Компонент общий для карточки
+   серии и для модалки — там он ещё и кнопка выбора модели */
+.mrow{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;
+  background:none;border:0;border-bottom:1px solid var(--line);padding:11px 6px 11px 0;color:var(--ink-3);
+  text-align:left;cursor:pointer;font:inherit;transition:background .25s,color .25s}
+li:last-child .mrow{border-bottom:0}
+.mrow:hover,.mrow:focus-visible{background:var(--bg2);color:var(--ink-2)}
+/* спрайт 8×8 по 96 px рисуется в поле 44 px: background-size 352 = 44 × 8,
+   смещения ячеек приходят из js в --tx/--ty */
+.mrow-thumb{width:44px;height:44px;flex:none;border-radius:6px;background:#0c0c0d
+  url("../img/thumbs.webp") no-repeat var(--tx,0) var(--ty,0)/352px 352px}
+.mrow-main{display:flex;flex-direction:column;gap:2px;min-width:0}
+.mrow-sku{font-size:13px;color:var(--ink);letter-spacing:.01em}
+.mrow-type{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mrow-price{font-size:13px;color:var(--ink);white-space:nowrap}
 .empty{color:var(--ink-3);text-align:center;padding:60px 0}
 
 /* ---------- about ---------- */
@@ -257,7 +274,7 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 /* ---------- modal ---------- */
 .modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px}
 .modal-back{position:absolute;inset:0;background:rgba(6,6,7,.82);backdrop-filter:blur(8px)}
-.modal-card{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:0;width:min(1020px,100%);
+.modal-card{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:0;width:min(1020px,100%);
   max-height:90vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px}
 .modal-x{position:absolute;top:10px;right:14px;z-index:2;width:44px;height:44px;display:grid;place-items:center;
   background:none;border:0;color:var(--ink-3);font-size:30px;line-height:1;cursor:pointer;border-radius:50%}
@@ -270,8 +287,10 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
    портретного кадра и cover срезал бы треть сюжета, здесь срез укладывается в ~15 %. */
 .modal-stage{--ar:1;aspect-ratio:var(--ar);max-height:min(72vh,640px);display:grid;place-items:center;padding:26px;
   overflow:hidden;background:radial-gradient(58% 52% at 50% 46%,var(--glow),transparent 74%)}
-.modal-stage img{max-width:100%;max-height:100%;object-fit:contain}
-.modal-stage.is-fill{padding:0}
+/* --cap — потолок растяжения выреза: сцена остаётся рамкой нужной пропорции, а
+   картинка внутри неё не раздувается до мыла (см. capFor в app.js) */
+.modal-stage img{max-width:calc(var(--cap,1) * 100%);max-height:100%;object-fit:contain}
+.modal-stage.is-fill{padding:0;display:block}
 .modal-stage.is-fill img{width:100%;height:100%;object-fit:cover}
 .modal-thumbs{display:flex;gap:8px;padding:0 18px 18px;overflow-x:auto}
 .modal-thumbs button{flex:none;width:78px;height:60px;border:1px solid var(--line);background:#0c0c0d;
@@ -285,6 +304,13 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 .m-type{font-size:13px;color:var(--ink-3);margin:0}
 .m-price{margin:18px 0 0;font-size:38px;font-weight:500;letter-spacing:-.02em;display:flex;flex-direction:column;gap:4px}
 .m-price-note{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
+/* список моделей серии: у Bubble их 29, поэтому лист катается сам, а не тянет за
+   собой сцену — иначе первый кадр уезжал бы вверх при выборе модели */
+.m-list{list-style:none;margin:6px 0 0;padding:0;border-top:1px solid var(--line);
+  max-height:min(34vh,300px);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.mrow.is-pick[aria-current="true"]{background:var(--bg2)}
+.mrow.is-pick[aria-current="true"] .mrow-sku{color:var(--warm)}
+.mrow.is-pick[aria-current="true"] .mrow-thumb{outline:1px solid var(--warm);outline-offset:-1px}
 .m-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .m-sku{margin-top:auto;font-size:11px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
 
@@ -297,7 +323,12 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 @media (max-width:1000px){
   .about,.contact{grid-template-columns:1fr}
   .about-media img{height:46vh}
-  .modal-card{grid-template-columns:1fr;max-height:92svh}
+  /* minmax(0,1fr), а не 1fr: сцена с aspect-ratio даёт мин-контент шире экрана,
+     и трек 1fr раздувал модалку на 108 px — содержимое уезжало в горизонтальный скролл */
+  .modal-card{grid-template-columns:minmax(0,1fr);max-height:92svh}
+  /* на пальце лист моделей катается вместе со всей модалкой: вложенный скролл
+     на тач-экране ловит каждый свайп */
+  .m-list{max-height:none;overflow:visible}
   /* лист карточки на всю ширину, поэтому крестик привязываем к краю экрана:
      при скролле содержимого он был absolute внутри листа и уезжал вверх */
   .modal-x{position:fixed;top:calc(env(safe-area-inset-top) + 8px);right:20px;width:44px;height:44px;
@@ -362,11 +393,11 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   .logo{gap:8px}
   /* в шапке на пальце телефон и так есть в разделе «Заявка»; вместе с навигацией не влезает */
   .head-phone{display:none}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
-  .card-body{padding:12px 13px 16px}
-  .card-model{font-size:13px}
-  .card-price{font-size:15px}
-  .card-price small{display:block;margin:3px 0 0}
+  .grid{grid-template-columns:1fr}
+  .scard-body{padding:16px 16px 18px}
+  .scard-top h3{font-size:20px}
+  .scard-range{font-size:17px}
+  .scard-range small{display:block;margin:3px 0 0}
   .row{grid-template-columns:1fr}
   .hero{min-height:80vh;min-height:80svh}
   .facts{flex-wrap:wrap;gap:22px}
