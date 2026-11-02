@@ -1,12 +1,5 @@
 [
  {
-  "key": "Edge",
-  "series": "Edge",
-  "file": "img/posters/poster_Edge.jpg",
-  "w": 750,
-  "h": 1000
- },
- {
   "key": "Astra",
   "series": "Astra",
   "file": "img/posters/poster_Astra.jpg",
@@ -14,16 +7,16 @@
   "h": 1000
  },
  {
-  "key": "Astra2",
-  "series": "Astra",
-  "file": "img/posters/poster_Astra2.jpg",
+  "key": "Bubble",
+  "series": "Bubble",
+  "file": "img/posters/poster_Bubble.jpg",
   "w": 750,
   "h": 1000
  },
  {
-  "key": "Bubble",
-  "series": "Bubble",
-  "file": "img/posters/poster_Bubble.jpg",
+  "key": "Edge",
+  "series": "Edge",
+  "file": "img/posters/poster_Edge.jpg",
   "w": 750,
   "h": 1000
  },
@@ -49,22 +42,6 @@
   "h": 1000
  },
  {
-  "key": "Ink2",
-  "series": "Ink",
-  "file": "img/posters/poster_Ink2.jpg",
-  "w": 750,
-  "h": 1000,
-  "alt": "Ink — напольный светильник в интерьере"
- },
- {
-  "key": "Ink3",
-  "series": "Ink",
-  "file": "img/posters/poster_Ink3.jpg",
-  "w": 750,
-  "h": 1000,
-  "alt": "Ink — подвес в интерьере"
- },
- {
   "key": "Wellsky",
   "series": "Wellsky",
   "file": "img/posters/poster_Wellsky.jpg",
@@ -72,17 +49,9 @@
   "h": 1000
  },
  {
-  "key": "Wellsky2",
-  "series": "Wellsky",
-  "file": "img/posters/poster_Wellsky2.jpg",
-  "w": 750,
-  "h": 1000,
-  "alt": "Wellsky — светильник с небом в интерьере"
- },
- {
-  "key": "WellskyLite",
-  "series": "Wellsky",
-  "file": "img/posters/poster_WellskyLite.jpg",
+  "key": "Astra2",
+  "series": "Astra",
+  "file": "img/posters/poster_Astra2.jpg",
   "w": 750,
   "h": 1000
  }

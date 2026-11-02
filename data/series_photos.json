@@ -775,5 +775,149 @@
    "h": 1800,
    "lum": 104.3
   }
+ ],
+ "Ink": [
+  {
+   "file": "posters/poster_Ink.jpg",
+   "series": [
+    "Ink"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 750,
+   "h": 1000
+  },
+  {
+   "file": "series/dr_16_Ink.jpg",
+   "series": [
+    "Ink"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1100,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_17_Ink.jpg",
+   "series": [
+    "Ink"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_15_Ink.jpg",
+   "series": [
+    "Ink"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_14_Ink.jpg",
+   "series": [
+    "Ink"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_13_Ink.jpg",
+   "series": [
+    "Ink"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  }
+ ],
+ "Wellsky": [
+  {
+   "file": "posters/poster_Wellsky.jpg",
+   "series": [
+    "Wellsky"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 750,
+   "h": 1000
+  },
+  {
+   "file": "series/dr_24_Wellsky.jpg",
+   "series": [
+    "Wellsky"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1600,
+   "h": 1067
+  },
+  {
+   "file": "series/dr_23_Wellsky.jpg",
+   "series": [
+    "Wellsky"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_22_Wellsky.jpg",
+   "series": [
+    "Wellsky"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_21_Wellsky.jpg",
+   "series": [
+    "Wellsky"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_20_Wellsky.jpg",
+   "series": [
+    "Wellsky"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_19_Wellsky.jpg",
+   "series": [
+    "Wellsky"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  },
+  {
+   "file": "series/dr_18_Wellsky.jpg",
+   "series": [
+    "Wellsky"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1067,
+   "h": 1600
+  }
  ]
 }
