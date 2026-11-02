@@ -2,11 +2,16 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const money = new Intl.NumberFormat('ru-RU');
-  const fmt = v => money.format(v) + ' ₽';
+  /* Витрина показывает цену округлённой вверх до тысячи (55 044 → 56 000): так ряд
+     читается спокойнее, а прайс в data/products.json остаётся точным. В заявку и в
+     письмо уходит настоящая цена — округление только витринное, не коммерческое. */
+  const fmt = v => money.format(Math.ceil(v / 1000) * 1000) + ' ₽';
+  const fmtExact = v => money.format(v) + ' ₽';
 
   const SERIES_ORDER = ['Edge', 'Vessel', 'Aura', 'Bubble', 'Flow', 'Astra', 'FOLIO'];
   const state = { series: new Set(), type: '', q: '', sort: 'series', max: Infinity };
   let products = [], photos = {}, cfg = null, meta = { hero: {}, src: {} }, tIdx = new Map();
+  let stext = {};                       // короткие описания серий для режима галереи
   // время жизни страницы, а не первого удара по клавиатуре: автозаполнение браузера
   // подставляет имя и телефон молча, и заявка улетала бы с filledMs ≈ 0
   const pageStart = Date.now();
@@ -38,12 +43,10 @@
     $$('[data-c="phoneMasked"]').forEach(s => s.textContent = c.phoneMasked);
     $$('[data-c="emailMasked"]').forEach(s => s.textContent = c.emailMasked);
     $$('[data-c-hours]').forEach(s => s.textContent = c.hours);
-    // реквизиты и поставка есть только в конфиге: без него не выдумываем и не чистим
+    // реквизиты есть только в конфиге: без него не выдумываем и не чистим
     const L = cfg.legal;
     if (L) $('#legal').textContent = [L.entity, `ИНН ${L.inn}`, L.ogrn && `ОГРН ${L.ogrn}`,
       L.address].filter(Boolean).join(' · ');
-    const D = cfg.delivery;
-    if (D) $('#delivery').textContent = `Поставка: ${D.regions}. ${D.terms}`;
   }
 
   /* Номер и почта лежат в конфиге перевёрнутыми и становятся ссылкой только после клика.
@@ -65,6 +68,26 @@
         a.setAttribute('aria-label', isPhone ? 'Позвонить ' + value : 'Написать на ' + value);
       });
     });
+  }
+
+  /* ---------- история бренда: кадры листаются, текст справа продолжается ---------- */
+  /* Класс .story--bound вешается здесь, а не в разметке: без JS (и без наблюдателя)
+     секция остаётся столбцом «кадр — подпись» и абзацы идут следом, то есть читается. */
+  function bindStory() {
+    const story = $('#story');
+    if (!story || !('IntersectionObserver' in window)) return;
+    const frames = $$('.sframe', story), paras = $$('.spar', story);
+    if (!frames.length || frames.length !== paras.length) return;
+    const show = i => {
+      frames.forEach((f, n) => f.classList.toggle('on', n === i));
+      paras.forEach((p, n) => p.classList.toggle('on', n === i));
+    };
+    story.classList.add('story--bound');
+    show(0);
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) show(frames.indexOf(e.target)); }),
+      { rootMargin: '-45% 0px -45% 0px' });
+    frames.forEach(f => io.observe(f));
   }
 
   /* ---------- ссылки на витрину: ?s=Bubble,Edge и ?p=<артикул> ---------- */
@@ -188,6 +211,15 @@
     $$('.chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
     $('#type').value = ''; $('#q').value = ''; $('#sort').value = 'series';
     $('#rangeLabel').textContent = priceLabel(state.max);
+    syncUrl();
+    render();
+  }
+
+  /* Оставить одну серию в фильтре: из галереи постера человек приходит в витрину
+     уже с готовой выборкой, а не со всей сеткой. */
+  function filterToSeries(s) {
+    state.series.clear(); state.series.add(s);
+    $$('#seriesChips .chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.series === s)));
     syncUrl();
     render();
   }
@@ -325,15 +357,15 @@
 
   /* ---------- постеры серий ---------- */
   /* Исходник постера — 3:4 с типографикой по всему полю, поэтому рамка повторяет
-     пропорцию и ничего не режет. Постер = вход в серию: витринная открывает список
-     моделей, Ink и Wellsky — галерею своих кадров. Плиток-картинок без клика здесь
-     больше нет: за каждой стоит либо прайсовая серия, либо съёмка серии. */
+     пропорцию и ничего не режет. Постер = вход в серию: открывает её галерею и
+     короткое описание, без цен и списка моделей — цены живут только в витрине.
+     Плиток-картинок без клика здесь нет: за каждой стоит серия. */
   function renderPosters(list) {
     const grid = $('#posterGrid'), sec = $('#posters');
     if (!list || !list.length) { if (sec) sec.hidden = true; return; }
     grid.innerHTML = list.map(p =>
       `<button type="button" class="ppost" data-series="${p.series}"` +
-      ` aria-label="Открыть серию ${p.series}">` +
+      ` aria-label="Открыть серию ${p.series}: галерея и описание">` +
       `<img src="${p.file}" alt="Постер серии ${p.series}" ` +
       `width="${p.w}" height="${p.h}" loading="lazy"></button>`).join('');
   }
@@ -347,10 +379,11 @@
      резкими, а в сцене на 460 px превращаются в кашу. Ограничиваем показ, а не холст. */
   const capFor = m => !m || m >= 250 ? 1 : m >= 120 ? .75 : .55;
   /* Витринной серии хватает пяти кадров: список моделей в модалке и так длинный.
-     У серии вне прайса моделей нет, лента остаётся единственным содержимым. */
-  const shotCap = s => products.some(p => p.series === s) ? 5 : 8;
+     В режиме галереи (клик по постеру) ленты — единственное содержимое, поэтому
+     там всегда максимум кадров, даже если серия есть в прайсе. */
+  const shotCap = (s, info) => info ? 8 : (products.some(p => p.series === s) ? 5 : 8);
 
-  function shotsFor(s, model) {
+  function shotsFor(s, model, info) {
     const hero = meta.hero[s];
     const out = [];
     if (model) out.push({ src: 'img/products/' + model.id + '.webp', ar: 1,
@@ -362,14 +395,14 @@
       const src = 'img/' + x.file;
       if (out.some(o => o.src === src)) continue;
       out.push({ src, ar: stageAr(x), fill: true, alt: `Серия ${s}, кадр ${out.length + 1}` });
-      if (out.length >= shotCap(s)) break;
+      if (out.length >= shotCap(s, info)) break;
     }
     return out;
   }
 
   let modalReturn = null;
 
-  function openSeries(s, model) {
+  function openSeries(s, model, info) {
     const hit = matched().filter(p => p.series === s);
     const rows = (hit.length ? hit : products.filter(p => p.series === s)).slice();
     rows.sort(state.sort === 'price-desc' ? (a, b) => b.price - a.price : (a, b) => a.price - b.price);
@@ -380,6 +413,7 @@
 
     const modal = $('#modal'), stage = $('.modal-stage', modal), main = $('#m-main');
     const prices = rows.map(p => p.price), low = Math.min(...prices), high = Math.max(...prices);
+    const txt = stext[s];
     let shots = [], current = null;
 
     const show = i => {
@@ -396,20 +430,26 @@
     const pick = p => {
       current = p;
       modal.dataset.id = p ? p.id : '';
+      modal.classList.toggle('is-info', !!info);
       $('#m-series').textContent = `Серия ${s}`;
       $('#m-model').textContent = p ? codeOf(p) : s;
-      $('#m-type').textContent = p ? [p.type, p.color].filter(Boolean).join(' · ')
-        : brand ? 'Поставка под заказ — цену сообщим по заявке'
-        : `${rows.length} ${pl(rows.length, ['модель', 'модели', 'моделей'])} · ` +
-          [...new Set(rows.map(x => x.type))].join(', ');
-      $('.m-price', modal).hidden = brand;
+      $('#m-type').textContent = info ? (txt ? txt.line : '')
+        : p ? [p.type, p.color].filter(Boolean).join(' · ')
+          : brand ? 'Поставка под заказ — цену сообщим по заявке'
+            : `${rows.length} ${pl(rows.length, ['модель', 'модели', 'моделей'])} · ` +
+              [...new Set(rows.map(x => x.type))].join(', ');
+      if (info) $('#m-about-text').innerHTML = (txt ? txt.about : []).map(x => `<p>${x}</p>`).join('');
+      $('#m-to-vitrine').hidden = brand;
+      $('.m-price', modal).hidden = brand || info;
       $('#m-price').textContent = p ? fmt(p.price) : (low === high ? fmt(low) : 'от ' + fmt(low));
-      $('#m-sku').textContent = p ? 'Артикул ' + p.id
-        : brand ? 'Кадры из съёмки серии'
-        : (low === high ? 'Одна цена' : 'до ' + fmt(high)) + ' · цены из действующего прайса';
       $$('#m-list .mrow', modal).forEach(b =>
         b.setAttribute('aria-current', String(!!p && b.dataset.id === p.id)));
-      shots = shotsFor(s, p);
+      shots = shotsFor(s, p, info);
+      $('#m-sku').textContent = info
+        ? `${shots.length} ${pl(shots.length, ['кадр', 'кадра', 'кадров'])} из презентаций и съёмки серии`
+        : p ? 'Артикул ' + p.id
+          : brand ? 'Кадры из съёмки серии'
+            : (low === high ? 'Одна цена' : 'до ' + fmt(high)) + ' · цены из действующего прайса';
       $('#m-thumbs').innerHTML = shots.map((x, i) =>
         `<button type="button" data-i="${i}" aria-current="${i === 0}"${x.fill ? ' data-fill' : ''}` +
         ` aria-label="Фото ${i + 1} из ${shots.length}"><img src="${x.src}" alt="" loading="lazy"></button>`).join('');
@@ -417,7 +457,7 @@
       syncUrl();
     };
 
-    $('#m-list').hidden = brand;
+    $('#m-list').hidden = brand || info;
     $('#m-list').innerHTML = rows.map(p =>
       `<li><button type="button" class="mrow is-pick" data-id="${p.id}" aria-current="false">
         <span class="mrow-thumb" style="${thumbStyle(p.id)}"></span>
@@ -432,6 +472,14 @@
     $('#m-thumbs').onclick = e => {
       const b = e.target.closest('[data-i]'); if (!b) return;
       show(+b.dataset.i);
+    };
+    /* Из галереи постера — в витрину с этой же серией: ссылка фильтрует сетку
+       и закрывает модалку, цены при этом остаются только на витрине. */
+    $('#m-to-vitrine').onclick = e => {
+      e.preventDefault();
+      closeModal();
+      filterToSeries(s);
+      scrollToEl($('#catalog'));
     };
 
     modalReturn = document.activeElement;
@@ -611,31 +659,31 @@
   }
 
   async function boot() {
-    const [c, p, s, m, po] = await Promise.all([
+    const [c, p, s, m, po, tx] = await Promise.all([
       fetch('data/site.config.json').then(r => r.json()).catch(() => null),
       fetch('data/products.json').then(r => r.json()).catch(() => null),
       fetch('data/series_photos.json').then(r => r.json()).catch(() => ({})),
       fetch('data/series.json').then(r => r.json()).catch(() => null),
-      fetch('data/posters.json').then(r => r.json()).catch(() => [])
+      fetch('data/posters.json').then(r => r.json()).catch(() => []),
+      fetch('data/series_text.json').then(r => r.json()).catch(() => ({}))
     ]);
     cfg = c || FALLBACK;
     products = Array.isArray(p) ? p : [];
     photos = s || {}; if (m) meta = m;
+    stext = tx || {};
     tIdx = new Map(products.map((x, i) => [x.id, i]));
     const deepId = applyUrl();
     bindQty(); bindMark();
     if (products.length) { buildFilters(); buildCards(); render(); }
     else showCatalogError();
     renderPosters(po);
-    applyConfig(); bindReveal();
+    applyConfig(); bindReveal(); bindStory();
 
-    // цифры «о бренде» и строка под h1 считаем из каталога, а не держим в разметке руками
+    // счётники в «о бренде» и строка под h1 считаем из каталога, а не держим в разметке руками
     if (products.length) {
-      const prices = products.map(x => x.price);
       const nSer = new Set(products.map(x => x.series)).size, nMod = products.length;
       $('#factSeries').textContent = nSer;
       $('#factModels').textContent = nMod;
-      $('#factRange').textContent = `${fmt(Math.min(...prices))} — ${fmt(Math.max(...prices))}`;
       $('#heroLead').textContent = `${nMod} ${pl(nMod, ['модель', 'модели', 'моделей'])} · ` +
         `${nSer} ${pl(nSer, ['серия', 'серии', 'серий'])}. Цены на сайте, поставка под заказ.`;
     }
@@ -662,7 +710,7 @@
     });
     $('#posterGrid').addEventListener('click', e => {
       const p = e.target.closest('.ppost[data-series]');
-      if (p) openSeries(p.dataset.series);
+      if (p) openSeries(p.dataset.series, null, true);
     });
     $('#modal').addEventListener('click', e => {
       if (e.target.hasAttribute('data-close')) closeModal();
@@ -691,14 +739,14 @@
       const p = id && products.find(x => x.id === id);
       if (p) {
         chooseProduct(`${p.series} ${codeOf(p)}`,
-          [p.color, fmt(p.price) + ' за единицу'].filter(Boolean).join(' · '));
+          [p.color, fmtExact(p.price) + ' за единицу'].filter(Boolean).join(' · '));
       } else if (s) {
         const rows = products.filter(x => x.series === s);
         if (!rows.length) { chooseProduct(`Серия ${s}`, 'поставка под заказ'); }
         else {
           const low = Math.min(...rows.map(x => x.price));
           chooseProduct(`Серия ${s}`,
-            `${rows.length} ${pl(rows.length, ['модель', 'модели', 'моделей'])}, от ${fmt(low)}`);
+            `${rows.length} ${pl(rows.length, ['модель', 'модели', 'моделей'])}, от ${fmtExact(low)}`);
         }
       }
       closeModal();
