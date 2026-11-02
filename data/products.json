@@ -216,54 +216,6 @@
   "image_kind": "photo"
  },
  {
-  "id": "521030004300",
-  "sku": "MZD75",
-  "series": "Lamino",
-  "type": "подвес",
-  "color": "серый",
-  "price": 50587,
-  "price_raw": 50586.9,
-  "image": "image19.png",
-  "desc_cn": "MZD75-8W-T-Lamino叠境-2700K-灰色-现代",
-  "image_kind": "light"
- },
- {
-  "id": "521030004400",
-  "sku": "MZD75",
-  "series": "Lamino",
-  "type": "подвес",
-  "color": "чёрный",
-  "price": 50883,
-  "price_raw": 50882.7,
-  "image": "image20.png",
-  "desc_cn": "MZD75-8W-T-Lamino叠境-2700K-黑色-现代",
-  "image_kind": "cutout"
- },
- {
-  "id": "521030004500",
-  "sku": "MZT250",
-  "series": "Lamino",
-  "type": "настольная",
-  "color": "чёрный",
-  "price": 77255,
-  "price_raw": 77254.79999999999,
-  "image": "image21.png",
-  "desc_cn": "MZT250-12W-T-Lamino叠境-2700K-黑色-现代",
-  "image_kind": "cutout"
- },
- {
-  "id": "521030004600",
-  "sku": "MZT140",
-  "series": "Lamino",
-  "type": "настольная",
-  "color": "матовый",
-  "price": 57982,
-  "price_raw": 57981.9,
-  "image": "image22.png",
-  "desc_cn": "MZT140-D15LTT-001-Lamino叠境-雾面",
-  "image_kind": "cutout"
- },
- {
   "id": "521030000000",
   "sku": "MZD150",
   "series": "Bubble",
@@ -609,66 +561,6 @@
   "price_raw": 140306.1,
   "image": "image51.png",
   "desc_cn": "MZL300-D10LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "photo"
- },
- {
-  "id": "521030005300",
-  "sku": "MZT2015",
-  "series": "CRYX",
-  "type": "настольная",
-  "color": "никель",
-  "price": 482802,
-  "price_raw": 482801.69999999995,
-  "image": "image52.png",
-  "desc_cn": "MZT2015-7W-WT-CRYX 晶-2700K-桌面灯-沙镍色-现代",
-  "image_kind": "photo"
- },
- {
-  "id": "521030005400",
-  "sku": "MZD180",
-  "series": "CRYX",
-  "type": "подвес",
-  "color": "никель",
-  "price": 259462,
-  "price_raw": 259462.5,
-  "image": "image53.png",
-  "desc_cn": "MZD180-7W-WT-CRYX 晶-2700K-单吊-沙镍色-现代",
-  "image_kind": "photo"
- },
- {
-  "id": "521030005500",
-  "sku": "MZD1200",
-  "series": "CRYX",
-  "type": "подвес над столом",
-  "color": "никель",
-  "price": 409010,
-  "price_raw": 409009.8,
-  "image": "image54.png",
-  "desc_cn": "MZD1200-42W-WT-CRYX 晶-2700K-餐吊-沙镍色-现代",
-  "image_kind": "light"
- },
- {
-  "id": "521030005600",
-  "sku": "MZL300",
-  "series": "CRYX",
-  "type": "торшер",
-  "color": "никель",
-  "price": 377701,
-  "price_raw": 377700.9,
-  "image": "image55.png",
-  "desc_cn": "MZL300-29W-WT-CRYX 晶-2700K-落地灯-沙镍色-现代",
-  "image_kind": "photo"
- },
- {
-  "id": "521030005700",
-  "sku": "MZT160",
-  "series": "CRYX",
-  "type": "настольная",
-  "color": "никель",
-  "price": 162027,
-  "price_raw": 162027.0,
-  "image": "image56.jpeg",
-  "desc_cn": "MZT160-7W-WT-CRYX 晶-2700K-台灯-沙镍色-现代",
   "image_kind": "photo"
  },
  {
