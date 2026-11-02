@@ -218,10 +218,14 @@ li:last-child .mrow{border-bottom:0}
 .empty{color:var(--ink-3);text-align:center;padding:60px 0}
 
 /* Постеры серий: исходник 3:4, и вся история кадра — в типографике, поэтому рамка
-   повторяет пропорцию и ничего не режет. Ритм тот же, что у витрины: зазор 1 px по линии. */
+   повторяет пропорцию и ничего не режет. Ритм тот же, что у витрины: зазор 1 px по линии.
+   Стена — четыре колонки: восемь плиток (по одной на серию) дают ровно два ряда. */
 .posters{max-width:var(--max);margin:0 auto;padding:clamp(40px,6vh,80px) clamp(16px,4vw,44px) 0}
-.poster-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+.poster-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
   border-top:1px solid var(--line);border-left:1px solid var(--line)}
+/* Ниже 1000 px четыре колонки сжимают плитку до 150 px, и надписи на постере
+   перестают читаться. Три дали бы рваный ряд, поэтому шаг сразу на две. */
+@media (max-width:1000px){ .poster-grid{grid-template-columns:repeat(2,1fr)} }
 .ppost{position:relative;display:block;margin:0;padding:0;background:var(--bg);
   border-right:1px solid var(--line);border-bottom:1px solid var(--line);
   aspect-ratio:3/4;overflow:hidden;cursor:pointer;font:inherit;color:inherit;text-align:left}
@@ -229,11 +233,6 @@ li:last-child .mrow{border-bottom:0}
   transition:transform .8s var(--ease),filter .5s}
 .ppost:hover img,.ppost:focus-visible img{transform:scale(1.03);filter:brightness(1)}
 .ppost:focus-visible{outline:2px solid var(--warm);outline-offset:-2px}
-/* Постеры серий, которых у нас нет в продаже, — просто картинка: без курсора-руки
-   и без увеличения при наведении. Подписей на них нет: клиенту не нужно читать
-   про наш прайс, некликабельность он видит по поведению. */
-.ppost.is-plain{cursor:default}
-.ppost.is-plain:hover img{transform:none;filter:brightness(.82)}
 
 /* ---------- about ---------- */
 .about{max-width:var(--max);margin:0 auto;padding:clamp(80px,14vh,160px) clamp(16px,4vw,44px);
@@ -487,8 +486,6 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   /* в шапке на пальце телефон и так есть в разделе «Заявка»; вместе с навигацией не влезает */
   .head-phone{display:none}
   .grid{grid-template-columns:1fr}
-  /* три колонки постеров на пальце дают плитки 119 px — надписи на постере не читаются */
-  .poster-grid{grid-template-columns:repeat(2,1fr)}
   .scard-body{padding:16px 16px 18px}
   .scard-top h3{font-size:20px}
   .scard-range{font-size:17px}
