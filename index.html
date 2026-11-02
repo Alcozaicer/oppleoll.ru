@@ -74,12 +74,14 @@
   </a>
   <nav class="nav">
     <a href="#catalog">Витрина</a>
-    <a href="#posters">Постеры</a>
     <a href="#about">О бренде</a>
     <a href="#contact">Заявка</a>
   </nav>
-  <a class="head-phone" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked"></span></a>
+  <a class="head-phone" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked">+7 (999) •••-••-••</span></a>
 </header>
+
+<noscript><p class="noscript-bar">Витрина, цены и форма заявки собираются скриптом — включите JavaScript.
+  Телефон и почта открываются кликом по маске, без скрипта они остаются закрытыми.</p></noscript>
 
 <section class="hero" id="top">
   <div class="hero-media"><img src="img/hero.jpg" alt="Экспозиция OLL: светильник в интерьере" width="2000" height="1334" fetchpriority="high"></div>
@@ -148,7 +150,7 @@
 <section class="posters" id="posters">
   <div class="cat-head">
     <h2>Постеры серий</h2>
-    <p class="cat-note">Фирменные постеры OLL. Постер серии, которая есть в каталоге, открывает её карточку.</p>
+    <p class="cat-note">Постер серии, которая есть в каталоге, открывает её карточку. Остальные — только образ бренда, их нет в действующем прайсе.</p>
   </div>
   <div class="poster-grid" id="posterGrid"></div>
 </section>
@@ -164,7 +166,7 @@
       <div><dt>Моделей</dt><dd id="factModels">55</dd></div>
       <div><dt>Диапазон цен</dt><dd id="factRange">—</dd></div>
     </dl>
-    <p class="muted" id="delivery"></p>
+    <p class="muted" id="delivery">Поставка: Москва и регионы России, страны СНГ. Под заказ, сроки и стоимость уточняются по запросу.</p>
   </div>
 </section>
 
@@ -209,9 +211,9 @@
   <aside class="contact-side">
     <div class="side-card">
       <p class="eyebrow">Прямая связь</p>
-      <a class="side-phone" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked"></span></a>
-      <p class="side-hours"><span data-c-hours></span> · номер и почта открываются по клику, чтобы их не собирали парсеры</p>
-      <a class="side-mail" href="#" data-reveal="mail" aria-label="Показать почту"><span data-c="emailMasked"></span></a>
+      <a class="side-phone" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked">+7 (999) •••-••-••</span></a>
+      <p class="side-hours"><span data-c-hours>Пн–Пт 9:00–19:00</span> · номер и почта открываются по клику, чтобы их не собирали парсеры</p>
+      <a class="side-mail" href="#" data-reveal="mail" aria-label="Показать почту"><span data-c="emailMasked">почта · показать</span></a>
     </div>
   </aside>
 </section>
@@ -221,7 +223,7 @@
   <div class="foot-l">
     <svg class="logo-glyph foot-glyph" viewBox="0 0 183 133" aria-hidden="true"><circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="currentColor" stroke-width="15.5"/><rect class="bar" x="141" y="35.5" width="16" height="62"/><rect class="bar" x="166" y="35.5" width="16" height="62"/></svg>
     <p class="foot-word">OLL<span class="muted"> · by Opple Lighting</span></p>
-    <p id="legal"></p>
+    <p id="legal">ООО «СМАРТ ОСВЕЩЕНИЕ» · ИНН 9726055863 · ОГРН 1237700695011 · Москва, Киевское шоссе, д. 3</p>
   </div>
   <div class="foot-r">
     <p>Цены из действующего прайса OLL, итог подтверждаем в счёте.</p>
@@ -234,7 +236,10 @@
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="m-model" tabindex="-1">
     <button class="modal-x" data-close aria-label="Закрыть карточку">×</button>
     <div class="modal-media">
-      <div class="modal-stage"><img id="m-main" alt=""></div>
+      <!-- 1×1 прозрачный кадр вместо пустого src: до первого открытия модалки картинка
+           не битая, размеры задаёт сцена через --ar -->
+      <div class="modal-stage"><img id="m-main" alt="" width="1200" height="900"
+        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></div>
       <div class="modal-thumbs" id="m-thumbs"></div>
     </div>
     <div class="modal-info">
@@ -245,7 +250,7 @@
       <ul class="m-list" id="m-list" aria-label="Модели серии"></ul>
       <div class="m-actions">
         <button class="btn btn-solid" id="m-lead">Оставить заявку</button>
-        <a class="btn btn-ghost" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked"></span></a>
+        <a class="btn btn-ghost" href="#" data-reveal="phone" aria-label="Показать телефон"><span data-c="phoneMasked">+7 (999) •••-••-••</span></a>
       </div>
       <p class="m-sku" id="m-sku"></p>
     </div>
