@@ -307,9 +307,7 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);line-height:1.7}
 .foot p{margin:6px 0 0;max-width:52ch}
 .foot a:hover{color:var(--warm)}
-.foot-glyph{width:28px;height:19px;color:var(--ink-2);margin-bottom:10px}
-.foot-word{margin:0 0 4px;font-size:15px;font-weight:700;letter-spacing:.1em;color:var(--ink)}
-.foot-word span{font-weight:300;letter-spacing:.04em}
+.foot-glyph{display:block;width:28px;height:19px;color:var(--ink-2);margin-bottom:12px}
 
 /* ---------- modal ---------- */
 .modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px}
