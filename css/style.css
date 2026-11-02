@@ -83,6 +83,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 .head-phone{font-size:14px;letter-spacing:.04em;border:1px solid var(--line);padding:9px 16px;border-radius:99px;transition:border-color .3s,background .3s}
 .head-phone:hover{border-color:var(--warm);background:rgba(240,201,138,.07)}
 
+/* Без JavaScript сетка не собирается, и объяснение должно лежать в первом экране,
+   а не под 92vh фотографии. Шапка fixed, поэтому отступ — от её высоты. */
+.noscript-bar{margin:0;padding:calc(var(--head-h) + 18px) clamp(16px,4vw,44px) 18px;
+  background:var(--bg2);color:var(--ink-2);font-size:14px;line-height:1.55;
+  border-bottom:1px solid var(--line)}
+
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:92vh;min-height:92svh;display:flex;align-items:flex-end;padding:0 clamp(16px,4vw,44px) clamp(48px,8vh,96px)}
 .hero-media{position:absolute;inset:0;overflow:hidden}
@@ -91,6 +97,9 @@ button,input,select,textarea{font:inherit;color:inherit}
   radial-gradient(120% 90% at 78% 40%,transparent,rgba(10,10,11,.78) 68%),
   linear-gradient(180deg,rgba(10,10,11,.6),transparent 38%,rgba(10,10,11,.96))}
 .hero-body{position:relative;z-index:2;max-width:var(--max);width:100%;margin:0 auto}
+/* 11 px поверх фотографии: --ink-3 давал 3.06:1 в среднем по области текста и ни одного
+   пикселя выше 4.5:1. На тёмном кадре — светлая буква плюс мягкая тень на ярких зонах. */
+.hero .eyebrow{color:var(--ink);text-shadow:0 1px 14px rgba(0,0,0,.8)}
 .hero h1{margin:0 0 26px}
 .hero-lead{max-width:44ch;color:var(--ink-2);margin:0 0 34px}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
@@ -142,6 +151,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
   background:var(--warm);box-shadow:0 0 0 4px rgba(240,201,138,.15)}
 .cat-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+/* счётчик — предложение, а не подпись: «55 ИЗ 55 МОДЕЛЕЙ · 7 СЕРИЙ» капсом читается
+   с трудом, детектор помечает это как all-caps body. Кнопки в строке остаются капсом. */
+.cat-meta #count{text-transform:none;letter-spacing:.01em}
 .cm-actions{display:flex;align-items:center;gap:20px}
 .link-reset{background:none;border:0;color:var(--ink-3);cursor:pointer;font-size:12px;letter-spacing:.08em;
   text-transform:uppercase;border-bottom:1px solid transparent;padding:0}
@@ -220,6 +232,9 @@ li:last-child .mrow{border-bottom:0}
 /* Ink и Wellsky в прайсе не числятся: их постеры — только образ, клика не обещаем */
 .ppost.is-plain{cursor:default}
 .ppost.is-plain:hover img{transform:none;filter:brightness(.82)}
+.ppost figcaption{position:absolute;inset:auto 0 0;padding:24px 12px 10px;margin:0;font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);
+  background:linear-gradient(180deg,rgba(10,10,11,0),rgba(10,10,11,.85))}
 
 /* ---------- about ---------- */
 .about{max-width:var(--max);margin:0 auto;padding:clamp(80px,14vh,160px) clamp(16px,4vw,44px);
@@ -436,13 +451,18 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 @media (pointer:coarse){
   .chip,.tools select,.field-search input,.link-reset{min-height:44px}
   .link-reset{display:inline-flex;align-items:center}
+  /* «ещё N моделей» — единственный способ добраться до конца списка серии: 16 px
+     полосы под ним пальцем не поймать. Инлайн-блоку min-height не работает. */
+  .link-more{min-height:44px;display:inline-flex;align-items:center}
   /* навигация и «показать почту» были 32 и 26 px — единственные цели меньше 44 px,
      которые нельзя считать текстовыми ссылками в абзаце */
   .nav a{min-height:44px;display:inline-flex;align-items:center}
   .side-mail,.head-phone{min-height:44px;display:inline-flex;align-items:center}
-  .consent input{width:22px;height:22px}
-  input[type=range]::-webkit-slider-thumb{width:22px;height:22px;margin-top:-10px}
-  input[type=range]::-moz-range-thumb{width:22px;height:22px}
+  /* 22 px чекбокс и 22 px ползунок — ниже порога 24 px (WCAG 2.5.8); 44 здесь не нужно,
+     но попасть пальцем должно быть гарантированно можно */
+  .consent input{width:24px;height:24px}
+  input[type=range]::-webkit-slider-thumb{width:24px;height:24px;margin-top:-11px}
+  input[type=range]::-moz-range-thumb{width:24px;height:24px}
 }
 /* Меньше движения = ещё и мгновенные переходы: `scroll-behavior:smooth` не анимация
    в смысле transition/animation, поэтому общее правило его не глушит */
