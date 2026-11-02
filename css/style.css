@@ -229,12 +229,11 @@ li:last-child .mrow{border-bottom:0}
   transition:transform .8s var(--ease),filter .5s}
 .ppost:hover img,.ppost:focus-visible img{transform:scale(1.03);filter:brightness(1)}
 .ppost:focus-visible{outline:2px solid var(--warm);outline-offset:-2px}
-/* Ink и Wellsky в прайсе не числятся: их постеры — только образ, клика не обещаем */
+/* Постеры серий, которых у нас нет в продаже, — просто картинка: без курсора-руки
+   и без увеличения при наведении. Подписей на них нет: клиенту не нужно читать
+   про наш прайс, некликабельность он видит по поведению. */
 .ppost.is-plain{cursor:default}
 .ppost.is-plain:hover img{transform:none;filter:brightness(.82)}
-.ppost figcaption{position:absolute;inset:auto 0 0;padding:24px 12px 10px;margin:0;font-size:11px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);
-  background:linear-gradient(180deg,rgba(10,10,11,0),rgba(10,10,11,.85))}
 
 /* ---------- about ---------- */
 .about{max-width:var(--max);margin:0 auto;padding:clamp(80px,14vh,160px) clamp(16px,4vw,44px);
