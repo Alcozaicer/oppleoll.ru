@@ -1,8 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 133" role="img" aria-label="OLL">
-  <!-- standalone-файл: currentColor в нём разрешается в чёрный, поэтому цвета заданы явно -->
-  <g fill="#e2261d">
-    <circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="#0a0a0b" stroke-width="15.5"/>
-    <rect x="147" y="2" width="16" height="129"/>
-    <rect x="169" y="2" width="16" height="129"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="OLL — дизайнерский свет">
+  <!-- Логотип для поисковых карточек и соцсетей: белый знак лежит на тёмной плашке,
+       иначе на белой подложке выдачи он просто невидим.
+       currentColor здесь не годится — в standalone-файле он разрешился бы в чёрный. -->
+  <rect width="256" height="256" rx="46" fill="#0a0a0b"/>
+  <g transform="translate(36.5 61.5)" fill="#fff">
+    <circle cx="66.5" cy="66.5" r="58.75" fill="none" stroke="#fff" stroke-width="15.5"/>
+    <rect x="141" y="35.5" width="16" height="62"/>
+    <rect x="166" y="35.5" width="16" height="62"/>
   </g>
 </svg>
