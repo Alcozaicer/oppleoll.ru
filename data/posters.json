@@ -49,11 +49,35 @@
   "h": 1000
  },
  {
+  "key": "Ink2",
+  "series": "Ink",
+  "file": "img/posters/poster_Ink2.jpg",
+  "w": 750,
+  "h": 1000,
+  "alt": "Ink — напольный светильник в интерьере"
+ },
+ {
+  "key": "Ink3",
+  "series": "Ink",
+  "file": "img/posters/poster_Ink3.jpg",
+  "w": 750,
+  "h": 1000,
+  "alt": "Ink — подвес в интерьере"
+ },
+ {
   "key": "Wellsky",
   "series": "Wellsky",
   "file": "img/posters/poster_Wellsky.jpg",
   "w": 750,
   "h": 1000
+ },
+ {
+  "key": "Wellsky2",
+  "series": "Wellsky",
+  "file": "img/posters/poster_Wellsky2.jpg",
+  "w": 750,
+  "h": 1000,
+  "alt": "Wellsky — светильник с небом в интерьере"
  },
  {
   "key": "WellskyLite",
