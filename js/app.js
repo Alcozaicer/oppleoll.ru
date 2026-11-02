@@ -327,12 +327,14 @@
   /* Исходник постера — 3:4 с типографикой по всему полю, поэтому рамка повторяет
      пропорцию и ничего не режет. Постер витринной серии открывает её карточку;
      Ink, Wellsky и WellskyLite не продаются — это только образ бренда, и плитка
-     не притворяется кнопкой. Подписей нет: про наш прайс клиенту читать незачем. */
+     не притворяется кнопкой. Подписей нет: про наш прайс клиенту читать незачем.
+     Рядом с макетами стоят настоящие фото этих серий (у них нет карточки, куда их
+     положить), поэтому alt берётся из описания кадра, а не «постер серии». */
   function renderPosters(list) {
     const grid = $('#posterGrid'), sec = $('#posters');
     if (!list || !list.length) { if (sec) sec.hidden = true; return; }
     grid.innerHTML = list.map(p => {
-      const img = `<img src="${p.file}" alt="Постер серии ${p.series}" ` +
+      const img = `<img src="${p.file}" alt="${p.alt || 'Постер серии ' + p.series}" ` +
         `width="${p.w}" height="${p.h}" loading="lazy">`;
       return SERIES_ORDER.includes(p.series)
         ? `<button type="button" class="ppost" data-series="${p.series}"` +
