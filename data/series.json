@@ -1,46 +1,53 @@
 {
  "hero": {
   "Edge": {
-   "file": "img/series/int_05_0.jpg",
-   "ar": 1.067,
-   "w": 1500,
-   "h": 1406
+   "file": "img/heroes/Edge.jpg",
+   "ar": 1.333,
+   "w": 1400,
+   "h": 1050,
+   "from": "img/series/dr_07_Edge.jpg"
   },
   "Vessel": {
-   "file": "img/series/cat_16_0.jpg",
-   "ar": 1.458,
-   "w": 1500,
-   "h": 1029
+   "file": "img/heroes/Vessel.jpg",
+   "ar": 1.333,
+   "w": 1372,
+   "h": 1029,
+   "from": "img/series/cat_16_0.jpg"
   },
   "Aura": {
-   "file": "img/series/brd_12_0.jpg",
-   "ar": 1.571,
-   "w": 1500,
-   "h": 955
+   "file": "img/heroes/Aura.jpg",
+   "ar": 1.333,
+   "w": 1273,
+   "h": 955,
+   "from": "img/series/brd_12_0.jpg"
   },
   "Bubble": {
-   "file": "img/series/brd_34_2.jpg",
-   "ar": 1.503,
-   "w": 1483,
-   "h": 987
+   "file": "img/heroes/Bubble.jpg",
+   "ar": 1.333,
+   "w": 1316,
+   "h": 987,
+   "from": "img/series/brd_34_2.jpg"
   },
   "Flow": {
-   "file": "img/series/ex_02_Flow.jpg",
-   "ar": 1.0,
-   "w": 1200,
-   "h": 1800
+   "file": "img/heroes/Flow.jpg",
+   "ar": 1.333,
+   "w": 1067,
+   "h": 800,
+   "from": "img/series/dr_12_Flow.jpg"
   },
   "Astra": {
-   "file": "img/series/brd_31_0.jpg",
-   "ar": 1.308,
-   "w": 1500,
-   "h": 1147
+   "file": "img/heroes/Astra.jpg",
+   "ar": 1.333,
+   "w": 1400,
+   "h": 1050,
+   "from": "img/series/brd_31_0.jpg"
   },
   "FOLIO": {
-   "file": "img/series/ex_03_FOLIO.jpg",
-   "ar": 1.0,
-   "w": 1200,
-   "h": 1800
+   "file": "img/heroes/FOLIO.jpg",
+   "ar": 1.333,
+   "w": 1067,
+   "h": 800,
+   "from": "img/series/dr_09_FOLIO.jpg"
   }
  },
  "src": {

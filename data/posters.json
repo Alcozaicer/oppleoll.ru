@@ -1,0 +1,65 @@
+[
+ {
+  "key": "Edge",
+  "series": "Edge",
+  "file": "img/posters/poster_Edge.jpg",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "Astra",
+  "series": "Astra",
+  "file": "img/posters/poster_Astra.jpg",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "Astra2",
+  "series": "Astra",
+  "file": "img/posters/poster_Astra2.jpg",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "Bubble",
+  "series": "Bubble",
+  "file": "img/posters/poster_Bubble.jpg",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "Flow",
+  "series": "Flow",
+  "file": "img/posters/poster_Flow.jpg",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "FOLIO",
+  "series": "FOLIO",
+  "file": "img/posters/poster_FOLIO.jpg",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "Ink",
+  "series": "Ink",
+  "file": "img/posters/poster_Ink.jpg",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "Wellsky",
+  "series": "Wellsky",
+  "file": "img/posters/poster_Wellsky.jpg",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "WellskyLite",
+  "series": "Wellsky",
+  "file": "img/posters/poster_WellskyLite.jpg",
+  "w": 750,
+  "h": 1000
+ }
+]
