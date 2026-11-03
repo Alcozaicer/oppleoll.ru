@@ -698,11 +698,9 @@
     renderPosters(po);
     applyConfig(); bindReveal(); bindStory();
 
-    // счётники в «о бренде» и строка под h1 считаем из каталога, а не держим в разметке руками
+    // счётчик под h1 и строка каталога считаются из данных, а не держатся в разметке руками
     if (products.length) {
       const nSer = new Set(products.map(x => x.series)).size, nMod = products.length;
-      $('#factSeries').textContent = nSer;
-      $('#factModels').textContent = nMod;
       $('#heroLead').textContent = `${nMod} ${pl(nMod, ['модель', 'модели', 'моделей'])} · ` +
         `${nSer} ${pl(nSer, ['серия', 'серии', 'серий'])}. Цены на сайте, поставка под заказ.`;
       $('#catTotal').textContent = `${nMod} ${pl(nMod, ['модель', 'модели', 'моделей'])} · ` +

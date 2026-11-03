@@ -1,8 +1,22 @@
 [
  {
-  "key": "Astra",
-  "series": "Astra",
-  "file": "img/posters/poster_Astra.webp",
+  "key": "Edge",
+  "series": "Edge",
+  "file": "img/posters/poster_Edge.webp",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "Vessel",
+  "series": "Vessel",
+  "file": "img/posters/poster_Vessel.webp",
+  "w": 750,
+  "h": 1000
+ },
+ {
+  "key": "Aura",
+  "series": "Aura",
+  "file": "img/posters/poster_Aura.webp",
   "w": 750,
   "h": 1000
  },
@@ -14,13 +28,6 @@
   "h": 1000
  },
  {
-  "key": "Edge",
-  "series": "Edge",
-  "file": "img/posters/poster_Edge.webp",
-  "w": 750,
-  "h": 1000
- },
- {
   "key": "Flow",
   "series": "Flow",
   "file": "img/posters/poster_Flow.webp",
@@ -28,23 +35,16 @@
   "h": 1000
  },
  {
+  "key": "Astra",
+  "series": "Astra",
+  "file": "img/posters/poster_Astra.webp",
+  "w": 750,
+  "h": 1000
+ },
+ {
   "key": "FOLIO",
   "series": "FOLIO",
   "file": "img/posters/poster_FOLIO.webp",
-  "w": 750,
-  "h": 1000
- },
- {
-  "key": "Ink",
-  "series": "Ink",
-  "file": "img/posters/poster_Ink.webp",
-  "w": 750,
-  "h": 1000
- },
- {
-  "key": "Wellsky",
-  "series": "Wellsky",
-  "file": "img/posters/poster_Wellsky.webp",
   "w": 750,
   "h": 1000
  },

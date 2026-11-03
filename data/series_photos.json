@@ -220,6 +220,26 @@
  ],
  "Aura": [
   {
+   "file": "posters/poster_Aura.webp",
+   "series": [
+    "Aura"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 750,
+   "h": 1000
+  },
+  {
+   "file": "series/dr_29_Aura.webp",
+   "series": [
+    "Aura"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
    "file": "series/int_08_0.webp",
    "series": [
     "Aura"
@@ -387,6 +407,56 @@
   }
  ],
  "Vessel": [
+  {
+   "file": "posters/poster_Vessel.webp",
+   "series": [
+    "Vessel"
+   ],
+   "page": null,
+   "src": "poster",
+   "w": 750,
+   "h": 1000
+  },
+  {
+   "file": "series/dr_28_Vessel.webp",
+   "series": [
+    "Vessel"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 1280,
+   "h": 960
+  },
+  {
+   "file": "series/dr_27_Vessel.webp",
+   "series": [
+    "Vessel"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_25_Vessel.webp",
+   "series": [
+    "Vessel"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_26_Vessel.webp",
+   "series": [
+    "Vessel"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 700,
+   "h": 1280
+  },
   {
    "file": "series/cat_17_2.webp",
    "series": [
