@@ -2,11 +2,10 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const money = new Intl.NumberFormat('ru-RU');
-  /* Витрина показывает цену округлённой вверх до тысячи (55 044 → 56 000): так ряд
-     читается спокойнее, а прайс в data/products.json остаётся точным. В заявку и в
-     письмо уходит настоящая цена — округление только витринное, не коммерческое. */
-  const fmt = v => money.format(Math.ceil(v / 1000) * 1000) + ' ₽';
-  const fmtExact = v => money.format(v) + ' ₽';
+  /* В data/products.json лежит ровно та цена, что показана на витрине: вверх до тысячи
+     (55 044 → 56 000), округление сделано на сборке (tools/public_data.py). Точных
+     прайсовых цен на сайте нет вообще — витрина не должна выгружаться как прайс-лист. */
+  const fmt = v => money.format(v) + ' ₽';
 
   const SERIES_ORDER = ['Edge', 'Vessel', 'Aura', 'Bubble', 'Flow', 'Astra', 'FOLIO'];
   const state = { series: new Set(), type: '', q: '', sort: 'series', max: Infinity };
@@ -84,10 +83,21 @@
     };
     story.classList.add('story--bound');
     show(0);
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) show(frames.indexOf(e.target)); }),
-      { rootMargin: '-45% 0px -45% 0px' });
-    frames.forEach(f => io.observe(f));
+    /* Полоса пересобирается под ориентацию ленты: на десктопе кадры едут по вертикали
+       и активен тот, что в середине экрана, на узком — горизонтальная лента, и тогда
+       корнем наблюдателя должен быть сам скролл-контейнер, а полосой — его центр. */
+    let io = null;
+    const rebind = () => {
+      if (io) io.disconnect();
+      const strip = matchMedia('(max-width:1000px)').matches;
+      io = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) show(frames.indexOf(e.target)); }),
+        strip ? { root: $('.story-media', story), rootMargin: '0px -40% 0px -40%' }
+              : { rootMargin: '-45% 0px -45% 0px' });
+      frames.forEach(f => io.observe(f));
+    };
+    rebind();
+    matchMedia('(max-width:1000px)').addEventListener('change', rebind);
   }
 
   /* ---------- ссылки на витрину: ?s=Bubble,Edge и ?p=<артикул> ---------- */
@@ -284,11 +294,17 @@
       <span class="mrow-price">${fmt(p.price)}</span></button></li>`;
 
   /* Карточек девять, и строим мы их один раз: пересобирать сетку на каждый символ
-     поиска означало бы выбросить и заново декодировать девять больших кадров. */
+     поиска означало бы выбросить и заново декодировать девять больших кадров.
+     С 03.11.2026 сетка.series уже лежит в index.html (tools/prerender_static.py), чтобы
+     каталог видел робот без JavaScript, поэтому здесь карточки сначала подхватываются
+     из разметки и только если их нет — создаются. data-sig в статике намеренно нет:
+     первую перерисовку скрипт делает всегда и гарантированно показывает то, что в JSON. */
   function buildCards() {
     const frag = document.createDocumentFragment();
     for (const s of SERIES_ORDER) {
       const hero = meta.hero[s];
+      const pre = $(`#grid .scard[data-series="${s}"]`);
+      if (pre) { cardEls.set(s, pre); continue; }
       const el = document.createElement('article');
       el.className = 'scard';
       el.dataset.series = s;
@@ -347,7 +363,10 @@
         `${nModels} из ${products.length} моделей` +
         ` · ${nCards} ${pl(nCards, ['серия', 'серии', 'серий'])}`
       : 'Ни одной модели под эти фильтры нет';
-    $('#barCount').textContent = `${nModels} из ${products.length}`;
+    /* на телефоне счётчик живёт в залипающей строке: без активных фильтров
+       «55 из 55» — шум, поэтому там просто оборот каталога */
+    $('#barCount').textContent = n ? `${nModels} из ${products.length}` :
+      `${products.length} ${pl(products.length, ['модель', 'модели', 'моделей'])}`;
     $('#fbCount').hidden = !n;
     $('#fbCount').textContent = n;
     // «Показать 0» звучало как обещание, которого лист не выполнит
@@ -449,7 +468,7 @@
         ? `${shots.length} ${pl(shots.length, ['кадр', 'кадра', 'кадров'])} из презентаций и съёмки серии`
         : p ? 'Артикул ' + p.id
           : brand ? 'Кадры из съёмки серии'
-            : (low === high ? 'Одна цена' : 'до ' + fmt(high)) + ' · цены из действующего прайса';
+            : (low === high ? 'Одна цена' : 'до ' + fmt(high));
       $('#m-thumbs').innerHTML = shots.map((x, i) =>
         `<button type="button" data-i="${i}" aria-current="${i === 0}"${x.fill ? ' data-fill' : ''}` +
         ` aria-label="Фото ${i + 1} из ${shots.length}"><img src="${x.src}" alt="" loading="lazy"></button>`).join('');
@@ -686,6 +705,8 @@
       $('#factModels').textContent = nMod;
       $('#heroLead').textContent = `${nMod} ${pl(nMod, ['модель', 'модели', 'моделей'])} · ` +
         `${nSer} ${pl(nSer, ['серия', 'серии', 'серий'])}. Цены на сайте, поставка под заказ.`;
+      $('#catTotal').textContent = `${nMod} ${pl(nMod, ['модель', 'модели', 'моделей'])} · ` +
+        `${nSer} ${pl(nSer, ['серия', 'серии', 'серий'])}`;
     }
 
     if (products.length && (deepId || state.series.size)) {
@@ -739,14 +760,14 @@
       const p = id && products.find(x => x.id === id);
       if (p) {
         chooseProduct(`${p.series} ${codeOf(p)}`,
-          [p.color, fmtExact(p.price) + ' за единицу'].filter(Boolean).join(' · '));
+          [p.color, fmt(p.price) + ' за единицу'].filter(Boolean).join(' · '));
       } else if (s) {
         const rows = products.filter(x => x.series === s);
         if (!rows.length) { chooseProduct(`Серия ${s}`, 'поставка под заказ'); }
         else {
           const low = Math.min(...rows.map(x => x.price));
           chooseProduct(`Серия ${s}`,
-            `${rows.length} ${pl(rows.length, ['модель', 'модели', 'моделей'])}, от ${fmtExact(low)}`);
+            `${rows.length} ${pl(rows.length, ['модель', 'модели', 'моделей'])}, от ${fmt(low)}`);
         }
       }
       closeModal();

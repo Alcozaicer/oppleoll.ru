@@ -6,11 +6,8 @@
   "series": "Edge",
   "type": "потолочная",
   "color": "белый",
-  "price": 249716,
-  "price_raw": 249716.4,
-  "image": "image1.png",
-  "desc_cn": "MZX8686-D120LTTYY-001-Edge界-白色",
-  "image_kind": "cutout"
+  "price": 250000,
+  "image": "image1.png"
  },
  {
   "id": "521030003300",
@@ -19,11 +16,8 @@
   "series": "Edge",
   "type": "потолочная",
   "color": "белый",
-  "price": 142545,
-  "price_raw": 142545.0,
-  "image": "image2.png",
-  "desc_cn": "MZX5454-D55LTTYY-001-Edge界-白色",
-  "image_kind": "cutout"
+  "price": 143000,
+  "image": "image2.png"
  },
  {
   "id": "521030003400",
@@ -32,11 +26,8 @@
   "series": "Edge",
   "type": "потолочная",
   "color": "белый",
-  "price": 107865,
-  "price_raw": 107865.0,
-  "image": "image3.png",
-  "desc_cn": "MZX600-D48LTTYY-001-Edge界-白色",
-  "image_kind": "cutout"
+  "price": 108000,
+  "image": "image3.png"
  },
  {
   "id": "521030003500",
@@ -45,11 +36,8 @@
   "series": "Edge",
   "type": "бра",
   "color": "белый",
-  "price": 140133,
-  "price_raw": 140132.69999999998,
-  "image": "image4.png",
-  "desc_cn": "MZB1200-D45LTT-001-Edge界-白色",
-  "image_kind": "cutout"
+  "price": 141000,
+  "image": "image4.png"
  },
  {
   "id": "521030003600",
@@ -58,11 +46,8 @@
   "series": "Edge",
   "type": "бра",
   "color": "белый",
-  "price": 55044,
-  "price_raw": 55044.3,
-  "image": "image5.png",
-  "desc_cn": "MZB240-D8LTT-001-Edge界-白色",
-  "image_kind": "cutout"
+  "price": 56000,
+  "image": "image5.png"
  },
  {
   "id": "521030003700",
@@ -71,11 +56,8 @@
   "series": "Edge",
   "type": "бра",
   "color": "дымчатое серебро",
-  "price": 58676,
-  "price_raw": 58675.5,
-  "image": "image6.png",
-  "desc_cn": "MZB380-D20LTT-001-Edge界-雾银色",
-  "image_kind": "photo"
+  "price": 59000,
+  "image": "image6.png"
  },
  {
   "id": "521030003800",
@@ -84,11 +66,8 @@
   "series": "Edge",
   "type": "бра",
   "color": "дымчатое серебро",
-  "price": 120982,
-  "price_raw": 120982.2,
-  "image": "image7.png",
-  "desc_cn": "MZB1500-D55LTT-001-Edge界-雾银色",
-  "image_kind": "photo"
+  "price": 121000,
+  "image": "image7.png"
  },
  {
   "id": "521030003900",
@@ -97,11 +76,8 @@
   "series": "Edge",
   "type": "подвес",
   "color": "дымчатое серебро",
-  "price": 265705,
-  "price_raw": 265704.9,
-  "image": "image8.png",
-  "desc_cn": "MZD1500-D70LTTYY-001-Edge界-雾银色",
-  "image_kind": "photo"
+  "price": 266000,
+  "image": "image8.png"
  },
  {
   "id": "521030004000",
@@ -110,11 +86,8 @@
   "series": "Edge",
   "type": "торшер",
   "color": "дымчатое серебро",
-  "price": 300053,
-  "price_raw": 300053.4,
-  "image": "image9.png",
-  "desc_cn": "MZL1340-D70LTT-001-Edge界-雾银色",
-  "image_kind": "cutout"
+  "price": 301000,
+  "image": "image9.png"
  },
  {
   "id": "521030004700",
@@ -123,11 +96,8 @@
   "series": "Vessel",
   "type": "подвес",
   "color": "дерево",
-  "price": 1003996,
-  "price_raw": 1003996.2,
-  "image": "image10.png",
-  "desc_cn": "MZD1460-91W-WTT-Vessel 器-27K+40K-木纹色-现代",
-  "image_kind": "photo"
+  "price": 1004000,
+  "image": "image10.png"
  },
  {
   "id": "521030004800",
@@ -136,11 +106,8 @@
   "series": "Vessel",
   "type": "торшер",
   "color": "дерево",
-  "price": 1100616,
-  "price_raw": 1100615.7000000002,
-  "image": "image11.png",
-  "desc_cn": "MZL2020-61W-WTT-Vessel 器-27K+40K-木纹色-现代",
-  "image_kind": "photo"
+  "price": 1101000,
+  "image": "image11.png"
  },
  {
   "id": "521030004900",
@@ -149,11 +116,8 @@
   "series": "Vessel",
   "type": "торшер",
   "color": "дерево",
-  "price": 311880,
-  "price_raw": 311880.3,
-  "image": "image12.png",
-  "desc_cn": "MZL2525-21W-WTT-Vessel 器-27K+40K-木纹色-现代",
-  "image_kind": "photo"
+  "price": 312000,
+  "image": "image12.png"
  },
  {
   "id": "521030005000",
@@ -162,11 +126,8 @@
   "series": "Vessel",
   "type": "настольная",
   "color": "дерево",
-  "price": 390374,
-  "price_raw": 390374.4,
-  "image": "image13.png",
-  "desc_cn": "MZT1313-32W-WTT-Vessel 器-27K+40K-木纹色-现代",
-  "image_kind": "photo"
+  "price": 391000,
+  "image": "image13.png"
  },
  {
   "id": "521030005100",
@@ -175,11 +136,8 @@
   "series": "Vessel",
   "type": "подвес",
   "color": "дерево",
-  "price": 207937,
-  "price_raw": 207937.2,
-  "image": "image14.jpeg",
-  "desc_cn": "MZD9090-25W-WTT-Vessel 器-27K+40K-木纹色-现代",
-  "image_kind": "photo"
+  "price": 208000,
+  "image": "image14.jpeg"
  },
  {
   "id": "521030005200",
@@ -188,11 +146,8 @@
   "series": "Vessel",
   "type": "бра",
   "color": "дерево",
-  "price": 197161,
-  "price_raw": 197160.9,
-  "image": "image15.jpeg",
-  "desc_cn": "MZB9015-21W-WTT-Vessel 器-27K+40K-木纹色-现代",
-  "image_kind": "photo"
+  "price": 198000,
+  "image": "image15.jpeg"
  },
  {
   "id": "521030005900",
@@ -201,11 +156,8 @@
   "series": "Aura",
   "type": "подвес",
   "color": "дымчатый",
-  "price": 149241,
-  "price_raw": 149241.3,
-  "image": "image16.png",
-  "desc_cn": "MZD400-16W-WT-Aura 原-2700K-灰透-现代",
-  "image_kind": "photo"
+  "price": 150000,
+  "image": "image16.png"
  },
  {
   "id": "521030006000",
@@ -214,11 +166,8 @@
   "series": "Aura",
   "type": "торшер",
   "color": "дымчатый",
-  "price": 271595,
-  "price_raw": 271595.39999999997,
-  "image": "image17.png",
-  "desc_cn": "MZL400-16W-WT-Aura 原-2700K-灰透-现代",
-  "image_kind": "photo"
+  "price": 272000,
+  "image": "image17.png"
  },
  {
   "id": "521030006200",
@@ -227,11 +176,8 @@
   "series": "Aura",
   "type": "потолочная",
   "color": "дымчатый",
-  "price": 115148,
-  "price_raw": 115147.8,
-  "image": "image18.png",
-  "desc_cn": "MZX600-24W-WT-Aura 原-2700K-灰透-现代",
-  "image_kind": "photo"
+  "price": 116000,
+  "image": "image18.png"
  },
  {
   "id": "521030000000",
@@ -240,11 +186,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "дымчатый",
-  "price": 42789,
-  "price_raw": 42789.0,
-  "image": "image23.png",
-  "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-灰透-现代",
-  "image_kind": "light"
+  "price": 43000,
+  "image": "image23.png"
  },
  {
   "id": "521030000100",
@@ -253,11 +196,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "зелёный",
-  "price": 43906,
-  "price_raw": 43905.9,
-  "image": "image24.png",
-  "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-绿透-现代",
-  "image_kind": "light"
+  "price": 44000,
+  "image": "image24.png"
  },
  {
   "id": "521030000200",
@@ -266,11 +206,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "синий",
-  "price": 43906,
-  "price_raw": 43905.9,
-  "image": "image25.png",
-  "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-蓝透-现代",
-  "image_kind": "light"
+  "price": 44000,
+  "image": "image25.png"
  },
  {
   "id": "521030000300",
@@ -279,11 +216,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "жёлтый",
-  "price": 43906,
-  "price_raw": 43905.9,
-  "image": "image26.png",
-  "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-黄透-现代",
-  "image_kind": "light"
+  "price": 44000,
+  "image": "image26.png"
  },
  {
   "id": "521030000400",
@@ -292,11 +226,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "розовый",
-  "price": 46328,
-  "price_raw": 46328.4,
-  "image": "image27.png",
-  "desc_cn": "MZD150-8W-T-BUBBLE泡泡-2700K-粉透-现代",
-  "image_kind": "light"
+  "price": 47000,
+  "image": "image27.png"
  },
  {
   "id": "521030000500",
@@ -305,11 +236,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "дымчатый",
-  "price": 48827,
-  "price_raw": 48827.399999999994,
-  "image": "image28.png",
-  "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-灰透-现代",
-  "image_kind": "light"
+  "price": 49000,
+  "image": "image28.png"
  },
  {
   "id": "521030000600",
@@ -318,11 +246,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "зелёный",
-  "price": 50883,
-  "price_raw": 50882.7,
-  "image": "image29.png",
-  "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-绿透-现代",
-  "image_kind": "light"
+  "price": 51000,
+  "image": "image29.png"
  },
  {
   "id": "521030000700",
@@ -331,11 +256,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "синий",
-  "price": 50883,
-  "price_raw": 50882.7,
-  "image": "image30.png",
-  "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-蓝透-现代",
-  "image_kind": "light"
+  "price": 51000,
+  "image": "image30.png"
  },
  {
   "id": "521030000800",
@@ -344,11 +266,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "жёлтый",
-  "price": 50883,
-  "price_raw": 50882.7,
-  "image": "image31.png",
-  "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-黄透-现代",
-  "image_kind": "light"
+  "price": 51000,
+  "image": "image31.png"
  },
  {
   "id": "521030000900",
@@ -357,11 +276,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "розовый",
-  "price": 53652,
-  "price_raw": 53652.0,
-  "image": "image32.png",
-  "desc_cn": "MZD200-8W-T-BUBBLE泡泡-2700K-粉透-现代",
-  "image_kind": "light"
+  "price": 54000,
+  "image": "image32.png"
  },
  {
   "id": "521030001000",
@@ -370,11 +286,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "дымчатый",
-  "price": 67483,
-  "price_raw": 67483.2,
-  "image": "image33.png",
-  "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-灰透-现代",
-  "image_kind": "light"
+  "price": 68000,
+  "image": "image33.png"
  },
  {
   "id": "521030001100",
@@ -383,11 +296,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "зелёный",
-  "price": 69166,
-  "price_raw": 69166.2,
-  "image": "image34.png",
-  "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-绿透-现代",
-  "image_kind": "light"
+  "price": 70000,
+  "image": "image34.png"
  },
  {
   "id": "521030001200",
@@ -396,11 +306,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "синий",
-  "price": 69166,
-  "price_raw": 69166.2,
-  "image": "image35.png",
-  "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-蓝透-现代",
-  "image_kind": "light"
+  "price": 70000,
+  "image": "image35.png"
  },
  {
   "id": "521030001300",
@@ -409,11 +316,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "жёлтый",
-  "price": 69166,
-  "price_raw": 69166.2,
-  "image": "image36.png",
-  "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-黄透-现代",
-  "image_kind": "light"
+  "price": 70000,
+  "image": "image36.png"
  },
  {
   "id": "521030001400",
@@ -422,11 +326,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "розовый",
-  "price": 73644,
-  "price_raw": 73644.0,
-  "image": "image37.png",
-  "desc_cn": "MZD250-11W-T-BUBBLE泡泡-2700K-粉透-现代",
-  "image_kind": "light"
+  "price": 74000,
+  "image": "image37.png"
  },
  {
   "id": "521030001500",
@@ -435,11 +336,8 @@
   "series": "Bubble",
   "type": "настольная",
   "color": "закатный оранжевый",
-  "price": 59145,
-  "price_raw": 59144.7,
-  "image": "image38.png",
-  "desc_cn": "MZT200-8W-T-BUBBLE泡泡-2700K-落日橙-现代",
-  "image_kind": "cutout"
+  "price": 60000,
+  "image": "image38.png"
  },
  {
   "id": "521030001600",
@@ -448,11 +346,8 @@
   "series": "Bubble",
   "type": "настольная",
   "color": "белый прозрачный",
-  "price": 56549,
-  "price_raw": 56548.799999999996,
-  "image": "image39.png",
-  "desc_cn": "MZT200-8W-T-BUBBLE泡泡-2700K-白透-现代",
-  "image_kind": "cutout"
+  "price": 57000,
+  "image": "image39.png"
  },
  {
   "id": "521030001700",
@@ -461,11 +356,8 @@
   "series": "Bubble",
   "type": "торшер",
   "color": "прозрачный",
-  "price": 75699,
-  "price_raw": 75699.3,
-  "image": "image40.png",
-  "desc_cn": "MZL180-8W-T-BUBBLE泡泡-2700K-全透-现代",
-  "image_kind": "light"
+  "price": 76000,
+  "image": "image40.png"
  },
  {
   "id": "521030001800",
@@ -474,11 +366,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "прозрачный",
-  "price": 45660,
-  "price_raw": 45660.3,
-  "image": "image41.png",
-  "desc_cn": "MZD180-8W-T-BUBBLE泡泡-2700K-全透-现代",
-  "image_kind": "light"
+  "price": 46000,
+  "image": "image41.png"
  },
  {
   "id": "521030001900",
@@ -487,11 +376,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "прозрачный",
-  "price": 40958,
-  "price_raw": 40958.1,
-  "image": "image42.png",
-  "desc_cn": "MZD140-8W-T-BUBBLE泡泡-2700K-全透-现代",
-  "image_kind": "light"
+  "price": 41000,
+  "image": "image42.png"
  },
  {
   "id": "521030002000",
@@ -500,11 +386,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "прозрачный",
-  "price": 131616,
-  "price_raw": 131615.69999999998,
-  "image": "image43.png",
-  "desc_cn": "MZD1080-40W-T-BUBBLE泡泡-2700K-5头-全透-现代",
-  "image_kind": "light"
+  "price": 132000,
+  "image": "image43.png"
  },
  {
   "id": "521030002100",
@@ -513,11 +396,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "прозрачный",
-  "price": 130376,
-  "price_raw": 130376.4,
-  "image": "image44.png",
-  "desc_cn": "MZD540-40W-T-BUBBLE泡泡-2700K-5头-全透-现代",
-  "image_kind": "light"
+  "price": 131000,
+  "image": "image44.png"
  },
  {
   "id": "521030002200",
@@ -526,11 +406,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "градиент матовый",
-  "price": 45171,
-  "price_raw": 45170.7,
-  "image": "image45.png",
-  "desc_cn": "MZD150-D8LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "light"
+  "price": 46000,
+  "image": "image45.png"
  },
  {
   "id": "521030002300",
@@ -539,11 +416,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "градиент матовый",
-  "price": 76939,
-  "price_raw": 76938.6,
-  "image": "image46.png",
-  "desc_cn": "MZD300-D10LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "light"
+  "price": 77000,
+  "image": "image46.png"
  },
  {
   "id": "521030002400",
@@ -552,11 +426,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "градиент матовый",
-  "price": 115393,
-  "price_raw": 115392.59999999999,
-  "image": "image47.png",
-  "desc_cn": "MZD400-D12LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "cutout"
+  "price": 116000,
+  "image": "image47.png"
  },
  {
   "id": "521030002500",
@@ -565,11 +436,8 @@
   "series": "Bubble",
   "type": "подвес",
   "color": "градиент матовый",
-  "price": 190781,
-  "price_raw": 190780.8,
-  "image": "image48.png",
-  "desc_cn": "MZD500-D15LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "cutout"
+  "price": 191000,
+  "image": "image48.png"
  },
  {
   "id": "521030002600",
@@ -578,11 +446,8 @@
   "series": "Bubble",
   "type": "настольная",
   "color": "градиент матовый",
-  "price": 57421,
-  "price_raw": 57420.9,
-  "image": "image49.png",
-  "desc_cn": "MZT200-D8LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "light"
+  "price": 58000,
+  "image": "image49.png"
  },
  {
   "id": "521030002700",
@@ -591,11 +456,8 @@
   "series": "Bubble",
   "type": "настольная",
   "color": "градиент матовый",
-  "price": 119498,
-  "price_raw": 119498.1,
-  "image": "image50.png",
-  "desc_cn": "MZT400-D12LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "light"
+  "price": 120000,
+  "image": "image50.png"
  },
  {
   "id": "521030002800",
@@ -604,11 +466,8 @@
   "series": "Bubble",
   "type": "торшер",
   "color": "градиент матовый",
-  "price": 140306,
-  "price_raw": 140306.1,
-  "image": "image51.png",
-  "desc_cn": "MZL300-D10LTT-001-BUBBLE泡泡-渐变雾面",
-  "image_kind": "photo"
+  "price": 141000,
+  "image": "image51.png"
  },
  {
   "id": "521030002900",
@@ -617,11 +476,8 @@
   "series": "Flow",
   "type": "подвес",
   "color": "белый",
-  "price": 128744,
-  "price_raw": 128744.4,
-  "image": "image57.png",
-  "desc_cn": "MZD55-D9LTT-01-流光-单头吊-白色",
-  "image_kind": "photo"
+  "price": 129000,
+  "image": "image57.png"
  },
  {
   "id": "521030003000",
@@ -630,11 +486,8 @@
   "series": "Flow",
   "type": "настольная",
   "color": "чёрный",
-  "price": 183049,
-  "price_raw": 183049.2,
-  "image": "image58.png",
-  "desc_cn": "MZT480-D9LTT-01-流光-台灯-黑色",
-  "image_kind": "photo"
+  "price": 184000,
+  "image": "image58.png"
  },
  {
   "id": "521030003100",
@@ -643,11 +496,8 @@
   "series": "Flow",
   "type": "торшер",
   "color": "чёрный",
-  "price": 367848,
-  "price_raw": 367847.7,
-  "image": "image59.png",
-  "desc_cn": "MZL1300-D27LTT-01-流光-落地灯-黑色",
-  "image_kind": "photo"
+  "price": 368000,
+  "image": "image59.png"
  },
  {
   "id": "521027004900",
@@ -656,11 +506,8 @@
   "series": "Astra",
   "type": "подвес",
   "color": "",
-  "price": 240853,
-  "price_raw": 240852.6,
-  "image": "image60.jpeg",
-  "desc_cn": "MZD400-D8LTT-001-扶光吊灯",
-  "image_kind": "photo"
+  "price": 241000,
+  "image": "image60.jpeg"
  },
  {
   "id": "521027004800",
@@ -669,11 +516,8 @@
   "series": "Astra",
   "type": "бра",
   "color": "",
-  "price": 157651,
-  "price_raw": 157651.2,
-  "image": "image61.png",
-  "desc_cn": "MZB400-D25LTT-001-扶光壁灯",
-  "image_kind": "photo"
+  "price": 158000,
+  "image": "image61.png"
  },
  {
   "id": "542016107700",
@@ -682,11 +526,8 @@
   "series": "FOLIO",
   "type": "картина-светильник",
   "color": "",
-  "price": 382301,
-  "price_raw": 382301.10000000003,
-  "image": "image62.jpeg",
-  "desc_cn": "MZ-C020001-画Lite-20W-6060",
-  "image_kind": "cutout"
+  "price": 383000,
+  "image": "image62.jpeg"
  },
  {
   "id": "542016107800",
@@ -695,11 +536,8 @@
   "series": "FOLIO",
   "type": "картина-светильник",
   "color": "",
-  "price": 624026,
-  "price_raw": 624025.7999999999,
-  "image": "image63.jpeg",
-  "desc_cn": "MZ-C045001-画Lite-45W-9090",
-  "image_kind": "cutout"
+  "price": 625000,
+  "image": "image63.jpeg"
  },
  {
   "id": "542016107900",
@@ -708,10 +546,7 @@
   "series": "FOLIO",
   "type": "картина-светильник",
   "color": "",
-  "price": 940200,
-  "price_raw": 940200.2999999999,
-  "image": "image64.jpeg",
-  "desc_cn": "MZ-C075001-画Lite-75W-90120",
-  "image_kind": "light"
+  "price": 941000,
+  "image": "image64.jpeg"
  }
 ]

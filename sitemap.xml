@@ -1,9 +1,333 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://oppleoll.ru/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/hero.jpg</image:loc>
+      <image:title>Экспозиция OLL: светильник в интерьере</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/heroes/Edge.webp</image:loc>
+      <image:title>Серия Edge — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/heroes/Vessel.webp</image:loc>
+      <image:title>Серия Vessel — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/heroes/Aura.webp</image:loc>
+      <image:title>Серия Aura — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/heroes/Bubble.webp</image:loc>
+      <image:title>Серия Bubble — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/heroes/Flow.webp</image:loc>
+      <image:title>Серия Flow — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/heroes/Astra.webp</image:loc>
+      <image:title>Серия Astra — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/heroes/FOLIO.webp</image:loc>
+      <image:title>Серия FOLIO — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/posters/poster_Astra.webp</image:loc>
+      <image:title>Постер серии Astra — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/posters/poster_Bubble.webp</image:loc>
+      <image:title>Постер серии Bubble — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/posters/poster_Edge.webp</image:loc>
+      <image:title>Постер серии Edge — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/posters/poster_Flow.webp</image:loc>
+      <image:title>Постер серии Flow — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/posters/poster_FOLIO.webp</image:loc>
+      <image:title>Постер серии FOLIO — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/posters/poster_Ink.webp</image:loc>
+      <image:title>Постер серии Ink — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/posters/poster_Wellsky.webp</image:loc>
+      <image:title>Постер серии Wellsky — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/posters/poster_Astra2.webp</image:loc>
+      <image:title>Постер серии Astra — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_01_is_art.webp</image:loc>
+      <image:title>OLL IS ART — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_02_mark.webp</image:loc>
+      <image:title>Знак: круг и две линии — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_03_spectrum.webp</image:loc>
+      <image:title>Спектр SDL: один прибор, два конца — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_11_factory.webp</image:loc>
+      <image:title>Стекло и пламя: производство Opple — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/series/dr_16_Ink.webp</image:loc>
+      <image:title>INK — работа HABITS Design Studio — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_04_venice.webp</image:loc>
+      <image:title>«Китайский бумажный зонтик», Венеция — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_05_sun.webp</image:loc>
+      <image:title>«Солнце», Design Shanghai — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_06_noon.webp</image:loc>
+      <image:title>«Полдень» Чжан Дина — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_10_gallery.webp</image:loc>
+      <image:title>Галереи, виллы, отели — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/brand/brand_09_hall.webp</image:loc>
+      <image:title>Свет как среда — OLL by Opple Lighting</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003200.webp</image:loc>
+      <image:title>OLL Edge MZX8686-D120LTTYY-001, потолочная, 250 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003300.webp</image:loc>
+      <image:title>OLL Edge MZX5454-D55LTTYY-001, потолочная, 143 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003400.webp</image:loc>
+      <image:title>OLL Edge MZX600-D48LTTYY-001, потолочная, 108 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003500.webp</image:loc>
+      <image:title>OLL Edge MZB1200-D45LTT-001, бра, 141 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003600.webp</image:loc>
+      <image:title>OLL Edge MZB240-D8LTT-001, бра, 56 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003700.webp</image:loc>
+      <image:title>OLL Edge MZB380-D20LTT-001, бра, 59 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003800.webp</image:loc>
+      <image:title>OLL Edge MZB1500-D55LTT-001, бра, 121 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003900.webp</image:loc>
+      <image:title>OLL Edge MZD1500-D70LTTYY-001, подвес, 266 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030004000.webp</image:loc>
+      <image:title>OLL Edge MZL1340-D70LTT-001, торшер, 301 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030004700.webp</image:loc>
+      <image:title>OLL Vessel MZD1460-91W, подвес, 1 004 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030004800.webp</image:loc>
+      <image:title>OLL Vessel MZL2020-61W, торшер, 1 101 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030004900.webp</image:loc>
+      <image:title>OLL Vessel MZL2525-21W, торшер, 312 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030005000.webp</image:loc>
+      <image:title>OLL Vessel MZT1313-32W, настольная, 391 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030005100.webp</image:loc>
+      <image:title>OLL Vessel MZD9090-25W, подвес, 208 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030005200.webp</image:loc>
+      <image:title>OLL Vessel MZB9015-21W, бра, 198 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030005900.webp</image:loc>
+      <image:title>OLL Aura MZD400-16W, подвес, 150 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030006000.webp</image:loc>
+      <image:title>OLL Aura MZL400-16W, торшер, 272 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030006200.webp</image:loc>
+      <image:title>OLL Aura MZX600-24W, потолочная, 116 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000000.webp</image:loc>
+      <image:title>OLL Bubble MZD150-8W, подвес, 43 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000100.webp</image:loc>
+      <image:title>OLL Bubble MZD150-8W, подвес, 44 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000200.webp</image:loc>
+      <image:title>OLL Bubble MZD150-8W, подвес, 44 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000300.webp</image:loc>
+      <image:title>OLL Bubble MZD150-8W, подвес, 44 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000400.webp</image:loc>
+      <image:title>OLL Bubble MZD150-8W, подвес, 47 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000500.webp</image:loc>
+      <image:title>OLL Bubble MZD200-8W, подвес, 49 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000600.webp</image:loc>
+      <image:title>OLL Bubble MZD200-8W, подвес, 51 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000700.webp</image:loc>
+      <image:title>OLL Bubble MZD200-8W, подвес, 51 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000800.webp</image:loc>
+      <image:title>OLL Bubble MZD200-8W, подвес, 51 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030000900.webp</image:loc>
+      <image:title>OLL Bubble MZD200-8W, подвес, 54 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001000.webp</image:loc>
+      <image:title>OLL Bubble MZD250-11W, подвес, 68 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001100.webp</image:loc>
+      <image:title>OLL Bubble MZD250-11W, подвес, 70 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001200.webp</image:loc>
+      <image:title>OLL Bubble MZD250-11W, подвес, 70 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001300.webp</image:loc>
+      <image:title>OLL Bubble MZD250-11W, подвес, 70 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001400.webp</image:loc>
+      <image:title>OLL Bubble MZD250-11W, подвес, 74 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001500.webp</image:loc>
+      <image:title>OLL Bubble MZT200-8W, настольная, 60 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001600.webp</image:loc>
+      <image:title>OLL Bubble MZT200-8W, настольная, 57 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001700.webp</image:loc>
+      <image:title>OLL Bubble MZL180-8W, торшер, 76 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001800.webp</image:loc>
+      <image:title>OLL Bubble MZD180-8W, подвес, 46 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030001900.webp</image:loc>
+      <image:title>OLL Bubble MZD140-8W, подвес, 41 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002000.webp</image:loc>
+      <image:title>OLL Bubble MZD1080-40W, подвес, 132 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002100.webp</image:loc>
+      <image:title>OLL Bubble MZD540-40W, подвес, 131 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002200.webp</image:loc>
+      <image:title>OLL Bubble MZD150-D8LTT-001, подвес, 46 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002300.webp</image:loc>
+      <image:title>OLL Bubble MZD300-D10LTT-001, подвес, 77 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002400.webp</image:loc>
+      <image:title>OLL Bubble MZD400-D12LTT-001, подвес, 116 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002500.webp</image:loc>
+      <image:title>OLL Bubble MZD500-D15LTT-001, подвес, 191 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002600.webp</image:loc>
+      <image:title>OLL Bubble MZT200-D8LTT-001, настольная, 58 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002700.webp</image:loc>
+      <image:title>OLL Bubble MZT400-D12LTT-001, настольная, 120 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002800.webp</image:loc>
+      <image:title>OLL Bubble MZL300-D10LTT-001, торшер, 141 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030002900.webp</image:loc>
+      <image:title>OLL Flow MZD55-D9LTT-01, подвес, 129 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003000.webp</image:loc>
+      <image:title>OLL Flow MZT480-D9LTT-01, настольная, 184 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521030003100.webp</image:loc>
+      <image:title>OLL Flow MZL1300-D27LTT-01, торшер, 368 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521027004900.webp</image:loc>
+      <image:title>OLL Astra MZD400-D8LTT-001, подвес, 241 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/521027004800.webp</image:loc>
+      <image:title>OLL Astra MZB400-D25LTT-001, бра, 158 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/542016107700.webp</image:loc>
+      <image:title>OLL FOLIO MZ-C020001, картина-светильник, 383 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/542016107800.webp</image:loc>
+      <image:title>OLL FOLIO MZ-C045001, картина-светильник, 625 000 ₽</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oppleoll.ru/img/products/542016107900.webp</image:loc>
+      <image:title>OLL FOLIO MZ-C075001, картина-светильник, 941 000 ₽</image:title>
+    </image:image>
   </url>
 </urlset>

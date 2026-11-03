@@ -2,56 +2,56 @@
  {
   "key": "Astra",
   "series": "Astra",
-  "file": "img/posters/poster_Astra.jpg",
+  "file": "img/posters/poster_Astra.webp",
   "w": 750,
   "h": 1000
  },
  {
   "key": "Bubble",
   "series": "Bubble",
-  "file": "img/posters/poster_Bubble.jpg",
+  "file": "img/posters/poster_Bubble.webp",
   "w": 750,
   "h": 1000
  },
  {
   "key": "Edge",
   "series": "Edge",
-  "file": "img/posters/poster_Edge.jpg",
+  "file": "img/posters/poster_Edge.webp",
   "w": 750,
   "h": 1000
  },
  {
   "key": "Flow",
   "series": "Flow",
-  "file": "img/posters/poster_Flow.jpg",
+  "file": "img/posters/poster_Flow.webp",
   "w": 750,
   "h": 1000
  },
  {
   "key": "FOLIO",
   "series": "FOLIO",
-  "file": "img/posters/poster_FOLIO.jpg",
+  "file": "img/posters/poster_FOLIO.webp",
   "w": 750,
   "h": 1000
  },
  {
   "key": "Ink",
   "series": "Ink",
-  "file": "img/posters/poster_Ink.jpg",
+  "file": "img/posters/poster_Ink.webp",
   "w": 750,
   "h": 1000
  },
  {
   "key": "Wellsky",
   "series": "Wellsky",
-  "file": "img/posters/poster_Wellsky.jpg",
+  "file": "img/posters/poster_Wellsky.webp",
   "w": 750,
   "h": 1000
  },
  {
   "key": "Astra2",
   "series": "Astra",
-  "file": "img/posters/poster_Astra2.jpg",
+  "file": "img/posters/poster_Astra2.webp",
   "w": 750,
   "h": 1000
  }

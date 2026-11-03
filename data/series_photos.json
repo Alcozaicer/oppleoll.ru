@@ -1,7 +1,7 @@
 {
  "Edge": [
   {
-   "file": "posters/poster_Edge.jpg",
+   "file": "posters/poster_Edge.webp",
    "series": [
     "Edge"
    ],
@@ -11,7 +11,7 @@
    "h": 1000
   },
   {
-   "file": "series/dr_08_Edge.jpg",
+   "file": "series/dr_08_Edge.webp",
    "series": [
     "Edge"
    ],
@@ -21,7 +21,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_07_Edge.jpg",
+   "file": "series/dr_07_Edge.webp",
    "series": [
     "Edge"
    ],
@@ -31,7 +31,7 @@
    "h": 1067
   },
   {
-   "file": "series/int_05_0.jpg",
+   "file": "series/int_05_0.webp",
    "series": [
     "Edge"
    ],
@@ -42,7 +42,7 @@
    "lum": 216.4
   },
   {
-   "file": "series/cat_04_0.jpg",
+   "file": "series/cat_04_0.webp",
    "series": [
     "Edge"
    ],
@@ -53,7 +53,7 @@
    "lum": 217.3
   },
   {
-   "file": "series/ex_04_Edge.jpg",
+   "file": "series/ex_04_Edge.webp",
    "series": [
     "Edge"
    ],
@@ -64,7 +64,7 @@
    "lum": 64.3
   },
   {
-   "file": "series/ex_01_Edge.jpg",
+   "file": "series/ex_01_Edge.webp",
    "series": [
     "Edge"
    ],
@@ -75,7 +75,7 @@
    "lum": 66.2
   },
   {
-   "file": "series/ex_00_Edge.jpg",
+   "file": "series/ex_00_Edge.webp",
    "series": [
     "Edge"
    ],
@@ -86,7 +86,7 @@
    "lum": 120.8
   },
   {
-   "file": "series/brd_06_0.jpg",
+   "file": "series/brd_06_0.webp",
    "series": [
     "Edge"
    ],
@@ -97,7 +97,7 @@
    "lum": 108.6
   },
   {
-   "file": "series/int_05_6.jpg",
+   "file": "series/int_05_6.webp",
    "series": [
     "Edge"
    ],
@@ -108,7 +108,7 @@
    "lum": 115.0
   },
   {
-   "file": "series/int_04_1.jpg",
+   "file": "series/int_04_1.webp",
    "series": [
     "Edge"
    ],
@@ -119,7 +119,7 @@
    "lum": 76.8
   },
   {
-   "file": "series/cat_03_0.jpg",
+   "file": "series/cat_03_0.webp",
    "series": [
     "Edge"
    ],
@@ -130,7 +130,7 @@
    "lum": 140.7
   },
   {
-   "file": "series/cat_03_1.jpg",
+   "file": "series/cat_03_1.webp",
    "series": [
     "Edge"
    ],
@@ -141,7 +141,7 @@
    "lum": 79.9
   },
   {
-   "file": "series/brd_08_0.jpg",
+   "file": "series/brd_08_0.webp",
    "series": [
     "Edge"
    ],
@@ -152,7 +152,7 @@
    "lum": 117.5
   },
   {
-   "file": "series/brd_07_0.jpg",
+   "file": "series/brd_07_0.webp",
    "series": [
     "Edge"
    ],
@@ -163,7 +163,7 @@
    "lum": 118.7
   },
   {
-   "file": "series/brd_09_0.jpg",
+   "file": "series/brd_09_0.webp",
    "series": [
     "Edge"
    ],
@@ -174,7 +174,7 @@
    "lum": 126.3
   },
   {
-   "file": "series/brd_10_0.jpg",
+   "file": "series/brd_10_0.webp",
    "series": [
     "Edge"
    ],
@@ -185,7 +185,7 @@
    "lum": 128.1
   },
   {
-   "file": "series/cat_03_3.jpg",
+   "file": "series/cat_03_3.webp",
    "series": [
     "Edge"
    ],
@@ -196,7 +196,7 @@
    "lum": 128.0
   },
   {
-   "file": "series/brd_11_7.jpg",
+   "file": "series/brd_11_7.webp",
    "series": [
     "Edge"
    ],
@@ -207,7 +207,7 @@
    "lum": 97.4
   },
   {
-   "file": "series/int_04_0.jpg",
+   "file": "series/int_04_0.webp",
    "series": [
     "Edge"
    ],
@@ -220,7 +220,7 @@
  ],
  "Aura": [
   {
-   "file": "series/int_08_0.jpg",
+   "file": "series/int_08_0.webp",
    "series": [
     "Aura"
    ],
@@ -231,7 +231,7 @@
    "lum": 158.6
   },
   {
-   "file": "series/brd_12_0.jpg",
+   "file": "series/brd_12_0.webp",
    "series": [
     "Aura"
    ],
@@ -242,7 +242,7 @@
    "lum": 114.8
   },
   {
-   "file": "series/cat_06_2.jpg",
+   "file": "series/cat_06_2.webp",
    "series": [
     "Aura"
    ],
@@ -253,7 +253,7 @@
    "lum": 150.0
   },
   {
-   "file": "series/brd_13_0.jpg",
+   "file": "series/brd_13_0.webp",
    "series": [
     "Aura"
    ],
@@ -264,7 +264,7 @@
    "lum": 149.1
   },
   {
-   "file": "series/brd_14_0.jpg",
+   "file": "series/brd_14_0.webp",
    "series": [
     "Aura"
    ],
@@ -275,7 +275,7 @@
    "lum": 203.0
   },
   {
-   "file": "series/brd_15_0.jpg",
+   "file": "series/brd_15_0.webp",
    "series": [
     "Aura"
    ],
@@ -286,7 +286,7 @@
    "lum": 144.5
   },
   {
-   "file": "series/brd_17_6.jpg",
+   "file": "series/brd_17_6.webp",
    "series": [
     "Aura"
    ],
@@ -297,7 +297,7 @@
    "lum": 158.7
   },
   {
-   "file": "series/cat_06_0.jpg",
+   "file": "series/cat_06_0.webp",
    "series": [
     "Aura"
    ],
@@ -308,7 +308,7 @@
    "lum": 123.7
   },
   {
-   "file": "series/cat_06_1.jpg",
+   "file": "series/cat_06_1.webp",
    "series": [
     "Aura"
    ],
@@ -319,7 +319,7 @@
    "lum": 80.9
   },
   {
-   "file": "series/int_07_2.jpg",
+   "file": "series/int_07_2.webp",
    "series": [
     "Aura"
    ],
@@ -332,7 +332,7 @@
  ],
  "Astra": [
   {
-   "file": "posters/poster_Astra2.jpg",
+   "file": "posters/poster_Astra2.webp",
    "series": [
     "Astra"
    ],
@@ -342,7 +342,7 @@
    "h": 1000
   },
   {
-   "file": "series/brd_31_0.jpg",
+   "file": "series/brd_31_0.webp",
    "series": [
     "Astra"
    ],
@@ -353,7 +353,7 @@
    "lum": 81.3
   },
   {
-   "file": "series/cat_10_1.jpg",
+   "file": "series/cat_10_1.webp",
    "series": [
     "Astra"
    ],
@@ -364,7 +364,7 @@
    "lum": 74.2
   },
   {
-   "file": "series/cat_10_4.jpg",
+   "file": "series/cat_10_4.webp",
    "series": [
     "Astra"
    ],
@@ -375,7 +375,7 @@
    "lum": 77.0
   },
   {
-   "file": "series/int_11_4.jpg",
+   "file": "series/int_11_4.webp",
    "series": [
     "Astra"
    ],
@@ -388,7 +388,7 @@
  ],
  "Vessel": [
   {
-   "file": "series/cat_17_2.jpg",
+   "file": "series/cat_17_2.webp",
    "series": [
     "Vessel"
    ],
@@ -399,7 +399,7 @@
    "lum": 200.9
   },
   {
-   "file": "series/cat_16_0.jpg",
+   "file": "series/cat_16_0.webp",
    "series": [
     "Vessel"
    ],
@@ -410,7 +410,7 @@
    "lum": 140.0
   },
   {
-   "file": "series/int_18_0.jpg",
+   "file": "series/int_18_0.webp",
    "series": [
     "Vessel"
    ],
@@ -421,7 +421,7 @@
    "lum": 172.4
   },
   {
-   "file": "series/cat_16_3.jpg",
+   "file": "series/cat_16_3.webp",
    "series": [
     "Vessel"
    ],
@@ -432,7 +432,7 @@
    "lum": 107.7
   },
   {
-   "file": "series/int_17_0.jpg",
+   "file": "series/int_17_0.webp",
    "series": [
     "Vessel"
    ],
@@ -443,7 +443,7 @@
    "lum": 139.6
   },
   {
-   "file": "series/brd_18_0.jpg",
+   "file": "series/brd_18_0.webp",
    "series": [
     "Vessel"
    ],
@@ -454,7 +454,7 @@
    "lum": 78.6
   },
   {
-   "file": "series/brd_19_0.jpg",
+   "file": "series/brd_19_0.webp",
    "series": [
     "Vessel"
    ],
@@ -465,7 +465,7 @@
    "lum": 141.8
   },
   {
-   "file": "series/cat_17_0.jpg",
+   "file": "series/cat_17_0.webp",
    "series": [
     "Vessel"
    ],
@@ -476,7 +476,7 @@
    "lum": 184.2
   },
   {
-   "file": "series/brd_20_6.jpg",
+   "file": "series/brd_20_6.webp",
    "series": [
     "Vessel"
    ],
@@ -487,7 +487,7 @@
    "lum": 113.6
   },
   {
-   "file": "series/int_17_2.jpg",
+   "file": "series/int_17_2.webp",
    "series": [
     "Vessel"
    ],
@@ -498,7 +498,7 @@
    "lum": 101.1
   },
   {
-   "file": "series/cat_16_2.jpg",
+   "file": "series/cat_16_2.webp",
    "series": [
     "Vessel"
    ],
@@ -509,7 +509,7 @@
    "lum": 216.2
   },
   {
-   "file": "series/int_17_4.jpg",
+   "file": "series/int_17_4.webp",
    "series": [
     "Vessel"
    ],
@@ -522,7 +522,7 @@
  ],
  "Flow": [
   {
-   "file": "posters/poster_Flow.jpg",
+   "file": "posters/poster_Flow.webp",
    "series": [
     "Flow"
    ],
@@ -532,7 +532,7 @@
    "h": 1000
   },
   {
-   "file": "series/dr_12_Flow.jpg",
+   "file": "series/dr_12_Flow.webp",
    "series": [
     "Flow"
    ],
@@ -542,7 +542,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_11_Flow.jpg",
+   "file": "series/dr_11_Flow.webp",
    "series": [
     "Flow"
    ],
@@ -552,7 +552,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_10_Flow.jpg",
+   "file": "series/dr_10_Flow.webp",
    "series": [
     "Flow"
    ],
@@ -562,7 +562,7 @@
    "h": 1600
   },
   {
-   "file": "series/ex_06_Flow.jpg",
+   "file": "series/ex_06_Flow.webp",
    "series": [
     "Flow"
    ],
@@ -573,7 +573,7 @@
    "lum": 44.9
   },
   {
-   "file": "series/ex_02_Flow.jpg",
+   "file": "series/ex_02_Flow.webp",
    "series": [
     "Flow"
    ],
@@ -584,7 +584,7 @@
    "lum": 22.4
   },
   {
-   "file": "series/ex_05_Flow.jpg",
+   "file": "series/ex_05_Flow.webp",
    "series": [
     "Flow"
    ],
@@ -595,7 +595,7 @@
    "lum": 152.2
   },
   {
-   "file": "series/brd_30_0.jpg",
+   "file": "series/brd_30_0.webp",
    "series": [
     "Flow"
    ],
@@ -606,7 +606,7 @@
    "lum": 76.9
   },
   {
-   "file": "series/brd_30_1.jpg",
+   "file": "series/brd_30_1.webp",
    "series": [
     "Flow"
    ],
@@ -619,7 +619,7 @@
  ],
  "Bubble": [
   {
-   "file": "posters/poster_Bubble.jpg",
+   "file": "posters/poster_Bubble.webp",
    "series": [
     "Bubble"
    ],
@@ -629,7 +629,7 @@
    "h": 1000
   },
   {
-   "file": "series/dr_02_Bubble.jpg",
+   "file": "series/dr_02_Bubble.webp",
    "series": [
     "Bubble"
    ],
@@ -639,7 +639,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_03_Bubble.jpg",
+   "file": "series/dr_03_Bubble.webp",
    "series": [
     "Bubble"
    ],
@@ -649,7 +649,7 @@
    "h": 1080
   },
   {
-   "file": "series/dr_05_Bubble.jpg",
+   "file": "series/dr_05_Bubble.webp",
    "series": [
     "Bubble"
    ],
@@ -659,7 +659,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_04_Bubble.jpg",
+   "file": "series/dr_04_Bubble.webp",
    "series": [
     "Bubble"
    ],
@@ -669,7 +669,7 @@
    "h": 1067
   },
   {
-   "file": "series/dr_01_Bubble.jpg",
+   "file": "series/dr_01_Bubble.webp",
    "series": [
     "Bubble"
    ],
@@ -679,7 +679,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_00_Bubble.jpg",
+   "file": "series/dr_00_Bubble.webp",
    "series": [
     "Bubble"
    ],
@@ -689,7 +689,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_06_Bubble.jpg",
+   "file": "series/dr_06_Bubble.webp",
    "series": [
     "Bubble"
    ],
@@ -699,7 +699,7 @@
    "h": 1280
   },
   {
-   "file": "series/brd_34_2.jpg",
+   "file": "series/brd_34_2.webp",
    "series": [
     "Bubble"
    ],
@@ -710,7 +710,7 @@
    "lum": 153.9
   },
   {
-   "file": "series/brd_33_0.jpg",
+   "file": "series/brd_33_0.webp",
    "series": [
     "Bubble"
    ],
@@ -721,7 +721,7 @@
    "lum": 156.2
   },
   {
-   "file": "series/brd_34_1.jpg",
+   "file": "series/brd_34_1.webp",
    "series": [
     "Bubble"
    ],
@@ -732,7 +732,7 @@
    "lum": 128.5
   },
   {
-   "file": "series/brd_34_0.jpg",
+   "file": "series/brd_34_0.webp",
    "series": [
     "Bubble"
    ],
@@ -745,7 +745,7 @@
  ],
  "FOLIO": [
   {
-   "file": "posters/poster_FOLIO.jpg",
+   "file": "posters/poster_FOLIO.webp",
    "series": [
     "FOLIO"
    ],
@@ -755,7 +755,7 @@
    "h": 1000
   },
   {
-   "file": "series/dr_09_FOLIO.jpg",
+   "file": "series/dr_09_FOLIO.webp",
    "series": [
     "FOLIO"
    ],
@@ -765,7 +765,7 @@
    "h": 1600
   },
   {
-   "file": "series/ex_03_FOLIO.jpg",
+   "file": "series/ex_03_FOLIO.webp",
    "series": [
     "FOLIO"
    ],
@@ -778,7 +778,7 @@
  ],
  "Ink": [
   {
-   "file": "posters/poster_Ink.jpg",
+   "file": "posters/poster_Ink.webp",
    "series": [
     "Ink"
    ],
@@ -788,7 +788,7 @@
    "h": 1000
   },
   {
-   "file": "series/dr_16_Ink.jpg",
+   "file": "series/dr_16_Ink.webp",
    "series": [
     "Ink"
    ],
@@ -798,7 +798,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_17_Ink.jpg",
+   "file": "series/dr_17_Ink.webp",
    "series": [
     "Ink"
    ],
@@ -808,7 +808,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_15_Ink.jpg",
+   "file": "series/dr_15_Ink.webp",
    "series": [
     "Ink"
    ],
@@ -818,7 +818,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_14_Ink.jpg",
+   "file": "series/dr_14_Ink.webp",
    "series": [
     "Ink"
    ],
@@ -828,7 +828,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_13_Ink.jpg",
+   "file": "series/dr_13_Ink.webp",
    "series": [
     "Ink"
    ],
@@ -840,7 +840,7 @@
  ],
  "Wellsky": [
   {
-   "file": "posters/poster_Wellsky.jpg",
+   "file": "posters/poster_Wellsky.webp",
    "series": [
     "Wellsky"
    ],
@@ -850,7 +850,7 @@
    "h": 1000
   },
   {
-   "file": "series/dr_24_Wellsky.jpg",
+   "file": "series/dr_24_Wellsky.webp",
    "series": [
     "Wellsky"
    ],
@@ -860,7 +860,7 @@
    "h": 1067
   },
   {
-   "file": "series/dr_23_Wellsky.jpg",
+   "file": "series/dr_23_Wellsky.webp",
    "series": [
     "Wellsky"
    ],
@@ -870,7 +870,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_22_Wellsky.jpg",
+   "file": "series/dr_22_Wellsky.webp",
    "series": [
     "Wellsky"
    ],
@@ -880,7 +880,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_21_Wellsky.jpg",
+   "file": "series/dr_21_Wellsky.webp",
    "series": [
     "Wellsky"
    ],
@@ -890,7 +890,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_20_Wellsky.jpg",
+   "file": "series/dr_20_Wellsky.webp",
    "series": [
     "Wellsky"
    ],
@@ -900,7 +900,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_19_Wellsky.jpg",
+   "file": "series/dr_19_Wellsky.webp",
    "series": [
     "Wellsky"
    ],
@@ -910,7 +910,7 @@
    "h": 1600
   },
   {
-   "file": "series/dr_18_Wellsky.jpg",
+   "file": "series/dr_18_Wellsky.webp",
    "series": [
     "Wellsky"
    ],

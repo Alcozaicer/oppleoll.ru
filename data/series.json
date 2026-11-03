@@ -1,53 +1,53 @@
 {
  "hero": {
   "Edge": {
-   "file": "img/heroes/Edge.jpg",
+   "file": "img/heroes/Edge.webp",
    "ar": 1.333,
    "w": 1400,
    "h": 1050,
-   "from": "img/series/dr_07_Edge.jpg"
+   "from": "img/series/dr_07_Edge.webp"
   },
   "Vessel": {
-   "file": "img/heroes/Vessel.jpg",
+   "file": "img/heroes/Vessel.webp",
    "ar": 1.333,
    "w": 1372,
    "h": 1029,
-   "from": "img/series/cat_16_0.jpg"
+   "from": "img/series/cat_16_0.webp"
   },
   "Aura": {
-   "file": "img/heroes/Aura.jpg",
+   "file": "img/heroes/Aura.webp",
    "ar": 1.333,
    "w": 1273,
    "h": 955,
-   "from": "img/series/brd_12_0.jpg"
+   "from": "img/series/brd_12_0.webp"
   },
   "Bubble": {
-   "file": "img/heroes/Bubble.jpg",
+   "file": "img/heroes/Bubble.webp",
    "ar": 1.333,
    "w": 1316,
    "h": 987,
-   "from": "img/series/brd_34_2.jpg"
+   "from": "img/series/brd_34_2.webp"
   },
   "Flow": {
-   "file": "img/heroes/Flow.jpg",
+   "file": "img/heroes/Flow.webp",
    "ar": 1.333,
    "w": 1067,
    "h": 800,
-   "from": "img/series/dr_12_Flow.jpg"
+   "from": "img/series/dr_12_Flow.webp"
   },
   "Astra": {
-   "file": "img/heroes/Astra.jpg",
+   "file": "img/heroes/Astra.webp",
    "ar": 1.333,
    "w": 1400,
    "h": 1050,
-   "from": "img/series/brd_31_0.jpg"
+   "from": "img/series/brd_31_0.webp"
   },
   "FOLIO": {
-   "file": "img/heroes/FOLIO.jpg",
+   "file": "img/heroes/FOLIO.webp",
    "ar": 1.333,
    "w": 1067,
    "h": 800,
-   "from": "img/series/dr_09_FOLIO.jpg"
+   "from": "img/series/dr_09_FOLIO.webp"
   }
  },
  "src": {

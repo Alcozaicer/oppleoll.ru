@@ -118,6 +118,10 @@ textarea:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--warm);ou
 .catalog{max-width:var(--max);margin:0 auto;padding:clamp(64px,10vh,120px) clamp(16px,4vw,44px) 40px}
 .cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:34px}
 .cat-note{font-size:13px;color:var(--ink-3);max-width:46ch;margin:0}
+/* оборот каталога рядом с заголовком: на телефоне счётчик в панели фильтров
+   уезжает в нижний лист, и без этой строки человек не видит, сколько всего */
+.cat-total{margin:0 auto 0 0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-3);align-self:flex-end;padding-bottom:2px}
 /* на узких экранах панель уезжает в нижний лист, в потоке остаётся тонкая строка-триггер */
 .filterbar{display:none}
 .tb-head{display:none}
@@ -450,12 +454,27 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   /* Листалка на узком: текст бренда уходит над кадрами и липнет под шапку, кадры
      проезжают под ним. Flex, а не grid: в grid-строке sticky ограничена своей
      строкой и отлипает через высоту абзаца. */
-  .story{display:flex;flex-direction:column;gap:0;margin-top:clamp(40px,8vh,80px)}
+  .story{display:flex;flex-direction:column;align-items:stretch;gap:0;margin-top:clamp(40px,8vh,80px)}
+  /* Лента, а не колонка: на пальце галерею листают свайпом вбок, и текст при этом
+     не уезжает. Полоса фиксирована по высоте, кадры внутри contain'ом — иначе
+     слайды 642×429 и 1230×1153 прыгали бы по высоте и дёргали залипающий текст. */
+  .story-media{display:flex;align-items:center;gap:16px;height:min(50vh,360px);
+    overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+    scrollbar-width:none}
+  .story-media::-webkit-scrollbar{display:none}
+  .sframe{flex:0 0 min(86%,420px);margin:0;scroll-snap-align:center;
+    display:flex;flex-direction:column;justify-content:center}
+  .story-media .sframe:last-child{margin-bottom:0}
+  .sframe img{width:100%;max-height:calc(min(50vh,360px) - 36px);height:auto;object-fit:contain}
+  /* Под ленту влезает только зачин: остаётся подписанный кадр и первая строка
+     абзаца, остальное — на десктопе и без JS (`.story--bound` не висит). */
+  .story--bound .spar > p:nth-of-type(n+3):not(.spar-cta){display:none}
+  .story--bound .spar > p:nth-of-type(2){display:-webkit-box;-webkit-line-clamp:3;
+    -webkit-box-orient:vertical;overflow:hidden}
   .story-text{order:-1;position:sticky;top:calc(var(--head-h) + 4px);z-index:2;
     background:var(--bg);padding:14px 0 16px;border-bottom:1px solid var(--line)}
   .spar p{max-width:none}
   .story--bound .sframe,.story--bound .sframe.on{opacity:1}
-  .sframe{margin-bottom:34px}
   /* minmax(0,1fr), а не 1fr: сцена с aspect-ratio даёт мин-контент шире экрана,
      и трек 1fr раздувал модалку на 108 px — содержимое уезжало в горизонтальный скролл */
   .modal-card{grid-template-columns:minmax(0,1fr);max-height:92svh}
@@ -474,6 +493,11 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
   .head{height:var(--head-h);min-height:0;padding:0 clamp(14px,4vw,44px)}
   .head .logo-sub{display:none}
   .nav{gap:16px;font-size:12px;letter-spacing:.08em}
+  /* ссылки шапки и чипы фильтров — под палец: 29 и 31 px из макета не дотягивают
+     до 44, а это единственный размер, на который попадают не глядя */
+  .nav a{display:inline-flex;align-items:center;min-height:44px;padding:0}
+  .toolbar .chip{display:inline-flex;align-items:center;min-height:44px}
+  .link-more{min-height:44px;display:inline-flex;align-items:center;padding:0}
 
   .filterbar{display:flex;align-items:center;gap:14px;position:sticky;top:var(--head-h);z-index:31;
     margin:0 0 20px;padding:9px 0;background:rgba(10,10,11,.94);backdrop-filter:blur(10px);
