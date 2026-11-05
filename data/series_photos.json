@@ -42,50 +42,6 @@
    "lum": 216.4
   },
   {
-   "file": "series/cat_04_0.webp",
-   "series": [
-    "Edge"
-   ],
-   "page": 4,
-   "src": "OLL catalogue.pdf",
-   "w": 1500,
-   "h": 1406,
-   "lum": 217.3
-  },
-  {
-   "file": "series/ex_04_Edge.webp",
-   "series": [
-    "Edge"
-   ],
-   "page": null,
-   "src": "expo",
-   "w": 1200,
-   "h": 1800,
-   "lum": 64.3
-  },
-  {
-   "file": "series/ex_01_Edge.webp",
-   "series": [
-    "Edge"
-   ],
-   "page": null,
-   "src": "expo",
-   "w": 1800,
-   "h": 1200,
-   "lum": 66.2
-  },
-  {
-   "file": "series/ex_00_Edge.webp",
-   "series": [
-    "Edge"
-   ],
-   "page": null,
-   "src": "expo",
-   "w": 1200,
-   "h": 1800,
-   "lum": 120.8
-  },
-  {
    "file": "series/brd_06_0.webp",
    "series": [
     "Edge"
@@ -128,17 +84,6 @@
    "w": 897,
    "h": 847,
    "lum": 140.7
-  },
-  {
-   "file": "series/cat_03_1.webp",
-   "series": [
-    "Edge"
-   ],
-   "page": 3,
-   "src": "OLL catalogue.pdf",
-   "w": 1008,
-   "h": 846,
-   "lum": 79.9
   },
   {
    "file": "series/brd_08_0.webp",
@@ -185,28 +130,6 @@
    "lum": 128.1
   },
   {
-   "file": "series/cat_03_3.webp",
-   "series": [
-    "Edge"
-   ],
-   "page": 3,
-   "src": "OLL catalogue.pdf",
-   "w": 1225,
-   "h": 782,
-   "lum": 128.0
-  },
-  {
-   "file": "series/brd_11_7.webp",
-   "series": [
-    "Edge"
-   ],
-   "page": 11,
-   "src": "OLL Brand & Products -V2.pdf",
-   "w": 749,
-   "h": 748,
-   "lum": 97.4
-  },
-  {
    "file": "series/int_04_0.webp",
    "series": [
     "Edge"
@@ -228,16 +151,6 @@
    "src": "poster",
    "w": 750,
    "h": 1000
-  },
-  {
-   "file": "series/dr_29_Aura.webp",
-   "series": [
-    "Aura"
-   ],
-   "page": null,
-   "src": "drive",
-   "w": 960,
-   "h": 1280
   },
   {
    "file": "series/int_08_0.webp",
@@ -295,17 +208,6 @@
    "lum": 203.0
   },
   {
-   "file": "series/brd_15_0.webp",
-   "series": [
-    "Aura"
-   ],
-   "page": 15,
-   "src": "OLL Brand & Products -V2.pdf",
-   "w": 1500,
-   "h": 843,
-   "lum": 144.5
-  },
-  {
    "file": "series/brd_17_6.webp",
    "series": [
     "Aura"
@@ -326,17 +228,6 @@
    "w": 998,
    "h": 603,
    "lum": 123.7
-  },
-  {
-   "file": "series/cat_06_1.webp",
-   "series": [
-    "Aura"
-   ],
-   "page": 6,
-   "src": "OLL catalogue.pdf",
-   "w": 937,
-   "h": 588,
-   "lum": 80.9
   },
   {
    "file": "series/int_07_2.webp",
@@ -428,16 +319,6 @@
    "h": 960
   },
   {
-   "file": "series/dr_27_Vessel.webp",
-   "series": [
-    "Vessel"
-   ],
-   "page": null,
-   "src": "drive",
-   "w": 960,
-   "h": 1280
-  },
-  {
    "file": "series/dr_25_Vessel.webp",
    "series": [
     "Vessel"
@@ -456,28 +337,6 @@
    "src": "drive",
    "w": 700,
    "h": 1280
-  },
-  {
-   "file": "series/cat_17_2.webp",
-   "series": [
-    "Vessel"
-   ],
-   "page": 17,
-   "src": "OLL catalogue.pdf",
-   "w": 1297,
-   "h": 1220,
-   "lum": 200.9
-  },
-  {
-   "file": "series/cat_16_0.webp",
-   "series": [
-    "Vessel"
-   ],
-   "page": 16,
-   "src": "OLL catalogue.pdf",
-   "w": 1500,
-   "h": 1029,
-   "lum": 140.0
   },
   {
    "file": "series/int_18_0.webp",
@@ -524,17 +383,6 @@
    "lum": 78.6
   },
   {
-   "file": "series/brd_19_0.webp",
-   "series": [
-    "Vessel"
-   ],
-   "page": 19,
-   "src": "OLL Brand & Products -V2.pdf",
-   "w": 1500,
-   "h": 843,
-   "lum": 141.8
-  },
-  {
    "file": "series/cat_17_0.webp",
    "series": [
     "Vessel"
@@ -566,17 +414,6 @@
    "w": 962,
    "h": 721,
    "lum": 101.1
-  },
-  {
-   "file": "series/cat_16_2.webp",
-   "series": [
-    "Vessel"
-   ],
-   "page": 16,
-   "src": "OLL catalogue.pdf",
-   "w": 925,
-   "h": 623,
-   "lum": 216.2
   },
   {
    "file": "series/int_17_4.webp",
@@ -632,39 +469,6 @@
    "h": 1600
   },
   {
-   "file": "series/ex_06_Flow.webp",
-   "series": [
-    "Flow"
-   ],
-   "page": null,
-   "src": "expo",
-   "w": 1200,
-   "h": 1800,
-   "lum": 44.9
-  },
-  {
-   "file": "series/ex_02_Flow.webp",
-   "series": [
-    "Flow"
-   ],
-   "page": null,
-   "src": "expo",
-   "w": 1200,
-   "h": 1800,
-   "lum": 22.4
-  },
-  {
-   "file": "series/ex_05_Flow.webp",
-   "series": [
-    "Flow"
-   ],
-   "page": null,
-   "src": "expo",
-   "w": 1200,
-   "h": 1800,
-   "lum": 152.2
-  },
-  {
    "file": "series/brd_30_0.webp",
    "series": [
     "Flow"
@@ -674,17 +478,6 @@
    "w": 1500,
    "h": 845,
    "lum": 76.9
-  },
-  {
-   "file": "series/brd_30_1.webp",
-   "series": [
-    "Flow"
-   ],
-   "page": 30,
-   "src": "OLL Brand & Products -V2.pdf",
-   "w": 747,
-   "h": 1122,
-   "lum": 55.5
   }
  ],
  "Bubble": [
@@ -833,17 +626,6 @@
    "src": "drive",
    "w": 1067,
    "h": 1600
-  },
-  {
-   "file": "series/ex_03_FOLIO.webp",
-   "series": [
-    "FOLIO"
-   ],
-   "page": null,
-   "src": "expo",
-   "w": 1200,
-   "h": 1800,
-   "lum": 104.3
   }
  ],
  "Ink": [

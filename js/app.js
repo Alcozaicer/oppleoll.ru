@@ -717,11 +717,6 @@
       else if (!deepId && state.series.size === 1) openSeries([...state.series][0]);
     }
 
-    /* Режим правки кадров (служебный, до разбора дублей). Код грузится только если в
-       адресе лежит верный токен, поэтому посетителю ни скрипт, ни оверлей не достаются. */
-    if (new URLSearchParams(location.search).get('review') === 'kadr-2491')
-      import('./review.js').catch(() => {});
-
     $('#grid').addEventListener('click', e => {
       const row = e.target.closest('.mrow');
       if (row) {
