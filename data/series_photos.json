@@ -11,6 +11,46 @@
    "h": 1000
   },
   {
+   "file": "series/dr_34_Edge.webp",
+   "series": [
+    "Edge"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_35_Edge.webp",
+   "series": [
+    "Edge"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 720,
+   "h": 859
+  },
+  {
+   "file": "series/dr_36_Edge.webp",
+   "series": [
+    "Edge"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_37_Edge.webp",
+   "series": [
+    "Edge"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 720,
+   "h": 1280
+  },
+  {
    "file": "series/dr_08_Edge.webp",
    "series": [
     "Edge"
@@ -253,6 +293,46 @@
    "h": 1000
   },
   {
+   "file": "series/dr_30_Astra.webp",
+   "series": [
+    "Astra"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_31_Astra.webp",
+   "series": [
+    "Astra"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_32_Astra.webp",
+   "series": [
+    "Astra"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_33_Astra.webp",
+   "series": [
+    "Astra"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
    "file": "series/brd_31_0.webp",
    "series": [
     "Astra"
@@ -307,6 +387,16 @@
    "src": "poster",
    "w": 750,
    "h": 1000
+  },
+  {
+   "file": "series/dr_44_Vessel.webp",
+   "series": [
+    "Vessel"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
   },
   {
    "file": "series/dr_28_Vessel.webp",
@@ -437,6 +527,26 @@
    "src": "poster",
    "w": 750,
    "h": 1000
+  },
+  {
+   "file": "series/dr_38_Flow.webp",
+   "series": [
+    "Flow"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_39_Flow.webp",
+   "series": [
+    "Flow"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
   },
   {
    "file": "series/dr_12_Flow.webp",
@@ -616,6 +726,46 @@
    "src": "poster",
    "w": 750,
    "h": 1000
+  },
+  {
+   "file": "series/dr_40_FOLIO.webp",
+   "series": [
+    "FOLIO"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_41_FOLIO.webp",
+   "series": [
+    "FOLIO"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_42_FOLIO.webp",
+   "series": [
+    "FOLIO"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "file": "series/dr_43_FOLIO.webp",
+   "series": [
+    "FOLIO"
+   ],
+   "page": null,
+   "src": "drive",
+   "w": 960,
+   "h": 1280
   },
   {
    "file": "series/dr_09_FOLIO.webp",
