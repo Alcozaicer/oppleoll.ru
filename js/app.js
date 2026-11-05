@@ -404,6 +404,8 @@
 
   function shotsFor(s, model, info) {
     const hero = meta.hero[s];
+    // герой карточки — это кроп одного из кадров ленты; показывать его дважды смыслa нет
+    const heroFrom = hero && (hero.from || '').replace(/^img\//, '');
     const out = [];
     if (model) out.push({ src: 'img/products/' + model.id + '.webp', ar: 1,
       cap: capFor(meta.src[model.id]), alt: `Светильник ${s} ${codeOf(model)}` });
@@ -412,7 +414,7 @@
       : { src: hero.file, ar: hero.ar, fill: true, alt: `Серия ${s}` });
     for (const x of photos[s] || []) {
       const src = 'img/' + x.file;
-      if (out.some(o => o.src === src)) continue;
+      if (out.some(o => o.src === src) || x.file === heroFrom) continue;
       out.push({ src, ar: stageAr(x), fill: true, alt: `Серия ${s}, кадр ${out.length + 1}` });
       if (out.length >= shotCap(s, info)) break;
     }
@@ -714,6 +716,11 @@
       if (target) openSeries(target.series, target);
       else if (!deepId && state.series.size === 1) openSeries([...state.series][0]);
     }
+
+    /* Режим правки кадров (служебный, до разбора дублей). Код грузится только если в
+       адресе лежит верный токен, поэтому посетителю ни скрипт, ни оверлей не достаются. */
+    if (new URLSearchParams(location.search).get('review') === 'kadr-2491')
+      import('./review.js').catch(() => {});
 
     $('#grid').addEventListener('click', e => {
       const row = e.target.closest('.mrow');
