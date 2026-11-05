@@ -36,5 +36,9 @@
 #rvList b{font-weight:600}
 #rvList span{grid-column:1;color:var(--ink-3,#82807a);font-size:11px;word-break:break-all}
 #rvList i{grid-row:1/3;align-self:center;font-style:normal;font-size:11px;color:#c2183b}
-.rv-actions{display:grid;grid-template-columns:1fr auto;gap:8px}
+.rv-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#rvText{width:100%;margin-top:10px;padding:9px 10px;background:var(--surface,#151517);
+  border:1px solid var(--line,#242428);border-radius:9px;color:var(--ink,#eceae6);
+  font:400 11.5px/1.45 ui-monospace,Consolas,monospace;resize:vertical}
+.rv-msg{margin:8px 0 0;color:var(--warm,#f0c98a);font-size:11.5px;min-height:1em}
 .rv-note{margin:10px 0 0;color:var(--ink-3,#82807a);font-size:11.5px;line-height:1.4}

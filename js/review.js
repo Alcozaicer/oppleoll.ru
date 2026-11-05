@@ -78,19 +78,41 @@ function report() {
 
 async function copyList(btn) {
   const text = report();
+  let ok = false;
   try {
     await navigator.clipboard.writeText(text);
+    ok = true;
   } catch {
     const ta = document.createElement('textarea');
     ta.value = text;
     ta.style.cssText = 'position:fixed;left:-9999px';
     document.body.appendChild(ta);
     ta.select();
-    document.execCommand('copy');
+    ok = document.execCommand('copy');
     ta.remove();
   }
-  btn.textContent = 'Скопировано — пришлите текст мне';
+  showText(ok ? 'Скопировано. Если вставить не выходит — сохраните .txt.'
+              : 'В буфер не легло: выделите текст в поле ниже и нажмите Ctrl+C.');
+  btn.textContent = ok ? 'Скопировано' : 'Не скопировалось';
   setTimeout(() => { btn.textContent = 'Скопировать список'; }, 2600);
+}
+
+function saveFile() {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([report()], { type: 'text/plain;charset=utf-8' }));
+  a.download = 'pravki-kadrov.txt';
+  a.click();
+  showText('Файл pravki-kadrov.txt сохранён (обычно в «Загрузках»).');
+}
+
+/* Поле с готовым списком: буфер обмена в некоторых браузерах закрыт политиками, а
+   текст в поле можно выделить мышью и скопировать вручную. */
+function showText(msg) {
+  const ta = $('#rvText'), p = $('#rvMsg');
+  ta.value = report();
+  ta.hidden = false;
+  p.textContent = msg;
+  ta.select();
 }
 
 let panel = null;
@@ -119,11 +141,17 @@ function mountPanel() {
     `<button type="button" id="rvMin" title="свернуть/развернуть">▾</button></header>` +
     `<div class="rv-body"><ul id="rvList"></ul>` +
     `<div class="rv-actions"><button type="button" class="btn rv-copy" id="rvCopy">Скопировать список</button>` +
+    `<button type="button" class="btn btn-ghost" id="rvSave">Скачать .txt</button>` +
+    `<button type="button" class="btn btn-ghost" id="rvShow">Показать текст</button>` +
     `<button type="button" class="btn btn-ghost" id="rvWipe">Отменить всё</button></div>` +
-    `<p class="rv-note">Отметки видны только вам и только в этом браузере. Скопируйте список и` +
-    ` пришлите его текстом — удалённые кадры уберёт сборка, картинки останутся на диске.</p></div>`;
+    `<textarea id="rvText" rows="8" readonly hidden spellcheck="false"></textarea>` +
+    `<p class="rv-msg" id="rvMsg"></p>` +
+    `<p class="rv-note">Отметки видны только вам и только в этом браузере. Скопируйте список или` +
+    ` сохраните .txt — удалённые кадры уберёт сборка, картинки останутся на диске.</p></div>`;
   document.body.appendChild(panel);
   panel.querySelector('#rvCopy').onclick = (e) => copyList(e.currentTarget);
+  panel.querySelector('#rvSave').onclick = saveFile;
+  panel.querySelector('#rvShow').onclick = () => showText('Текст ниже: выделите и скопируйте.');
   panel.querySelector('#rvWipe').onclick = () => {
     if (!Object.keys(store).length) return;
     if (!confirm('Снять все отметки?')) return;
