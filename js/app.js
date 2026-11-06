@@ -382,10 +382,16 @@
   function renderPosters(list) {
     const grid = $('#posterGrid'), sec = $('#posters');
     if (!list || !list.length) { if (sec) sec.hidden = true; return; }
+    // у Astra на стене две плитки (ключи Astra и Astra2): без сноски в подписи и
+    // скринридер, и поисковик видят одну и ту же картинку дважды
+    const variant = p => {
+      const t = p.key.slice(p.series.length);
+      return /^\d+$/.test(t) ? `, вариант ${t}` : '';
+    };
     grid.innerHTML = list.map(p =>
       `<button type="button" class="ppost" data-series="${p.series}"` +
-      ` aria-label="Открыть серию ${p.series}: галерея и описание">` +
-      `<img src="${p.file}" alt="Постер серии ${p.series}" ` +
+      ` aria-label="Открыть серию ${p.series}${variant(p)}: галерея и описание">` +
+      `<img src="${p.file}" alt="Постер серии ${p.series}${variant(p)}" ` +
       `width="${p.w}" height="${p.h}" loading="lazy"></button>`).join('');
   }
 
