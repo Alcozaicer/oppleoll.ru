@@ -471,6 +471,10 @@
               [...new Set(rows.map(x => x.type))].join(', ');
       if (info) $('#m-about-text').innerHTML = (txt ? txt.about : []).map(x => `<p>${x}</p>`).join('');
       $('#m-to-vitrine').hidden = brand;
+      // страница серии есть только у витринных серий; у брендовых (без моделей) ссылки нет
+      const toPage = $('#m-to-page');
+      toPage.hidden = brand;
+      toPage.href = '/series/' + s.toLowerCase() + '/';
       $('.m-price', modal).hidden = brand || info;
       $('#m-price').textContent = p ? fmt(p.price) : (low === high ? fmt(low) : 'от ' + fmt(low));
       $$('#m-list .mrow', modal).forEach(b =>

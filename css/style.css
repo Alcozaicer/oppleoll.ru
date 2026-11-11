@@ -408,6 +408,8 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
 .mrow.is-pick[aria-current="true"] .mrow-sku{color:var(--warm)}
 .mrow.is-pick[aria-current="true"] .mrow-thumb{outline:1px solid var(--warm);outline-offset:-1px}
 .m-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+/* ссылка на страницу серии — текстовый элемент в ряду кнопок: по центру их высоты */
+.m-actions .m-to{align-self:center}
 .m-sku{margin-top:auto;font-size:11px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
 
 /* ---------- авторство в подвале ---------- */

@@ -1,0 +1,46 @@
+/* Добавка только для страниц серий (/series/<slug>/): общий язык витрины берётся
+   из style.css, здесь — раскладка лендинга серии. Главную страницу файл не грузит,
+   поэтому вид витрины не меняется. */
+
+/* страница читается колонкой и скроллом — полоса прокрутки в палитре сайта */
+html{scrollbar-width:thin;scrollbar-color:var(--ctl) var(--bg)}
+html::-webkit-scrollbar{width:10px}
+html::-webkit-scrollbar-track{background:var(--bg)}
+html::-webkit-scrollbar-thumb{background:var(--ctl);border-radius:99px;border:2px solid var(--bg)}
+html::-webkit-scrollbar-thumb:hover{background:var(--ink-3)}
+
+.series-hero{min-height:68vh;min-height:68svh}
+.crumbs{font-size:12px;letter-spacing:.08em;color:var(--ink);margin:0 0 14px;
+  text-shadow:0 1px 14px rgba(0,0,0,.8)}
+.crumbs a{border-bottom:1px solid transparent;transition:.25s}
+.crumbs a:hover{color:var(--warm);border-color:var(--warm)}
+
+.series-wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(16px,4vw,44px)}
+.series-sec{padding:clamp(48px,8vh,96px) 0;border-top:1px solid var(--line)}
+.series-sec:first-child{border-top:0}
+.series-sec h2{margin:0 0 18px}
+.series-prose p{color:var(--ink-2);max-width:64ch;margin:0 0 14px;font-size:16px;line-height:1.7}
+.series-sec .cat-note{margin:0 0 18px}
+
+/* строки моделей: тот же компонент .mrow, но ссылкой и с настоящим вырезом вместо
+   спрайта — на статической странице спрайт нечем сместить, а вырез читается резче */
+.series-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);max-width:900px}
+.series-list .mrow-thumb{background:#0c0c0d;display:grid;place-items:center;overflow:hidden}
+.series-list .mrow-thumb img{width:100%;height:100%;object-fit:contain}
+
+/* галерея серии: ритм стены постеров — линии принадлежат плиткам, не контейнеру */
+.sgal{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.sgal figure{margin:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  overflow:hidden;background:var(--bg)}
+.sgal img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.88);
+  transition:transform .8s var(--ease),filter .5s}
+.sgal figure:hover img{transform:scale(1.03);filter:brightness(1)}
+.sgal figcaption{padding:10px 12px;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3)}
+@media (max-width:1000px){ .sgal{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:640px){ .sgal{grid-template-columns:1fr} }
+
+.series-nav{display:flex;gap:8px;flex-wrap:wrap}
+.series-nav .chip{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+.series-cta .series-prose{margin-bottom:22px}
