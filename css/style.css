@@ -587,3 +587,26 @@ textarea.field{resize:vertical;min-height:64px;line-height:1.55}
    в смысле transition/animation, поэтому общее правило его не глушит */
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}
   html{scroll-behavior:auto}}
+
+/* ---------- плашка согласия на аналитику ---------- */
+/* появляется только когда в конфиге задан счётчик и согласие ещё не получено;
+   класс .consent занят чекбоксом формы заявки, поэтому cookiebar.
+   z-index 45: выше шапки (40), ниже модалки (60) и мобильного шита (55) */
+.cookiebar{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:45;
+  display:flex;align-items:center;gap:18px;width:min(640px,calc(100% - 24px));
+  padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 12px 40px rgba(0,0,0,.5);
+}
+.cookiebar p{margin:0;font-size:13px;line-height:1.5;color:var(--ink-2)}
+.cookiebar a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.cookiebar a:hover{color:var(--warm)}
+.cookiebar-ok{
+  flex:none;padding:9px 22px;border-radius:99px;border:1px solid transparent;cursor:pointer;
+  background:var(--warm);color:#12100c;font-weight:500;font-size:13px;transition:background .3s;
+}
+.cookiebar-ok:hover{background:#fff}
+@media (max-width:640px){
+  .cookiebar{flex-direction:column;align-items:stretch;gap:10px;text-align:center;bottom:12px}
+}
+@media (pointer:coarse){.cookiebar-ok{min-height:44px}}
