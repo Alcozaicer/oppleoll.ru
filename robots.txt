@@ -2,4 +2,9 @@ User-agent: *
 Allow: /
 Disallow: /submit.php
 
+User-agent: Yandex
+Allow: /
+Disallow: /submit.php
+Clean-param: p&s /
+
 Sitemap: https://oppleoll.ru/sitemap.xml
